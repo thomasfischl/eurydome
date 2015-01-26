@@ -1,0 +1,62 @@
+<project name="eurydome">
+
+  <import file="../buildutils/common.build.xml" />
+
+  <target name="init">
+    <echo message="------------------------------------------------" />
+    <echo message="       E U R Y D O M E" />
+    <echo message="------------------------------------------------" />
+    <echo message="Java    : ${ant.java.version}" />
+    <echo message="Ant     : ${ant.home}" />
+    <echo message="Maven   : ${tool.maven}" />
+    <echo message="Dart Pub: ${tool.dart.pub}" />
+    <echo message="------------------------------------------------" />
+    <echo message="Clean-up release folder" />
+
+    <delete dir="${release}" />
+    <mkdir dir="${release}" />
+  </target>
+
+  <target name="build">
+    <ant target="init" />
+    <ant target="build.frontend" />
+    <ant target="build.backend" />
+    <ant target="build.docker" />
+  </target>
+
+  <target name="build.docker">
+    <ant target="build" antfile="${project.docker}/build.xml" />
+  </target>
+
+  <target name="build.frontend">
+    <mkdir dir="${release.frontend}" />
+
+    <dart.pub.build project="${project.frontend}" />
+
+    <copy todir="${release.frontend}" failonerror="true">
+      <fileset dir="${project.frontend}/build/web" includes="**/*" />
+    </copy>
+  </target>
+
+  <target name="build.backend">
+    <mkdir dir="${release.backend}" />
+
+    <delete dir="${project.backend}/src/gen/resources" />
+    <mkdir dir="${project.backend}/src/gen/resources/static" />
+    <copy todir="${project.backend}/src/gen/resources/static" failonerror="true">
+      <fileset dir="${release.frontend}" includes="**/*" />
+    </copy>
+
+    <maven.install project="${project.backend}" />
+    <copy todir="${release.backend}" file="${project.backend}/target/eurydome-backend-0.1.0.jar" failonerror="true" />
+  </target>
+
+  <target name="update.backend">
+    <delete dir="${project.backend}/src/gen/resources/static/packages/eurydome_frontend" />
+    <delete dir="${project.backend}/src/gen/resources/static/view/packages/eurydome_frontend" />
+    <sync todir="${project.backend}/src/gen/resources/static">
+      <fileset dir="${project.frontend}/web" includes="**/*" />
+    </sync>
+  </target>
+
+</project>

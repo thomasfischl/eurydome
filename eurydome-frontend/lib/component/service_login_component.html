@@ -1,0 +1,29 @@
+<div>
+  <h3>Service Login</h3>
+
+  <div>
+    <form ng-submit="login()">
+      <div>
+        <label>Company:</label>
+        <input ng-model="company" type="text" placeholder="Company" ng-change="setServices()">
+      </div>
+      <div>
+        <label>User:</label>
+        <input ng-model="user" type="text" placeholder="User" ng-change="setServices()">
+      </div>
+      
+      <div>
+        <label>Service:</label>
+        <select ng-model="service">
+          <option ng-repeat="item in services" ng-value="item">
+            {{item}}
+          </option>
+        </select>
+      </div>
+      
+      <div>
+        <input type="submit" value="Navigate" >
+      </div>
+    </form>
+  </div>
+</div>

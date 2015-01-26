@@ -1,0 +1,47 @@
+<project name="common.eurydome">
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                 Properties                      -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <property environment="env" />
+
+  <property name="tool.maven" value="${env.MAVEN_HOME}/bin/mvn.bat" />
+  <property name="tool.dart.pub" value="${env.DART_HOME}/bin/pub.bat" />
+
+  <property name="project.docker" value="../docker" />
+  <property name="project.backend" value="../eurydome-backend" />
+  <property name="project.frontend" value="../eurydome-frontend" />
+
+  <property name="release" value="../release" />
+  <property name="release.docker" value="${release}/docker" />
+  <property name="release.backend" value="${release}/backend" />
+  <property name="release.frontend" value="${release}/frontend" />
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                 Macrodefs                       -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <macrodef name="maven.install">
+    <attribute name="project" />
+    <sequential>
+      <echo message="Install maven project @{project}" />
+      <delete dir="@{project}/target" />
+      <exec dir="@{project}" executable="${tool.maven}" logerror="true" append="true">
+        <arg line="clean install" />
+      </exec>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="dart.pub.build">
+    <attribute name="project" />
+    <sequential>
+      <echo message="Build dart pub project @{project}" />
+      <delete dir="@{project}/build" />
+      <exec dir="@{project}" executable="${tool.dart.pub}" logerror="true" append="true">
+        <arg line="build" />
+      </exec>
+    </sequential>
+  </macrodef>
+</project>

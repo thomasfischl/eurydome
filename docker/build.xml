@@ -1,0 +1,38 @@
+<project name="docker.eurydome">
+
+  <import file="../buildutils/common.build.xml" />
+
+  <target name="build">
+    <delete dir="${release.docker}" />
+    <mkdir dir="${release.docker}" />
+
+    <antcall target="build.mongodb" />
+    <antcall target="build.eurydome" />
+  </target>
+
+  <target name="build.mongodb">
+    <tar destfile="${release.docker}/mongodb.tar">
+      <fileset dir="${project.docker}/mongodb" includes="**/*" />
+    </tar>
+  </target>
+
+  <target name="build.eurydome">
+
+    <delete dir="${release}/tmp" />
+    <mkdir dir="${release}/tmp" />
+
+    <copy todir="${release}/tmp">
+      <fileset dir="${project.docker}/eurydome" includes="**/*" />
+    </copy>
+
+    <copy tofile="${release}/tmp/java/eurydome-backend.jar" file="${release.backend}/eurydome-backend-0.1.0.jar" />
+
+
+    <tar destfile="${release.docker}/eurydome.tar">
+      <fileset dir="${release}/tmp" includes="**/*" />
+    </tar>
+    <delete dir="${release}/tmp" />
+  </target>
+
+
+</project>

@@ -1,0 +1,1295 @@
+---
+build.dart --machine --changed=CHANGELOG.md --changed=LICENSE --changed=README.md --changed=lib\main_app.dart -...
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.5s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2712 ms]
+
+---
+build.dart --machine --changed=pubspec.yaml
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.5s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.5s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2578 ms]
+
+---
+build.dart --machine --changed=pubspec.yaml
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.5s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.5s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2565 ms]
+
+---
+build.dart --machine --changed=pubspec.yaml
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2597 ms]
+
+---
+build.dart --machine --changed=web\index_old.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2705 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/index.html","message":"(from html5lib) Unexpected start tag (html). Expected DOCTYPE. See http://goo.gl/5HPeuP#polymer_40 for details.","line":1,"charStart":0,"charEnd":6}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2837 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2756 ms]
+
+---
+build.dart --machine --changed=web\index.html
+vm\thread_pool.cc:236: error: Could not start worker thread: result = 22.
+build.dart finished [8996 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2845 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/index.html","message":"(from html5lib) Unexpected end tag (paper-fab). Ignored. See http://goo.gl/5HPeuP#polymer_40 for details.","line":45,"charStart":1658,"charEnd":1670}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2805 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2683 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2768 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2805 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2667 ms]
+
+---
+build.dart --machine --changed=web\ logindialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2704 ms]
+
+---
+build.dart --machine --changed=web\ logindialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2693 ms]
+
+---
+build.dart --machine --changed=web\logindialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2741 ms]
+
+---
+build.dart --machine --changed=web\logindialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [3016 ms]
+
+---
+build.dart --machine --changed=web\ logindialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/%20logindialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2693 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html --removed=web\ logindialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2761 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart --removed=web\logindialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":48,"charStart":1692,"charEnd":1805}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":52,"charStart":1882,"charEnd":2050}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2702 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2987 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2828 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/index.html","message":"(from html5lib) Trailing solidus not allowed on element login-dialog. See http://goo.gl/5HPeuP#polymer_40 for details.","line":47,"charStart":1723,"charEnd":1739}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"(from html5lib) Unexpected end tag (sampler-scaffold). Ignored. See http://goo.gl/5HPeuP#polymer_40 for details.","line":49,"charStart":1751,"charEnd":1770}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.5s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":47,"charStart":1723,"charEnd":1739}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3069 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":689,"charEnd":802}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":879,"charEnd":1047}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":47,"charStart":1723,"charEnd":1738}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2776 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":691,"charEnd":804}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":881,"charEnd":1049}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":47,"charStart":1723,"charEnd":1738}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2799 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":691,"charEnd":804}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":881,"charEnd":1049}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":47,"charStart":1723,"charEnd":1737}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2784 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":691,"charEnd":804}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":881,"charEnd":1049}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":47,"charStart":1723,"charEnd":1737}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2729 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected start tag (polymer-element). Expected DOCTYPE. See http://goo.gl/5HPeuP#polymer_40 for details.","line":2,"charStart":1,"charEnd":73}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected end tag (head). Ignored. See http://goo.gl/5HPeuP#polymer_40 for details.","line":28,"charStart":656,"charEnd":663}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected start tag (body). See http://goo.gl/5HPeuP#polymer_40 for details.","line":29,"charStart":664,"charEnd":670}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected end tag (body). Missing end tag (polymer-element). See http://goo.gl/5HPeuP#polymer_40 for details.","line":49,"charStart":1277,"charEnd":1284}}]
+[{"method":"error","params":{"file":"web/login_dialog.html","message":"Polymer.dart's implementation of HTML imports are not supported within polymer element definitions, yet. Please move the import out of this <polymer-element>. See http://goo.gl/5HPeuP#polymer_4 for details.","line":8,"charStart":208,"charEnd":273}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":746,"charEnd":859}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":39,"charStart":936,"charEnd":1104}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build failed with errors: {Transform polymer (Linter) on pmgmt_frontend|web/login_dialog.html threw error: Polymer.dart's implementation of HTML imports are not supported within polymer element definitions, yet. Please move the import out of this <polymer-element>. See http://goo.gl/5HPeuP#polymer_4 for details.}
+build.dart finished [2921 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected start tag (polymer-element). Expected DOCTYPE. See http://goo.gl/5HPeuP#polymer_40 for details.","line":2,"charStart":1,"charEnd":73}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"Missing definition for <polymer-element>, please add the following HTML import at the top of this file: <link rel=\"import\" href=\"packages/polymer/polymer.html\">. See http://goo.gl/5HPeuP#polymer_3 for details.","line":2,"charStart":1,"charEnd":73}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element with name \"core-input\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":25,"charStart":488,"charEnd":601}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element with name \"core-input\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":29,"charStart":678,"charEnd":846}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2820 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected start tag (polymer-element). Expected DOCTYPE. See http://goo.gl/5HPeuP#polymer_40 for details.","line":2,"charStart":1,"charEnd":73}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"Missing definition for <polymer-element>, please add the following HTML import at the top of this file: <link rel=\"import\" href=\"packages/polymer/polymer.html\">. See http://goo.gl/5HPeuP#polymer_3 for details.","line":2,"charStart":1,"charEnd":73}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element with name \"core-input\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":25,"charStart":488,"charEnd":601}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element with name \"core-input\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":29,"charStart":678,"charEnd":846}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2779 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected start tag (link). Expected DOCTYPE. See http://goo.gl/5HPeuP#polymer_40 for details.","line":2,"charStart":1,"charEnd":66}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":27,"charStart":555,"charEnd":668}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":31,"charStart":745,"charEnd":913}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2761 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":28,"charStart":571,"charEnd":684}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":32,"charStart":761,"charEnd":929}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2996 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) Unexpected start tag (link). Expected DOCTYPE. See http://goo.gl/5HPeuP#polymer_40 for details.","line":1,"charStart":0,"charEnd":65}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":26,"charStart":554,"charEnd":667}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":30,"charStart":744,"charEnd":912}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2877 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":27,"charStart":570,"charEnd":683}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":31,"charStart":760,"charEnd":928}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2870 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":27,"charStart":570,"charEnd":683}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":31,"charStart":760,"charEnd":928}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2938 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":618}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":687,"charEnd":863}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2879 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":618}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":687,"charEnd":863}}]
+[{"method":"warning","params":{"message":"To run a polymer application, you need to call `initPolymer()`. You can either include a generic script tag that does this for you:'<script type=\"application/dart\">export \"package:polymer/init.dart\";</script>' or add your own script tag and call that function. Make sure the script tag is placed after all HTML imports. See http://goo.gl/5HPeuP#polymer_5 for details."}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2879 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":618}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":687,"charEnd":863}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3016 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":618}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":687,"charEnd":863}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3070 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":619}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":688,"charEnd":864}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.0s (0.8s awaiting secondary inputs)."}}]
+build.dart finished [3333 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":619}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":688,"charEnd":864}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2928 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":619}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":688,"charEnd":864}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2828 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":619}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":688,"charEnd":864}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [2972 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":619}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":688,"charEnd":864}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2903 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":29,"charStart":501,"charEnd":619}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":688,"charEnd":864}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2908 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) End tag (section) seen too early. Expected other end tag. See http://goo.gl/5HPeuP#polymer_40 for details.","line":40,"charStart":921,"charEnd":931}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":678,"charEnd":854}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2933 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"(from html5lib) End tag (section) seen too early. Expected other end tag. See http://goo.gl/5HPeuP#polymer_40 for details.","line":40,"charStart":920,"charEnd":930}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":34,"charStart":677,"charEnd":853}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2979 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":695,"charEnd":871}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.0s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [3154 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":695,"charEnd":871}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2945 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.dart
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element \"core-input\" doesn't declare any type extensions. To fix this, either rewrite this tag as <core-input> or add 'extends=\"input\"' to the custom element declaration. See http://goo.gl/5HPeuP#polymer_17 for details.","line":35,"charStart":695,"charEnd":871}}]
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3136 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2924 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2884 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3083 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.5s (0.2s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [3040 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2993 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2879 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"couldn't find imported asset \"lib/core_input.html\" in package \"paper_elements\". See http://goo.gl/5HPeuP#polymer_1 for details.","line":3,"charStart":87,"charEnd":153}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"Missing definition for <polymer-element>, please add the following HTML import at the top of this file: <link rel=\"import\" href=\"packages/polymer/polymer.html\">. See http://goo.gl/5HPeuP#polymer_3 for details.","line":5,"charStart":155,"charEnd":193}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element with name \"core-input\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":30,"charStart":539,"charEnd":646}}]
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"custom element with name \"core-input\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":36,"charStart":733,"charEnd":898}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2890 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3029 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.0s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [3131 ms]
+
+---
+build.dart --machine --changed=web\index.html
+
+build.dart finished [5962 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [2864 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2743 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2755 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2799 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2951 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2850 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2965 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+unexpected error invoking 'pub':
+build.dart finished [1474 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+unexpected error invoking 'pub':
+build.dart finished [1109 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+Unhandled exception:
+FormatException: Unexpected end of input (at character 1)
+
+^
+
+#0      _ChunkedJsonParser.fail (dart:convert-patch/convert_patch.dart:1310)
+#1      _ChunkedJsonParser.close (dart:convert-patch/convert_patch.dart:469)
+#2      _parseJson (dart:convert-patch/convert_patch.dart:20)
+#3      JsonDecoder.convert (dart:convert/json.dart:496)
+#4      JsonCodec.decode (dart:convert/json.dart:124)
+#5      readPackageDirsFromPub (package:polymer/src/build/runner.dart:118:24)
+#6      BarbackOptions.BarbackOptions (package:polymer/src/build/runner.dart:67:49)
+#7      lint (package:polymer/builder.dart:156:25)
+#8      main (package:polymer/default_build.dart:12:18)
+#9      _startIsolate (dart:isolate-patch/isolate_patch.dart:237)
+#10     _startMainIsolate.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:192)
+#11     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:130)
+build.dart finished [35833 ms]
+
+---
+build.dart --machine --changed=web\index.html --changed=web\login_dialog.dart --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.1s (0.9s awaiting secondary inputs)."}}]
+build.dart finished [9963 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.0s (0.8s awaiting secondary inputs)."}}]
+build.dart finished [6236 ms]
+
+---
+build.dart --machine --changed=pubspec.lock
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3205 ms]
+
+---
+build.dart --machine --changed=web\css\bootstrap-theme.css --changed=web\css\bootstrap-theme.css.map --changed=...
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2759 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2878 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [3002 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2923 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3040 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.0s (0.7s awaiting secondary inputs)."}}]
+build.dart finished [3236 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+unexpected error invoking 'pub':
+build.dart finished [4650 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3011 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+vm\scavenger.cc:462: error: Out of memory.
+build.dart finished [5374 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+unexpected error invoking 'pub':
+build.dart finished [1126 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.7s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 1.0s (0.8s awaiting secondary inputs)."}}]
+build.dart finished [8697 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2963 ms]
+
+---
+build.dart --machine --changed=pubspec.yaml
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2920 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2762 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2842 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2868 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3072 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2805 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog.html","message":"Missing definition for <polymer-element>, please add the following HTML import at the top of this file: <link rel=\"import\" href=\"packages/polymer/polymer.html\">. See http://goo.gl/5HPeuP#polymer_3 for details.","line":6,"charStart":214,"charEnd":252}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2786 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2746 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2785 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2843 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2831 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2796 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2743 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2884 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2735 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2723 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3010 ms]
+
+---
+build.dart --machine --changed=web\login_dialog.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2812 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":42,"charStart":1487,"charEnd":1501}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2557 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2639 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2564 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2556 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2540 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2549 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2580 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog1.html","message":"(from html5lib) End tag (form) seen too early. Ignored. See http://goo.gl/5HPeuP#polymer_40 for details.","line":31,"charStart":1146,"charEnd":1153}}]
+[{"method":"warning","params":{"file":"web/login_dialog1.html","message":"(from html5lib) Unexpected end tag (template). Ignored. See http://goo.gl/5HPeuP#polymer_40 for details.","line":52,"charStart":1653,"charEnd":1664}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2565 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2569 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/login_dialog1.html","message":"(from html5lib) Unexpected character after attribute value. See http://goo.gl/5HPeuP#polymer_40 for details.","line":3,"charStart":87,"charEnd":154}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2653 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [3012 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog1\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":42,"charStart":1487,"charEnd":1502}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2659 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/index.html","message":"couldn't find imported asset \"web/login_dialog.html1\" in package \"pmgmt_frontend\". See http://goo.gl/5HPeuP#polymer_1 for details.","line":25,"charStart":1155,"charEnd":1200}}]
+[{"method":"warning","params":{"file":"web/index.html","message":"custom element with name \"login-dialog1\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":42,"charStart":1488,"charEnd":1503}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+build.dart finished [2643 ms]
+
+---
+build.dart --machine --changed=web\index.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2786 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.dart
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2734 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.dart
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [4748 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.dart
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.4s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2705 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [2892 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.dart
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2825 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.dart
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2881 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.dart
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2892 ms]
+
+---
+build.dart --machine --changed=web\login_dialog1.html
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2913 ms]
+
+---
+build.dart --machine --full
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.7s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2860 ms]
+
+---
+build.dart --machine --clean
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.3s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.8s (0.5s awaiting secondary inputs)."}}]
+build.dart finished [2825 ms]
+
+---
+build.dart --machine --full
+error: pubspec.yaml file not found.
+[{"method":"info","params":{"message":"Took 0.4s (0.1s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.9s (0.6s awaiting secondary inputs)."}}]
+build.dart finished [3178 ms]
+
+---
+build.dart --machine --removed=lib\main_app.dart --removed=lib\main_app.html
+error: pubspec.yaml file not found.
+[{"method":"warning","params":{"file":"web/index_old.html","message":"couldn't find imported asset \"lib/main_app.html\" in package \"pmgmt_frontend\". See http://goo.gl/5HPeuP#polymer_1 for details.","line":34,"charStart":1352,"charEnd":1416}}]
+[{"method":"warning","params":{"file":"web/index_old.html","message":"custom element with name \"main-app\" not found. See http://goo.gl/5HPeuP#polymer_11 for details.","line":41,"charStart":1492,"charEnd":1502}}]
+[{"method":"info","params":{"message":"Took 0.2s (0.0s awaiting secondary inputs)."}}]
+[{"method":"info","params":{"message":"Took 0.6s (0.3s awaiting secondary inputs)."}}]
+build.dart finished [2561 ms]
+
+---
+build.dart --machine --removed=web\apple-touch-icon-precomposed.png --removed=web\css\bootstrap-theme.css --rem...
+error: pubspec.yaml file not found.
+build.dart finished [1900 ms]
+

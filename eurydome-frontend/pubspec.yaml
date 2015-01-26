@@ -1,0 +1,19 @@
+name: eurydome_frontend
+version: 0.0.1
+author: thomas fischl
+description: Web Frontend for the Docker Platform Management Service
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  angular: any
+  browser: any
+  http_server: any
+  observe: any
+  web_components: any
+transformers:
+- angular:
+    html_files:
+    - lib/component/service_login_component.html
+    - lib/component/login_component.html
+    - lib/component/application_template_component.html
+    csp: true
