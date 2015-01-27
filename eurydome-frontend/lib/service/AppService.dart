@@ -1,4 +1,4 @@
-library pmgmt_service;
+library ApplicationServiceLibrary;
 
 import 'package:angular/angular.dart';
 
@@ -35,10 +35,13 @@ class ApplicationService {
 
 class ApplicationTemplate {
   
+  @NgTwoWay("id")
   int id;
   
+  @NgTwoWay("name")
   String name;
   
+  @NgTwoWay("location")
   String location;
   
   ApplicationTemplate(this.id, [this.name, this.location]);

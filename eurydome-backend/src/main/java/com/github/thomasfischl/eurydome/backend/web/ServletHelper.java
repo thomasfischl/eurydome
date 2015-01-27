@@ -26,6 +26,11 @@ public class ServletHelper {
     session.setAttribute(USER, new UserSession());
   }
 
+  public static void invalidateSession(HttpServletRequest req) {
+    HttpSession session = req.getSession(true);
+    session.invalidate();
+  }
+
   public static void checkLogin(HttpServletRequest req, HttpServletResponse resp) {
     try {
       resp.sendRedirect("/index.html");

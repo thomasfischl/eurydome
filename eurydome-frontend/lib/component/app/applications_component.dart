@@ -1,4 +1,4 @@
-library service_template_component;
+library ApplicationTemplatesComponentLibrary;
 
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
@@ -6,11 +6,11 @@ import 'package:eurydome_frontend/service/AppService.dart';
 
 @Component(
     selector: 'application-templates', 
-    templateUrl: 'application_template_component.html', 
-    cssUrl: 'bootstrap.css')
-class ApplicationTemplatesComponent {
+    templateUrl: 'applications_component.html', 
+    useShadowDom: false)
+class ApplicationsComponent {
 
-  Iterable<ApplicationTemplate> templates;
+  Set<ApplicationTemplate> templates;
 
   bool visibleDetailTemplateView = false;
 
@@ -18,7 +18,7 @@ class ApplicationTemplatesComponent {
 
   final ApplicationService applicationServices;
 
-  ApplicationTemplatesComponent(this.applicationServices) {
+  ApplicationsComponent(this.applicationServices) {
     loadTemplates();
   }
 

@@ -15,5 +15,5 @@ transformers:
     html_files:
     - lib/component/service_login_component.html
     - lib/component/login_component.html
-    - lib/component/application_template_component.html
+    - lib/component/app/applications_component.html
     csp: true

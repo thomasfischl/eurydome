@@ -42,6 +42,7 @@
     <mkdir dir="${release.backend}" />
 
     <delete dir="${project.backend}/src/gen/resources" />
+    <delete dir="${project.backend}/target" />
     <mkdir dir="${project.backend}/src/gen/resources/static" />
     <copy todir="${project.backend}/src/gen/resources/static" failonerror="true">
       <fileset dir="${release.frontend}" includes="**/*" />

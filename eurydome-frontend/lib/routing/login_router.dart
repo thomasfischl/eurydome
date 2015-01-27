@@ -4,28 +4,20 @@ import 'package:angular/angular.dart';
 
 void pmgmtRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
-    'adminLogin': ngRoute(
-        path: '/AdminLogin',
-        view: 'view/admin_login.html'),
     'login': ngRoute(
-        path: '/Login',
-        view: 'view/login.html',
+        path: '/login',
+        viewHtml: '<service-login></service-login>', 
         defaultRoute: true),
-/*    'recipe': ngRoute(
-        path: '/recipe/:recipeId',
+    'adminLogin': ngRoute(
+        path: '/adminLogin',
+        viewHtml: '<admin-login></admin-login>'),
+    'app': ngRoute(
+        path: '/app',
+        view: 'view/dashboard.html',
         mount: {
-          'view': ngRoute(
-              path: '/view',
-              view: 'view/viewRecipe.html'),
-          'edit': ngRoute(
-              path: '/edit',
-              view: 'view/editRecipe.html'),
-          'view_default': ngRoute(
-              defaultRoute: true,
-              enter: (RouteEnterEvent e) =>
-                  router.go('view', {},
-                      startingFrom: router.root.findRoute('recipe'),
-                      replace: true))
-        })*/
+          'applications': ngRoute(
+            path: '/applications',
+            viewHtml: '<application-templates></application-templates>')
+        })
   });
 }

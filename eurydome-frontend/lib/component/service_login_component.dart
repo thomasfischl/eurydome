@@ -1,4 +1,4 @@
-library service_login_component;
+library ServiceLoginComponentLibrary;
 
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
@@ -8,7 +8,7 @@ import 'package:eurydome_frontend/service/LoginService.dart';
 @Component(
     selector: 'service-login',
     templateUrl: 'service_login_component.html',
-    cssUrl: 'bootstrap.css')
+    useShadowDom: false)
 class ServiceLoginComponent {
   
   List<String> services;

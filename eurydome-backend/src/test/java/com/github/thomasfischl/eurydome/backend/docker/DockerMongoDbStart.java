@@ -72,23 +72,18 @@ public class DockerMongoDbStart {
 
     StartContainerCmd startContainer = client.startContainerCmd(containerResp.getId());
     startContainer.withPortBindings(new PortBinding(Ports.Binding(27017), ExposedPort.tcp(27017)));
-    // startContainer.withPrivileged(true);
     startContainer.withBinds(new Bind("/tmp/mongodb", new Volume("/data/db")));
     startContainer.exec();
 
-    InspectContainerResponse inspect;
-    do {
-      System.out.println("Running");
-      inspect = client.inspectContainerCmd(containerResp.getId()).exec();
-
+    for (int i = 0; i < 10; i++) {
+      InspectContainerResponse inspect = client.inspectContainerCmd(containerResp.getId()).exec();
+      System.out.println("Status: " + inspect.getState().toString());
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
-    } while (inspect.getState().isRunning());
-    System.out.println("Stopped");
+    }
     client.close();
   }
 }
