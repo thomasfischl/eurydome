@@ -11,7 +11,6 @@ import org.apache.commons.io.LineIterator;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerCmd;
 import com.github.dockerjava.api.command.CreateContainerResponse;
-import com.github.dockerjava.api.command.InspectContainerResponse;
 import com.github.dockerjava.api.command.StartContainerCmd;
 import com.github.dockerjava.api.model.Container;
 import com.github.dockerjava.api.model.ExposedPort;
@@ -72,15 +71,6 @@ public class DockerEurydomeStart {
     startContainer.withPortBindings(new PortBinding(Ports.Binding(80), ExposedPort.tcp(80)));
     startContainer.exec();
 
-    // for (int i = 0; i < 10; i++) {
-    // InspectContainerResponse inspect = client.inspectContainerCmd(containerResp.getId()).exec();
-    // System.out.println("Status: " + inspect.getState().toString());
-    // try {
-    // Thread.sleep(1000);
-    // } catch (InterruptedException e) {
-    // e.printStackTrace();
-    // }
-    // }
     client.close();
   }
 }

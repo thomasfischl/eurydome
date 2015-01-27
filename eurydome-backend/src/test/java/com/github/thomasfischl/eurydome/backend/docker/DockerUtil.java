@@ -11,10 +11,14 @@ import com.google.common.base.Preconditions;
 
 public class DockerUtil {
 
+  private static final String CERTIFICATION_PATH = "../buildutils/certificates/zeus";
+
+  // private static final String CERTIFICATION_PATH = "../buildutils/certificates/work";
+
   public static DockerClient createClient(String host) {
     DockerClientConfigBuilder cfg = new DockerClientConfigBuilder();
     cfg.withUri("https://" + host + ":2376");
-    cfg.withDockerCertPath("../buildutils/certificates/work");
+    cfg.withDockerCertPath(CERTIFICATION_PATH);
     return DockerClientBuilder.getInstance(cfg).build();
   }
 
