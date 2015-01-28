@@ -21,6 +21,7 @@
     <ant target="init" />
     <ant target="build.frontend" />
     <ant target="build.backend" />
+    <ant target="build.demoapp" />
     <ant target="build.docker" />
   </target>
 
@@ -51,13 +52,11 @@
     <maven.install project="${project.backend}" />
     <copy todir="${release.backend}" file="${project.backend}/target/eurydome-backend-0.1.0.jar" failonerror="true" />
   </target>
-
-  <target name="update.backend">
-    <delete dir="${project.backend}/src/gen/resources/static/packages/eurydome_frontend" />
-    <delete dir="${project.backend}/src/gen/resources/static/view/packages/eurydome_frontend" />
-    <sync todir="${project.backend}/src/gen/resources/static">
-      <fileset dir="${project.frontend}/web" includes="**/*" />
-    </sync>
-  </target>
+  
+  <target name="build.demoapp">
+     <mkdir dir="${release.demoapp}" />
+     <maven.install project="${project.demoapp}" />
+     <copy tofile="${release.demoapp}/eurydome-demoapp.jar" file="${project.demoapp}/target/eurydome-demoapp-0.1.0.jar" failonerror="true" />
+   </target>
 
 </project>

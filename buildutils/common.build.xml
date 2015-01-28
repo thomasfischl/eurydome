@@ -12,11 +12,13 @@
   <property name="project.docker" value="../docker" />
   <property name="project.backend" value="../eurydome-backend" />
   <property name="project.frontend" value="../eurydome-frontend" />
+  <property name="project.demoapp" value="../eurydome-demoapp" />
 
   <property name="release" value="../release" />
   <property name="release.docker" value="${release}/docker" />
   <property name="release.backend" value="${release}/backend" />
   <property name="release.frontend" value="${release}/frontend" />
+  <property name="release.demoapp" value="${release}/demoapp" />
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                 Macrodefs                       -->
