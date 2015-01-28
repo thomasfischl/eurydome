@@ -28,7 +28,7 @@
       <fileset dir="${project.docker}/tools" includes="jre-8u25-linux-x64.tar.gz" />
     </copy>
 
-    <copy tofile="${tmpdir}/java/eurydome-backend.jar" file="${release.backend}/eurydome-backend-0.1.0.jar" />
+    <copy tofile="${tmpdir}/java/eurydome-backend.jar" file="${release.backend}/eurydome-backend.jar" />
 
     <tar destfile="${release.docker}/eurydome.tar">
       <fileset dir="${tmpdir}" includes="**/*" />

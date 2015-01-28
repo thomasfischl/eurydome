@@ -50,13 +50,23 @@
     </copy>
 
     <maven.install project="${project.backend}" />
-    <copy todir="${release.backend}" file="${project.backend}/target/eurydome-backend-0.1.0.jar" failonerror="true" />
+
+    <mkdir dir="${project.backend}/target/tmp" />
+    <unjar dest="${project.backend}/target/tmp">
+      <fileset file="${project.backend}/target/eurydome-backend-0.1.0.jar" />
+    </unjar>
+    <delete file="${project.backend}/target/tmp/com/github/thomasfischl/eurydome/backend/web/ResourceController.class" failonerror="true" />
+    <zip destfile="${release.backend}/eurydome-backend.jar" compress="false">
+      <fileset dir="${project.backend}/target/tmp" includes="**/*" />
+    </zip>
+
+    <delete dir="${project.backend}/src/gen/resources/static" />
   </target>
-  
+
   <target name="build.demoapp">
-     <mkdir dir="${release.demoapp}" />
-     <maven.install project="${project.demoapp}" />
-     <copy tofile="${release.demoapp}/eurydome-demoapp.jar" file="${project.demoapp}/target/eurydome-demoapp-0.1.0.jar" failonerror="true" />
-   </target>
+    <mkdir dir="${release.demoapp}" />
+    <maven.install project="${project.demoapp}" />
+    <copy tofile="${release.demoapp}/eurydome-demoapp.jar" file="${project.demoapp}/target/eurydome-demoapp-0.1.0.jar" failonerror="true" />
+  </target>
 
 </project>
