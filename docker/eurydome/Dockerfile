@@ -4,16 +4,13 @@
 ############################################################
 
 # Base
-FROM dockerfile/ubuntu
+FROM dockerfile/java:oracle-java8
 
 #File Author
 MAINTAINER Thomas Fischl
 
 # Update the repository
 RUN apt-get update
-
-# Install necessary tools
-RUN apt-get install -y nano wget dialog net-tools
 
 ############################################################
 # Install apache2
@@ -31,19 +28,6 @@ RUN a2enmod proxy           && \
     a2enmod proxy_html      && \
     a2enmod substitute      && \
     a2enmod xml2enc
-
-############################################################
-# Install Java
-# Oracle Java 8 Dockerfile
-############################################################
-
-ADD jre-8u25-linux-x64.tar.gz /tmp
-
-# Define working directory.
-WORKDIR /data
-
-# Define commonly used JAVA_HOME variable
-#ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 ############################################################
 # Configure apache2
@@ -74,4 +58,4 @@ ADD java /var/eurydome
 EXPOSE 80
 
 CMD  service apache2 restart && \
-        /tmp/jre1.8.0_25/bin/java -jar /var/eurydome/eurydome-backend.jar
+        java -jar /var/eurydome/eurydome-backend.jar

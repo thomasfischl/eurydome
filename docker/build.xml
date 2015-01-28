@@ -25,7 +25,6 @@
 
     <copy todir="${tmpdir}">
       <fileset dir="${project.docker}/eurydome" includes="**/*" />
-      <fileset dir="${project.docker}/tools" includes="jre-8u25-linux-x64.tar.gz" />
     </copy>
 
     <copy tofile="${tmpdir}/java/eurydome-backend.jar" file="${release.backend}/eurydome-backend.jar" />
@@ -42,7 +41,6 @@
 
     <copy todir="${tmpdir}">
       <fileset dir="${project.docker}/demoapp" includes="**/*" />
-      <fileset dir="${project.docker}/tools" includes="jre-8u25-linux-x64.tar.gz" />
       <fileset dir="${release.demoapp}" includes="*.jar" />
     </copy>
 
