@@ -59,6 +59,7 @@ class ApplicationsComponent {
   void deleteTemplate(String id) {
     var temp = _getTemplate(id);
     applicationServices.deleteTemplate(temp);
+    loadTemplates();
   }
 
   ApplicationTemplate _getTemplate(String id) {

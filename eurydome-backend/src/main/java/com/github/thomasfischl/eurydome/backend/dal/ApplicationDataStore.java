@@ -39,18 +39,26 @@ public class ApplicationDataStore {
     collection.update(new BasicDBObject("id", obj.getId()), obj.getDataObject());
   }
 
+  public void remove(DOApplication obj) {
+    collection.remove(obj.getDataObject());
+  }
+
   public List<DOApplication> findAll() {
     List<DOApplication> result = new ArrayList<DOApplication>();
 
     DBCursor it = collection.find();
     while (it.hasNext()) {
-      BasicDBObject object = (BasicDBObject) it.next();
-      DOApplication app = new DOApplication(object);
+      DOApplication app = new DOApplication((BasicDBObject) it.next());
       app.validate();
       result.add(app);
     }
 
     return result;
+  }
+
+  public void removeAll() {
+    collection.drop();
+    collection = store.getCollection("application");
   }
 
 }

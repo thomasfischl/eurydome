@@ -13,7 +13,7 @@ class ApplicationService {
   }
 
   ApplicationTemplate createTemplate() {
-    return new ApplicationTemplate.fromJson(new JsonDecoder().convert(_get("create")));
+    return new ApplicationTemplate.fromJson(new JsonDecoder().convert(_post("create")));
   }
 
   List<ApplicationTemplate> getTemplates() {
@@ -22,11 +22,15 @@ class ApplicationService {
   }
 
   void saveTemplate(ApplicationTemplate template) {
-    _post("save", new JsonEncoder().convert(template));
+    if (template != null) {
+      _post("save", new JsonEncoder().convert(template));
+    }
   }
 
   void deleteTemplate(ApplicationTemplate template) {
-
+    if (template != null) {
+      _post("delete", new JsonEncoder().convert(template));
+    }
   }
 
   String _get(String method) {
@@ -40,7 +44,7 @@ class ApplicationService {
     return request.responseText;
   }
 
-  void _post(String method, String data) {
+  String _post(String method, [String data]) {
     HttpRequest request = new HttpRequest();
     request.open("POST", "/rest/application/" + method, async: false);
     request.setRequestHeader("Content-Type", "application/json");
@@ -48,6 +52,7 @@ class ApplicationService {
     if (request.status != 200) {
       throw new StateError('rest backend error');
     }
+    return request.responseText;
   }
 }
 

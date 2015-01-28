@@ -23,32 +23,24 @@ public class ApplicationController {
     return store.findAll();
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/rest/application/create")
+  @RequestMapping(method = RequestMethod.POST, value = "/rest/application/create")
   public DOApplication create() {
     return store.createObject();
   }
 
-  @RequestMapping(value = "/rest/application/save")
+  @RequestMapping(method = RequestMethod.POST, value = "/rest/application/save")
   public void save(@RequestBody DOApplication obj) {
     store.save(obj);
-    obj.getId();
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/rest/application/test")
+  @RequestMapping(method = RequestMethod.POST, value = "/rest/application/delete")
+  public void remove(@RequestBody DOApplication obj) {
+    store.remove(obj);
+  }
+
+  @RequestMapping(method = RequestMethod.GET, value = "/rest/application/deleteAll")
   public void test() {
-    DOApplication app = store.createObject();
-
-    System.out.println("ID: " + app.getId());
-
-    app.setLocation("http://localhost");
-    app.setName("Silk Central");
-
-    store.save(app);
-
-    for (DOApplication obj : store.findAll()) {
-      System.out.println(obj.getId() + " " + obj.getName());
-    }
-
+    store.removeAll();
   }
 
 }
