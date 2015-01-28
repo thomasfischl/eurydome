@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.Map.Entry;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
@@ -11,16 +12,17 @@ import org.apache.commons.io.LineIterator;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerCmd;
 import com.github.dockerjava.api.command.CreateContainerResponse;
+import com.github.dockerjava.api.command.InspectContainerResponse;
+import com.github.dockerjava.api.command.InspectContainerResponse.NetworkSettings;
 import com.github.dockerjava.api.command.StartContainerCmd;
 import com.github.dockerjava.api.model.Container;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.Image;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
+import com.github.dockerjava.api.model.Ports.Binding;
 
-public class DockerEurydomeStart {
+public class DockerDemoAppStart {
 
-  private static final String CONTAINER_NAME = "Eurydome-Server";
+  private static final String CONTAINER_NAME = "DemoApp-Server";
 
   public static void main(String[] args) throws IOException {
 
@@ -35,8 +37,8 @@ public class DockerEurydomeStart {
       throw new IllegalStateException("The container '" + CONTAINER_NAME + "' already extis.");
     }
 
-    InputStream response = client.buildImageCmd(new FileInputStream("../release/docker/eurydome.tar"))
-        .withTag("eurydome-server").withNoCache(false).exec();
+    InputStream response = client.buildImageCmd(new FileInputStream("../release/docker/demoapp.tar"))
+        .withTag("demoapp-server").withNoCache(false).exec();
     StringWriter logwriter = new StringWriter();
 
     try {
@@ -50,9 +52,9 @@ public class DockerEurydomeStart {
       IOUtils.closeQuietly(response);
     }
 
-    Image image = DockerUtil.getImage(client, "eurydome-server:latest");
+    Image image = DockerUtil.getImage(client, "demoapp-server:latest");
     if (image == null) {
-      throw new IllegalStateException("No image with tag 'eurydome-server' found.");
+      throw new IllegalStateException("No image with tag 'mongodb-server' found.");
     }
 
     CreateContainerCmd container = client.createContainerCmd(image.getId());
@@ -67,9 +69,18 @@ public class DockerEurydomeStart {
     }
 
     StartContainerCmd startContainer = client.startContainerCmd(containerResp.getId());
-    startContainer.withPortBindings(new PortBinding(Ports.Binding(80), ExposedPort.tcp(80)));
+    startContainer.withPublishAllPorts(true);
     startContainer.exec();
+
+    InspectContainerResponse continerInfo = client.inspectContainerCmd(containerResp.getId()).exec();
+
+    NetworkSettings networkSettings = continerInfo.getNetworkSettings();
+    for (Entry<ExposedPort, Binding[]> entry : networkSettings.getPorts().getBindings().entrySet()) {
+      Binding binding = entry.getValue()[0];
+      System.out.println("entrypoint: " + binding.getHostIp() + ":" + binding.getHostPort());
+    }
 
     client.close();
   }
+
 }

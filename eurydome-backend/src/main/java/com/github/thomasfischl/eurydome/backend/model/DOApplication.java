@@ -20,21 +20,20 @@ public class DOApplication extends AbstractDomainObject {
     object.put("name", name);
   }
 
-  public String getLocation() {
-    return object.getString("location");
+  public String getDockerArchive() {
+    return object.getString("dockerArchive");
   }
 
-  public void setLocation(String location) {
-    object.put("location", location);
+  public void setDockerArchive(String dockerArchive) {
+    object.put("dockerArchive", dockerArchive);
   }
 
-  @Override
-  public void validate() {
-    super.validate();
+  public String getProxyConfig() {
+    return object.getString("proxyConfig");
+  }
 
-    if (getName() == null) {
-      setName("DOApplication " + getId());
-    }
+  public void setProxyConfig(String proxyConfig) {
+    object.put("proxyConfig", proxyConfig);
   }
 
 }

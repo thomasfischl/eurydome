@@ -7,9 +7,9 @@ import 'package:logging/logging.dart';
 import 'package:eurydome_frontend/component/components.dart';
 
 import 'package:eurydome_frontend/service/LoginService.dart';
-import 'package:eurydome_frontend/service/AppService.dart';
+import 'package:eurydome_frontend/service/RestService.dart';
 
-import 'package:eurydome_frontend/routing/login_router.dart';
+import 'package:eurydome_frontend/routing/router.dart';
 
 class PlatformManager extends Module {
   PlatformManager() {
@@ -17,14 +17,16 @@ class PlatformManager extends Module {
     bind(ServiceLoginComponent);
     bind(NavigationComponent);
     bind(AdminLoginComponent);
-    bind(ApplicationsComponent);
+    bind(ApplicationsView);
+    bind(SettingsView);
+    bind(ServicesView);
     
     //Angular Services
     bind(LoginService);
-    bind(ApplicationService);
+    bind(RestService);
     
     //Routing
-    bind(RouteInitializerFn, toValue: pmgmtRouteInitializer);
+    bind(RouteInitializerFn, toValue: routeInitializer);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
   }
 }

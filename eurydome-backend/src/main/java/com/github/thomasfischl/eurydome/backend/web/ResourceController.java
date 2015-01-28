@@ -16,7 +16,7 @@ public class ResourceController {
 
   @RequestMapping(value = { "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.dart", "/**/*.woff", "/**/*.ttf" })
   public void reverse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    System.out.println("Load from pub serv: " + req.getServletPath());
+    System.out.println("Load from pub serve: " + req.getServletPath());
     URLConnection connection = new URL("http://localhost:8081" + req.getServletPath()).openConnection();
     connection.connect();
     IOUtils.copy(connection.getInputStream(), resp.getOutputStream());

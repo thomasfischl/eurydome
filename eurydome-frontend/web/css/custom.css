@@ -117,3 +117,8 @@ body {
   border-color: #e5e5e5 #eee #eee;
   border-style: solid;
 }
+
+.ng-hide, 
+.ng-show {
+   display: none !important;
+}

@@ -5,11 +5,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.github.thomasfischl.eurydome.backend.model.DOApplication;
+import com.github.thomasfischl.eurydome.backend.model.DOService;
 import com.mongodb.BasicDBObject;
 
 @Service
-public class ApplicationDataStore extends AbstractDataStore<DOApplication> {
+public class ServiceDataStore extends AbstractDataStore<DOService> {
 
   @Inject
   public MongoDbDataStore store;
@@ -21,17 +21,21 @@ public class ApplicationDataStore extends AbstractDataStore<DOApplication> {
 
   @Override
   protected String getCollectionName() {
-    return "application";
+    return "service";
   }
 
   @Override
-  protected DOApplication createEmptyDomainObject() {
-    return new DOApplication();
+  protected DOService createEmptyDomainObject() {
+    return new DOService();
   }
 
   @Override
-  protected DOApplication createDomainObject(BasicDBObject obj) {
-    return new DOApplication(obj);
+  protected DOService createDomainObject(BasicDBObject obj) {
+    return new DOService(obj);
+  }
+
+  public DOService findByName(String name) {
+    return findOne("name", name);
   }
 
 }

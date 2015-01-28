@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import com.mongodb.gridfs.GridFS;
 
 public class MongoDbDataStore {
 
@@ -18,6 +19,10 @@ public class MongoDbDataStore {
 
   public DBCollection getCollection(String name) {
     return db.getCollection(name);
+  }
+  
+  public GridFS getGridFs(){
+    return new GridFS( db );
   }
 
 }

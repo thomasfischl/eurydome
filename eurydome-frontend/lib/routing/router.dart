@@ -1,8 +1,8 @@
-library pmgmt_routing;
+library routing;
 
 import 'package:angular/angular.dart';
 
-void pmgmtRouteInitializer(Router router, RouteViewFactory views) {
+void routeInitializer(Router router, RouteViewFactory views) {
   views.configure({
     'login': ngRoute(
         path: '/login',
@@ -17,7 +17,13 @@ void pmgmtRouteInitializer(Router router, RouteViewFactory views) {
         mount: {
           'applications': ngRoute(
             path: '/applications',
-            viewHtml: '<application-templates></application-templates>')
+            viewHtml: '<applications-view></applications-view>'),
+          'settings': ngRoute(
+            path: '/settings',
+            viewHtml: '<settings-view></settings-view>'),
+          'services': ngRoute(
+            path: '/services',
+            viewHtml: '<services-view></services-view>')
         })
   });
 }

@@ -11,6 +11,4 @@ class LoginService {
     }
     return null;
   }
-  
-  
 }

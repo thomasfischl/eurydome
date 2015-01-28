@@ -11,9 +11,9 @@ import com.google.common.base.Preconditions;
 
 public class DockerUtil {
 
-  private static final String CERTIFICATION_PATH = "../buildutils/certificates/zeus";
+  // private static final String CERTIFICATION_PATH = "../buildutils/certificates/zeus";
 
-  // private static final String CERTIFICATION_PATH = "../buildutils/certificates/work";
+  private static final String CERTIFICATION_PATH = "../buildutils/certificates/work";
 
   public static DockerClient createClient(String host) {
     DockerClientConfigBuilder cfg = new DockerClientConfigBuilder();
@@ -22,7 +22,7 @@ public class DockerUtil {
     return DockerClientBuilder.getInstance(cfg).build();
   }
 
-  public static Container getContainer(DockerClient client, String name) {
+  public static Container getContainerByName(DockerClient client, String name) {
     Preconditions.checkArgument(name != null);
     Preconditions.checkArgument(client != null);
 

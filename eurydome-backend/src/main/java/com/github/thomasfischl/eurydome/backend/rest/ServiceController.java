@@ -10,38 +10,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
-import com.github.thomasfischl.eurydome.backend.model.DOApplication;
+import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
+import com.github.thomasfischl.eurydome.backend.model.DOService;
 
 @RestController
-@RequestMapping(value = "/rest/application")
-public class ApplicationController {
+@RequestMapping(value = "/rest/service")
+public class ServiceController {
 
   @Inject
-  ApplicationDataStore store;
+  ServiceDataStore store;
 
   @RequestMapping(method = RequestMethod.GET, value = "/list")
-  public List<DOApplication> listAll() {
+  public List<DOService> listAll() {
     return store.findAll();
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/find/{id}")
-  public DOApplication find(@PathVariable("id") String id) {
+  public DOService find(@PathVariable("id") String id) {
     return store.findById(id);
   }
-  
+
   @RequestMapping(method = RequestMethod.POST, value = "/create")
-  public DOApplication create() {
+  public DOService create() {
     return store.createObject();
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/save")
-  public void save(@RequestBody DOApplication obj) {
+  public void save(@RequestBody DOService obj) {
     store.save(obj);
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/delete")
-  public void remove(@RequestBody DOApplication obj) {
+  public void remove(@RequestBody DOService obj) {
     store.remove(obj);
   }
 
@@ -49,5 +49,4 @@ public class ApplicationController {
   public void test() {
     store.removeAll();
   }
-
 }

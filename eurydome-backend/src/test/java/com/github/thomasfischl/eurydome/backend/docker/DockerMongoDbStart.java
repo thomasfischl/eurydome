@@ -28,11 +28,11 @@ public class DockerMongoDbStart {
 
     DockerClient client = DockerUtil.createClient("192.168.59.103");
 
-    Container oldContainer = DockerUtil.getContainer(client, CONTAINER_NAME);
+    Container oldContainer = DockerUtil.getContainerByName(client, CONTAINER_NAME);
     if (oldContainer != null) {
       DockerUtil.deleteContainer(client, oldContainer);
     }
-    oldContainer = DockerUtil.getContainer(client, CONTAINER_NAME);
+    oldContainer = DockerUtil.getContainerByName(client, CONTAINER_NAME);
     if (oldContainer != null) {
       throw new IllegalStateException("The container '" + CONTAINER_NAME + "' already extis.");
     }
