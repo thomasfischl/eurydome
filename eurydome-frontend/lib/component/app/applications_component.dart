@@ -10,7 +10,7 @@ import 'package:eurydome_frontend/service/AppService.dart';
     useShadowDom: false)
 class ApplicationsComponent {
 
-  Set<ApplicationTemplate> templates;
+  List<ApplicationTemplate> templates;
 
   bool visibleDetailTemplateView = false;
 
@@ -36,7 +36,7 @@ class ApplicationsComponent {
     }
   }
 
-  void editTemplate(int id) {
+  void editTemplate(String id) {
     var template = _getTemplate(id);
     if(template!=null){
       selTemplate = template.clone();
@@ -56,12 +56,12 @@ class ApplicationsComponent {
     }
   }
 
-  void deleteTemplate(int id) {
+  void deleteTemplate(String id) {
     var temp = _getTemplate(id);
     applicationServices.deleteTemplate(temp);
   }
 
-  ApplicationTemplate _getTemplate(int id) {
+  ApplicationTemplate _getTemplate(String id) {
     for (var template in templates) {
       if (template.id == id) {
         return template;

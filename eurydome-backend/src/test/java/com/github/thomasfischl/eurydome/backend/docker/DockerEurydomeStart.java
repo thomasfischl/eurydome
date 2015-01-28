@@ -51,7 +51,6 @@ public class DockerEurydomeStart {
     }
 
     Image image = DockerUtil.getImage(client, "eurydome-server:latest");
-
     if (image == null) {
       throw new IllegalStateException("No image with tag 'eurydome-server' found.");
     }

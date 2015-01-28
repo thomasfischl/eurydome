@@ -1,71 +1,78 @@
 library ApplicationServiceLibrary;
 
 import 'package:angular/angular.dart';
+import 'dart:html';
+import 'dart:convert';
 
 @Injectable()
 class ApplicationService {
-  
+
   int _index = 3;
-  
-  Set<ApplicationTemplate> templates = new Set();
-  
-  ApplicationService(){
-    templates.add(new ApplicationTemplate(0, "Silk Central", "http://dropbox.com/silkcentral"));
-    templates.add(new ApplicationTemplate(1, "Rally", "http://dropbox.com/silkcentral"));
-    templates.add(new ApplicationTemplate(2, "Jenkins", "http://dropbox.com/silkcentral"));
+
+  ApplicationService() {
   }
-  
-  ApplicationTemplate createTemplate(){
-      return new ApplicationTemplate(_index++);
+
+  ApplicationTemplate createTemplate() {
+    return new ApplicationTemplate.fromJson(new JsonDecoder().convert(_get("create")));
   }
-  
-  Iterable<ApplicationTemplate> getTemplates(){
-    return templates;
+
+  List<ApplicationTemplate> getTemplates() {
+    List list = new JsonDecoder().convert(_get("list"));
+    return list.map((obj) => new ApplicationTemplate.fromJson(obj)).toList(growable: true);
   }
-  
+
   void saveTemplate(ApplicationTemplate template) {
-    templates.remove(template);
-    templates.add(template);
+    _post("save", new JsonEncoder().convert(template));
   }
-  
+
   void deleteTemplate(ApplicationTemplate template) {
-    templates.remove(template);
+
+  }
+
+  String _get(String method) {
+    HttpRequest request = new HttpRequest();
+    request.open("GET", "/rest/application/" + method, async: false);
+    request.send();
+
+    if (request.status != 200) {
+      throw new StateError('rest backend error: ' + request.responseText);
+    }
+    return request.responseText;
+  }
+
+  void _post(String method, String data) {
+    HttpRequest request = new HttpRequest();
+    request.open("POST", "/rest/application/" + method, async: false);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(data);
+    if (request.status != 200) {
+      throw new StateError('rest backend error');
+    }
   }
 }
 
 class ApplicationTemplate {
-  
-  @NgTwoWay("id")
-  int id;
-  
-  @NgTwoWay("name")
+
+  String id;
+
   String name;
-  
-  @NgTwoWay("location")
-  String location;
-  
+
+  String location = "";
+
   ApplicationTemplate(this.id, [this.name, this.location]);
-  
+
   bool operator ==(o) => o is ApplicationTemplate && o.id == id;
   int get hashCode => id.hashCode;
-  
-  ApplicationTemplate clone(){
+
+  ApplicationTemplate clone() {
     return new ApplicationTemplate(this.id, this.name, this.location);
   }
-  
-  /*
-   *  Map<String, dynamic> toJson() => <String, dynamic>{
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
-    "category": category,
-    "ingredients": ingredients,
-    "directions": directions,
-    "rating": rating,
-    "imgUrl": imgUrl
+    "location": location
   };
 
-  Recipe.fromJson(Map<String, dynamic> json): this(json['id'], json['name'], json['category'],
-      json['ingredients'], json['directions'], json['rating'], json['imgUrl']);
-   */
-  
+  ApplicationTemplate.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['location']);
 }

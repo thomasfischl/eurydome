@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
@@ -12,9 +11,9 @@ import org.apache.commons.io.LineIterator;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerCmd;
 import com.github.dockerjava.api.command.CreateContainerResponse;
-import com.github.dockerjava.api.command.InspectContainerResponse;
 import com.github.dockerjava.api.command.StartContainerCmd;
 import com.github.dockerjava.api.model.Bind;
+import com.github.dockerjava.api.model.Container;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.api.model.PortBinding;
@@ -23,9 +22,20 @@ import com.github.dockerjava.api.model.Volume;
 
 public class DockerMongoDbStart {
 
+  private static final String CONTAINER_NAME = "MongoDB-Server";
+
   public static void main(String[] args) throws IOException {
 
     DockerClient client = DockerUtil.createClient("192.168.59.103");
+
+    Container oldContainer = DockerUtil.getContainer(client, CONTAINER_NAME);
+    if (oldContainer != null) {
+      DockerUtil.deleteContainer(client, oldContainer);
+    }
+    oldContainer = DockerUtil.getContainer(client, CONTAINER_NAME);
+    if (oldContainer != null) {
+      throw new IllegalStateException("The container '" + CONTAINER_NAME + "' already extis.");
+    }
 
     InputStream response = client.buildImageCmd(new FileInputStream("../release/docker/mongodb.tar"))
         .withTag("mongodb-server").withNoCache(false).exec();
@@ -42,24 +52,13 @@ public class DockerMongoDbStart {
       IOUtils.closeQuietly(response);
     }
 
-    // CreateImageResponse image = client.createImageCmd("", new FileInputStream("../docker/mongodb.tar")).exec();
-
-    List<Image> images = client.listImagesCmd().exec();
-    Image image = null;
-    for (Image img : images) {
-      String[] repoTags = img.getRepoTags();
-      if (repoTags != null && repoTags.length > 0 && "mongodb-server:latest".equals(repoTags[0])) {
-        image = img;
-        System.out.println(image.getId());
-      }
-    }
-
+    Image image = DockerUtil.getImage(client, "mongodb-server:latest");
     if (image == null) {
       throw new IllegalStateException("No image with tag 'mongodb-server' found.");
     }
 
     CreateContainerCmd container = client.createContainerCmd(image.getId());
-    container.withName("MongoDb-Server");
+    container.withName(CONTAINER_NAME);
     container.withCmd("mongod", "--smallfiles");
     CreateContainerResponse containerResp = container.exec();
 
@@ -75,15 +74,7 @@ public class DockerMongoDbStart {
     startContainer.withBinds(new Bind("/tmp/mongodb", new Volume("/data/db")));
     startContainer.exec();
 
-    for (int i = 0; i < 10; i++) {
-      InspectContainerResponse inspect = client.inspectContainerCmd(containerResp.getId()).exec();
-      System.out.println("Status: " + inspect.getState().toString());
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    }
     client.close();
   }
+
 }
