@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ResourceController {
 
   @RequestMapping(value = { "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.dart", "/**/*.woff", "/**/*.ttf" })
-  public void reverse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    System.out.println("Load from pub serve: " + req.getServletPath());
-    URLConnection connection = new URL("http://localhost:8081" + req.getServletPath()).openConnection();
-    connection.connect();
-    IOUtils.copy(connection.getInputStream(), resp.getOutputStream());
-    resp.flushBuffer();
+  public void reverse(HttpServletRequest req, HttpServletResponse resp) {
+    try {
+      System.out.println("Load from pub serve: " + req.getServletPath());
+      URLConnection connection = new URL("http://localhost:8082" + req.getServletPath()).openConnection();
+      connection.connect();
+      IOUtils.copy(connection.getInputStream(), resp.getOutputStream());
+      resp.flushBuffer();
+    } catch (IOException e) {
+      System.out.println("Unkown resource. " + e.getMessage());
+    }
   }
 
 }

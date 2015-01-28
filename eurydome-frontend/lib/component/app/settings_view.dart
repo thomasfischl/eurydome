@@ -1,7 +1,6 @@
 library SettingsViewLibrary;
 
 import 'viewbase.dart';
-import 'dart:html';
 
 import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
@@ -30,20 +29,7 @@ class SettingsView extends AbstractView{
   
   void saveDocker(){
     restService.saveSetting(settings[SETTING_DOCKER_HOST]);
-    
-    var uploadFile = querySelector('#uploadFile');
-    var files = uploadFile.files;
-    
-    if(files.length>0 && files[0] is File){
-      File file = files[0];
-      restService.uploadFile(file, (id){
-        settings[SETTING_DOCKER_CERTS].value = id;
-        restService.saveSetting(settings[SETTING_DOCKER_CERTS]);
-        refresh();
-        showMessage("Setting saved.");
-      });
-    }
-    
+    restService.saveSetting(settings[SETTING_DOCKER_CERTS]);
   }
   
 }

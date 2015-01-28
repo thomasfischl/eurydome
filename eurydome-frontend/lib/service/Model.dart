@@ -55,5 +55,20 @@ class Service {
   };
 
   Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status']);
+}
 
+class FileObject {
+  String id;
+  String name;
+  String size;
+
+  FileObject(this.id, this.name, this.size);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    "id": id,
+    "name": name,
+    "size": size,
+  };
+
+  FileObject.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['size']);
 }

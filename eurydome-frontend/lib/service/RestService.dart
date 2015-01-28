@@ -1,7 +1,5 @@
 library ApplicationServiceLibrary;
 
-import 'dart:async';
-import 'dart:convert';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
@@ -17,6 +15,7 @@ class RestService {
   static final String DO_APPLICATION = "application";
   static final String DO_SETTING = "setting";
   static final String DO_SERVICE = "service";
+  static final String DO_FILE = "file";
 
   RestClient _client = new RestClient();
 
@@ -29,9 +28,9 @@ class RestService {
   }
 
   ApplicationTemplate getApplicationById(String id) {
-      return new ApplicationTemplate.fromJson(_client.getById(DO_APPLICATION, id));
-    }
-  
+    return new ApplicationTemplate.fromJson(_client.getById(DO_APPLICATION, id));
+  }
+
   List<ApplicationTemplate> getApplications() {
     return _client.getAll(DO_APPLICATION, (obj) => new ApplicationTemplate.fromJson(obj));
   }
@@ -84,16 +83,11 @@ class RestService {
   // Domain Object: File
   //------------------------------------------
 
-  void uploadFile(File file, void onFinish(String id)) {
+  List<FileObject> getFiles() {
+    return _client.getAll(DO_FILE, (obj) => new FileObject.fromJson(obj));
+  }
 
-    final reader = new FileReader();
-    reader.readAsDataUrl(file);
-
-    var f = reader.onLoad.listen((e) {
-      HttpRequest request = new HttpRequest();
-      request.open("POST", "/rest/file/upload", async: false);
-      request.send(reader.result);
-      onFinish(request.responseText);
-    });
+  void deleteFile(String id) {
+    _client.post(DO_FILE, "remove", id: id);
   }
 }

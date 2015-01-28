@@ -3,16 +3,9 @@ library ApplicationsViewLibrary;
 import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
 import 'viewbase.dart';
-import 'dart:html';
 
 @Component(selector: 'applications-view', templateUrl: 'applications_view.html', useShadowDom: false)
 class ApplicationsView extends AbstractDOView {
-
-  List<ApplicationTemplate> templates;
-
-  bool visibleDetailTemplateView = false;
-
-  ApplicationTemplate selTemplate;
 
   final RestService restService;
 
@@ -33,23 +26,9 @@ class ApplicationsView extends AbstractDOView {
 
   @override
   void save() {
-
-    var uploadFile = querySelector('#uploadFile');
-    var files = uploadFile.files;
-
-    if (files.length > 0 && files[0] is File) {
-      File file = files[0];
-      restService.uploadFile(file, (id) {
-        selObject.dockerArchive = id;
-        restService.saveApplication(selObject);
-        showDetailPage = false;
-        refresh();
-      });
-    }else{
-      restService.saveApplication(selObject);
-      showDetailPage = false;
-      refresh();
-    }
+    restService.saveApplication(selObject);
+    showDetailPage = false;
+    refresh();
   }
 
   @override

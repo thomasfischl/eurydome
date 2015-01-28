@@ -13,10 +13,13 @@ import 'package:eurydome_frontend/routing/router.dart';
 
 class PlatformManager extends Module {
   PlatformManager() {
-    //Angular Components
+    //Components
     bind(ServiceLoginComponent);
     bind(NavigationComponent);
     bind(AdminLoginComponent);
+    bind(FilePoolComponent);
+    
+    //Views
     bind(ApplicationsView);
     bind(SettingsView);
     bind(ServicesView);
