@@ -2,11 +2,14 @@
 
   <import file="../buildutils/common.build.xml" />
 
+  <property name="tmpdir" value="${release}/tmp" />
+
   <target name="build">
     <delete dir="${release.docker}" />
     <mkdir dir="${release.docker}" />
 
     <antcall target="build.mongodb" />
+    <antcall target="build.demoapp" />
     <antcall target="build.eurydome" />
   </target>
 
@@ -17,21 +20,34 @@
   </target>
 
   <target name="build.eurydome">
+    <delete dir="${tmpdir}" />
+    <mkdir dir="${tmpdir}" />
 
-    <delete dir="${release}/tmp" />
-    <mkdir dir="${release}/tmp" />
-
-    <copy todir="${release}/tmp">
+    <copy todir="${tmpdir}">
       <fileset dir="${project.docker}/eurydome" includes="**/*" />
+      <fileset dir="${project.docker}/tools" includes="jre-8u25-linux-x64.tar.gz" />
     </copy>
 
-    <copy tofile="${release}/tmp/java/eurydome-backend.jar" file="${release.backend}/eurydome-backend-0.1.0.jar" />
-
+    <copy tofile="${tmpdir}/java/eurydome-backend.jar" file="${release.backend}/eurydome-backend-0.1.0.jar" />
 
     <tar destfile="${release.docker}/eurydome.tar">
-      <fileset dir="${release}/tmp" includes="**/*" />
+      <fileset dir="${tmpdir}" includes="**/*" />
     </tar>
-    <delete dir="${release}/tmp" />
+    <delete dir="${tmpdir}" />
+  </target>
+
+  <target name="build.demoapp">
+    <delete dir="${tmpdir}" />
+    <mkdir dir="${tmpdir}" />
+
+    <copy todir="${tmpdir}">
+      <fileset dir="${project.docker}/demoapp" includes="**/*" />
+      <fileset dir="${project.docker}/tools" includes="jre-8u25-linux-x64.tar.gz" />
+      <fileset dir="${release.demoapp}" includes="*.jar" />
+    </copy>
+
+    <tar destfile="${release.docker}/demoapp.tar" basedir="${tmpdir}" includes="**/*" />
+    <delete dir="${tmpdir}" />
   </target>
 
 

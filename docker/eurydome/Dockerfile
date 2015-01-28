@@ -32,17 +32,6 @@ RUN a2enmod proxy           && \
     a2enmod substitute      && \
     a2enmod xml2enc
 
-# Copy a configuration file
-RUN rm /etc/apache2/sites-enabled/*
-
-ADD 000-admin.conf /etc/apache2/sites-available/
-RUN ln -s /etc/apache2/sites-available/000-admin.conf /etc/apache2/sites-enabled/
-
-ADD index.html /var/www/html/
-
-# Expose ports
-EXPOSE 80
-
 ############################################################
 # Install Java
 # Oracle Java 8 Dockerfile
@@ -57,6 +46,18 @@ WORKDIR /data
 #ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 ############################################################
+# Configure apache2
+############################################################
+
+# Copy a configuration file
+RUN rm /etc/apache2/sites-enabled/*
+
+ADD 000-admin.conf /etc/apache2/sites-available/
+RUN ln -s /etc/apache2/sites-available/000-admin.conf /etc/apache2/sites-enabled/
+
+ADD index.html /var/www/html/
+
+############################################################
 # Install Java App
 ############################################################
 
@@ -68,5 +69,9 @@ ADD java /var/eurydome
 ############################################################
 # Start Apache and Tomcat server
 ############################################################
+
+# Expose ports
+EXPOSE 80
+
 CMD  service apache2 restart && \
         /tmp/jre1.8.0_25/bin/java -jar /var/eurydome/eurydome-backend.jar
