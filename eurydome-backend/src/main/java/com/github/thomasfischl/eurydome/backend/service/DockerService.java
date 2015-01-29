@@ -27,7 +27,6 @@ import com.github.dockerjava.api.model.Ports.Binding;
 import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.FileDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
-import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
@@ -36,8 +35,8 @@ import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
 @Service
 public class DockerService {
 
-  @Inject
-  private SettingDataStore settingStore;
+  // @Inject
+  // private SettingDataStore settingStore;
 
   @Inject
   private ApplicationDataStore applicationStore;
@@ -47,6 +46,9 @@ public class DockerService {
 
   @Inject
   private FileDataStore fileStore;
+
+  @Inject
+  private ProxyService proxyService;
 
   private Queue<DockerTask> backlog = new ConcurrentLinkedQueue<DockerTask>();
 
@@ -180,6 +182,12 @@ public class DockerService {
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
     serviceStore.save(task.getService());
+
+    //
+    // update proxy
+    //
+    proxyService.updateConfiguration(serviceStore.findAll());
+    proxyService.reloadProxy();
   }
 
   private DockerClient getClient() {
