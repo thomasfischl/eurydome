@@ -45,10 +45,65 @@
 
 \begin{document}
 
-\title{Eurydome - A SaaS Platform based on Docker}
+\title{Eurydome - Eine Docker-basierte SaaS Platform}
 \maketitle
 
 \section{Problembeschreibung}
 
+Seit einigen Jahren ist Cloud-Computing eines der Hype-Themen in der IT. Viele Firmen versuchen durch Mietsoftware kosten für das Unternamen zu sparen bzw. neue Geschäftszweige für sich zu erschließen. Dieser Trend betrifft auch große traditionelle Softwarefirmen, welche ihre bestehenden Lösungen für die Cloud fit machen müssen. Dabei reicht es jedoch für Softwarefirmen nicht aus, einfach ihre bestehenden Anwendung auf einer Cloud-Infrastruktur zu installieren und somit den Kunden zur Verfügung zu stellen. \\
+\\
+Eine Cloud-Anwendung zeichnet sich durch neue Eigenschaften aus, welche sich nicht leicht mit alten Systemen vereinbaren lassen. \\
+Einge Schlagwörter sind:
+\begin{itemize}
+	\item Elastizität,
+	\item Skalierbarkeit,
+	\item Verfügbarkeit,
+	\item kurze Releasezyklen,
+	\item Verwendung von anderen Cloud-Diensten.
+\end{itemize}
+
+Die Softwarefirmen stehen jetzt vor der Frage, wie sie am einfachsten, kostengünstigsten und schnellsten ihre Lösungen als Cloud-Anwendungen anbieten können. Diese Softwarelösungen sind schon einige Jahre alt und wurden für einen andere Anwendungsfall, Umgebung und Kapazitäten entwickelt. Ein logischer Schritt für Firmen kann es sein, die bestehenden Lösung zu verwerfen und eine neue Lösung für die Cloud zu entwickeln. Dieser Schritt ist jedoch kostenintensiv und am Ende hat man zwei Lösungen, welche man warten muss. Auf die Dauer kann man sich diese parallel Entwicklung nicht leisten. \\
+\\
+Aus diesem Grund soll ein Konzept erstellt werden, welches es den Firmen erlaubt, eine Anwendung sowohl als On-Premise als auch als Cloud-Anwendung anbieten zu können.
+
+\subsection{Zielsetzung}
+
+Softwarefirmen sollen in der Lage sein, ihre bestehenden Webanwendungen ohne Änderungen als "`richtige"' Cloud-Anwendungen zu betreiben. Dazu soll ein Konzept erstellt und getestet werden. Die wichtigste Voraussetzung dafür ist, dass die bestehende Webanwendung im besten Fall nicht speziell angepasst werden muss. Weitere Ziele für das Konzept sind, dass der administrative Aufwand minimal für die Firma sein soll und der Betriebe kosteneffizient ist. Das Konzept soll auch schnelle Entwicklungszyklen unterstützen, damit neue Anforderungen schnell in Produktion gebracht werden kann. Zuletzt muss sichergestellt werden, dass es zu keinen Sicherheitsproblemen kommt. Dafür muss der Zugriff auf die Daten besonders gut abgesichert werden. \\
+\\
+Als ultimatives Ziel für ein solches Konzept sollt es auch möglich sein, dass ein Kunde von einer Cloud-Anwendung zu einer On-Premise Lösung wechseln kann. Die Idee ist, dass der Kunde die Cloud-Anwendung am Anfang mietet um Kosten zu sparen. Wenn der Kunde wächst und immer mehr seiner Mitarbeiter die Anwendung verwenden, soll es möglich sein, dass der Kunde auf eine On-Premise Lösung wechselt und alle Daten mitnehmen kann. 
+
+\section{Unzureichende Lösungen}
+
+Die einfachst Lösung für diese Problemstellung wäre, wenn die Software auf einer PaaS-Plattform laufen würde.
+Dabei hätte der Kunden die größtmögliche Unterstützung beim Betrieb der Cloud-Anwendung. Das Problem bei dieser Lösung ist, dass PaaS-Plattform eine zu große Einschränkung ist. Nahezu keine bestehende Anwendung ist dafür ausgelegt, dass diese ohne Anpassungen auf einer PaaS-Plattform laufen kann. Dieser Punkt ist ein klares Ausschlusskriterium für eine PaaS-Plattform.\\
+\\
+Die zweite einfache Lösung wäre es, auf einer IaaS-Plattform aufzubauen. Diese Lösung ist sehr flexibel, da es den Kunden erlaubt, auf einer Vielzahl von Betriebsystemen aufzusetzen. Auch sind die Einschränkungen gering, da man mit dem Betriebsystem so ziemlich alles machen kann, was man von einem physischen Server gewohnt ist. Jedoch ist diese vermeintliche Stärke auch die größte Schwäche dieser Lösung. Der administrative Aufwand ist durch diese Flexibilität enorm und sind daher nicht kosteneffizient. \\
+
+\section{Lösung}
+
+Das größte Problem für eine optimal Lösung ist, dass jede Anwendung anders funktioniert. Die eine Anwendung verwendet einen Tomcat Server und die nächste basiert auf Ruby on Rails. Diese Diversität von Anwendungen macht es sehr schwer, eine Plattform zu entwickeln. Das erste und wichtigste Ziel ist es die Anwendungen in einen Standardform zu bringen. Diese Standardform darf aber nicht einschränkend sein, damit keine Anpassungen bei der Anwendung vorgenommen werden müssen.
+
+\subsection{Docker}
+
+Diesem Problem hat sich in letzter Zeit ein neues Open-Source Projekt angenommen. Docker ist ein Plattform, auf welcher standardisierte Container betrieben werden können. Diese Container haben eine Ähnlichkeit mit einer virtullen Maschine. Jedoch wird bei Docker kein ganzes System virtualisiert. Alle Container auf einem Docker-System teilen sich einen Linux Kernel. Dadurch können diese Container sehr ressourcenschonend betrieben werden. Docker löst somit das Problem der Standardisierung der Anwendungen. 
+
+\subsection{Container Management Plattform}
+
+Neben einer standardisierten Cloud-Anwendungen benötigt man noch eine Plattform, welche das Verwalten der Container übernimmt. Diese Plattform soll die Provisionierung und die Überwachung der Container managen. Die Plattform soll auch die Kommunikation zwischen Kunden und Anwendung transparent gestalten. Für den Kunden muss es irrelevant sein, wenn seine Anwendung von einen Server auf einen anderen Server verschoben wird. \\
+\\
+Da es zu dem heutigen Zeitpunkt keine Plattform existiert, welche diese Anforderungen erfüllt, wurde hierfür die Software Eurydome entwickelt.
+
+\section{Umsetzung}
+
+Die Plattform Eurydome besteht aus mehreren Komponenten um die Anforderungen zu erfüllen. Die Plattform selbst basiert wiederum auf Docker Containers, um die Entwicklung zu beschleunigen und um das Installieren zu erleichtern.
+
+\subsection{Reverse Proxy}
+Der Reverse Proxy ist die erste Komponente der Plattform. Diese Komponente ist das Bindeglied zwischen Internet und Plattform. Der Reverse Proxy verwaltet die komplette Kommunikation aller Anwendungen. Ein Vorteil dieser Komponente ist, dass die Infrastruktur dahinter transparent für die Anwender ist. Es ist für den Anwender egal ob dahinter ein oder hundert Server die Anwendungen betreiben. Die Konfiguration diese Komponente wird vom Plattform Manager übernommen.
+
+\subsection{Plattform Manager}
+Der Plattform Manager ist eine Java Anwendung, welches die gesamte Plattform verwaltet. Über eine Webanwendung kann man alle Anwendungen einfach administriert, welche auf der Plattform ausgeführt werden. Der Manager übernimmt auch die Verwaltung aller Kunden und ihrer Benutzer. Jeder Benutzer auf der Plattform gehört zu einer Organisation. Die Organisation repräsentiert den Kunden und stellt die Beziehung zu allen Anwendungen für den Benutzer bereit. Der Manager übernimmt auch die Weiterleitung zu den jeweilig richtigem System.
+
+\subsection{Docker Host}
+Die Plattform benötigt für den Betrieb Docker Host Systeme. Auf diesen Systemen werden die Anwendungscontainer gestartet. 
 
 \end{document}
