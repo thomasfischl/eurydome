@@ -25,8 +25,4 @@ public class ServiceDataStore extends AbstractDataStore<DOService> {
     return new DOService(obj);
   }
 
-  public DOService findByName(String name) {
-    return findOne("name", name);
-  }
-
 }

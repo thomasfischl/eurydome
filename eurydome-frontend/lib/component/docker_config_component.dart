@@ -27,9 +27,10 @@ class DockerConfigComponent extends AbstractView{
 
   void refresh(){
     settings.clear();
-    restService.getSettings().forEach((obj) => settings[obj.key] = obj);
+    restService.getSettings().forEach((obj) => settings[obj.name] = obj);
     files = restService.getFiles();
-    var tmpFile = files.firstWhere((f) => f.id == settings[SETTING_DOCKER_CERTS].value, orElse: ()=>null);
+    var tmpFile = null;
+    files.forEach((f) => f.id == settings[SETTING_DOCKER_CERTS].value ? tmpFile = f : null);
     if(tmpFile!=null){
       selFile = tmpFile.id;
     }

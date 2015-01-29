@@ -17,14 +17,6 @@ public class DOService extends AbstractDomainObject {
     super(object);
   }
 
-  public void setName(String name) {
-    object.put("name", name);
-  }
-
-  public String getName() {
-    return object.getString("name");
-  }
-
   public void setUrl(String url) {
     object.put("url", url);
   }
