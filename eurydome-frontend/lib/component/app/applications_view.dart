@@ -8,6 +8,8 @@ import 'viewbase.dart';
 class ApplicationsView extends AbstractDOView {
 
   final RestService restService;
+  
+  List<FileObject> files = new List();
 
   ApplicationsView(this.restService) {
     refresh();
@@ -16,6 +18,7 @@ class ApplicationsView extends AbstractDOView {
   @override
   void refresh() {
     objects = restService.getApplications();
+    files = restService.getFiles();
   }
 
   @override

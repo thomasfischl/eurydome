@@ -9,6 +9,8 @@ class ServicesView extends AbstractDOView {
 
   final RestService restService;
 
+  List<ApplicationTemplate> applications;
+  
   ServicesView(this.restService) {
     refresh();
   }
@@ -16,6 +18,7 @@ class ServicesView extends AbstractDOView {
   @override
   void refresh() {
     objects = restService.getServices();
+    applications = restService.getApplications();
   }
 
   @override

@@ -24,3 +24,4 @@ hs_err_pid*
 **/src/gen/**/*
 /.metadata/**/*
 RemoteSystemsTempFiles/.project
+eurydome-backend/config/000-admin.conf

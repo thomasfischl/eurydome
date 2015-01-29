@@ -1,5 +1,6 @@
 package com.github.thomasfischl.eurydome.backend.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -27,16 +29,19 @@ import com.github.dockerjava.api.model.Ports.Binding;
 import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.FileDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
+import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
+import com.github.thomasfischl.eurydome.backend.model.DOSetting;
 import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
+import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
 
 @Service
 public class DockerService {
 
-  // @Inject
-  // private SettingDataStore settingStore;
+  @Inject
+  private SettingDataStore settingStore;
 
   @Inject
   private ApplicationDataStore applicationStore;
@@ -101,7 +106,10 @@ public class DockerService {
 
     try {
       execute(task);
-    } catch (IOException e) {
+    } catch (Exception e) {
+      task.getService().setStatus(DOService.FAILED + "(" + e.getMessage() + ")");
+      task.getService().setExposedPort(null);
+      serviceStore.save(task.getService());
       e.printStackTrace();
     }
   }
@@ -125,7 +133,8 @@ public class DockerService {
     //
     // upload docker archive and build image
     //
-    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId())).withTag(containerName).withNoCache(false).exec();
+    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId()))
+        .withTag(containerName).withNoCache(false).exec();
     StringWriter logwriter = new StringWriter();
 
     try {
@@ -191,25 +200,52 @@ public class DockerService {
   }
 
   private DockerClient getClient() {
-    // TODO use docker configuration from DB
-    String uri = "https://192.168.59.103:2376";
-    String certificationPath = DockerUtil.CERTIFICATION_PATH;
-    DockerClient client = DockerUtil.createClient(uri, certificationPath);
-    return client;
+    DockerHostConfiguration config = getDockerConfiguration();
+
+    //
+    // prepare docker host certificates
+    //
+    DOFile file = fileStore.findById(config.getCertificateRef());
+    if (file == null) {
+      throw new IllegalStateException("No docker certificates available.");
+    }
+    File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
+    ZipUtil.extract(tempDir, fileStore.getInputStream(config.getCertificateRef()));
+
+    //
+    // create docker client
+    //
+    String url = "https://" + config.getHost() + ":2376";
+    return DockerUtil.createClient(url, tempDir.getAbsolutePath());
   }
 
   private String getContainerName(DOService service) {
     return service.getName().replaceAll(" ", "_").toLowerCase();
   }
+
+  private DockerHostConfiguration getDockerConfiguration() {
+    String host = settingStore.findByKey(DOSetting.SETTING_DOCKER_HOST).getValue();
+    String certificatesRef = settingStore.findByKey(DOSetting.SETTING_DOCKER_CERTS).getValue();
+
+    if (host == null) {
+      throw new IllegalArgumentException("Invalid docker configuration. Host: null");
+    }
+    if (certificatesRef == null) {
+      throw new IllegalArgumentException("Invalid docker configuration. Certificates: null");
+    }
+
+    DockerHostConfiguration config = new DockerHostConfiguration(host, certificatesRef);
+    return config;
+  }
+
 }
 
 class DockerTask {
-  private DOService service;
-  private DOApplication application;
-  private DOFile file;
+  private final DOService service;
+  private final DOApplication application;
+  private final DOFile file;
 
   public DockerTask(DOService service, DOApplication application, DOFile file) {
-    super();
     this.service = service;
     this.application = application;
     this.file = file;
@@ -226,5 +262,22 @@ class DockerTask {
   public DOFile getFile() {
     return file;
   }
+}
 
+class DockerHostConfiguration {
+  private final String host;
+  private final String certificationRef;
+
+  public DockerHostConfiguration(String host, String certificationRef) {
+    this.host = host;
+    this.certificationRef = certificationRef;
+  }
+
+  public String getHost() {
+    return host;
+  }
+
+  public String getCertificateRef() {
+    return certificationRef;
+  }
 }

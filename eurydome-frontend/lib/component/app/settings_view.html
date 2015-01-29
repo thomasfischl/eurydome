@@ -16,7 +16,10 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Docker Certs</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" ng-model="settings[SETTING_DOCKER_CERTS].value">
+        <select ng-model="selFile" class="form-control">
+          <option ng-repeat="file in files" ng-value="file.id">{{ file.name }}</option>
+          <option ng-value="null"></option>
+        </select>
       </div>
     </div>
     <div class="form-group">

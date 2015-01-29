@@ -18,6 +18,9 @@ class SettingsView extends AbstractView{
 
   Map<String, Setting> settings = new Map();
   
+  List<FileObject> files = new List();
+  String selFile;
+  
   SettingsView(this.restService) {
     refresh();
   }
@@ -25,10 +28,16 @@ class SettingsView extends AbstractView{
   void refresh(){
     settings.clear();
     restService.getSettings().forEach((obj) => settings[obj.key] = obj);
+    files = restService.getFiles();
+    var tmpFile = files.firstWhere((f) => f.id == settings[SETTING_DOCKER_CERTS].value, orElse: ()=>null);
+    if(tmpFile!=null){
+      selFile = tmpFile.id;
+    }
   }
   
   void saveDocker(){
     restService.saveSetting(settings[SETTING_DOCKER_HOST]);
+    settings[SETTING_DOCKER_CERTS].value = selFile;
     restService.saveSetting(settings[SETTING_DOCKER_CERTS]);
   }
   

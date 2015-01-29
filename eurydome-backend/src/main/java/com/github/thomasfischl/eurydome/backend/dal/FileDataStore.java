@@ -10,7 +10,6 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
-import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;

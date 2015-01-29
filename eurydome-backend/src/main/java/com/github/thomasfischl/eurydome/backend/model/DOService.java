@@ -7,6 +7,7 @@ public class DOService extends AbstractDomainObject {
   public final static String STOPPED = "Stopped";
   public final static String STARTING = "Starting";
   public final static String STARTED = "Started";
+  public final static String FAILED = "Failed";
 
   public DOService() {
     super();
