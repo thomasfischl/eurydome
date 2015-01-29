@@ -12,6 +12,14 @@ public class DOApplication extends AbstractDomainObject {
     super(object);
   }
 
+  public String getName() {
+    return object.getString("name");
+  }
+
+  public void setName(String name) {
+    object.put("name", name);
+  }
+
   public String getDockerArchive() {
     return object.getString("dockerArchive");
   }

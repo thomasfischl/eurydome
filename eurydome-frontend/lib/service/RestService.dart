@@ -17,8 +17,6 @@ class RestService {
   static final String DO_SERVICE = "service";
   static final String DO_FILE = "file";
   static final String DO_DATABASE = "database";
-  static final String DO_ORGANISATION = "organisation";
-  static final String DO_USER = "user";
 
   RestClient _client = new RestClient();
 
@@ -126,53 +124,4 @@ class RestService {
       return false;
     }
   }
-
-  //------------------------------------------
-  // Domain Object: Organisation
-  //------------------------------------------
-
-  Organisation createOrganisation() {
-    return new Organisation.fromJson(_client.create(DO_ORGANISATION));
-  }
-
-  Organisation getOrganisationById(String id) {
-    return new Organisation.fromJson(_client.getById(DO_ORGANISATION, id));
-  }
-
-  List<Organisation> getOrganisations() {
-    return _client.getAll(DO_ORGANISATION, (obj) => new Organisation.fromJson(obj));
-  }
-
-  void saveOrganisation(Organisation obj) {
-    _client.save(DO_ORGANISATION, obj);
-  }
-
-  void deleteOrganisation(Organisation obj) {
-    _client.delete(DO_ORGANISATION, obj);
-  }
-
-  //------------------------------------------
-  // Domain Object: User
-  //------------------------------------------
-
-  User createUser() {
-    return new User.fromJson(_client.create(DO_USER));
-  }
-
-  User getUserById(String id) {
-    return new User.fromJson(_client.getById(DO_USER, id));
-  }
-
-  List<User> getUsers() {
-    return _client.getAll(DO_USER, (obj) => new User.fromJson(obj));
-  }
-
-  void saveUser(User obj) {
-    _client.save(DO_USER, obj);
-  }
-
-  void deleteUser(User obj) {
-    _client.delete(DO_USER, obj);
-  }
-
 }

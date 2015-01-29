@@ -60,10 +60,6 @@ public abstract class AbstractDataStore<T extends AbstractDomainObject> {
     return convert(getCollection().findOne(new BasicDBObject("id", id)));
   }
 
-  public T findByName(String name) {
-    return findOne("name", name);
-  }
-
   public void removeAll() {
     getCollection().drop();
   }

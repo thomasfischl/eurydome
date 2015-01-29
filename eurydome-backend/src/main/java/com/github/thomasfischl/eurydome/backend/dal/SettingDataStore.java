@@ -23,4 +23,8 @@ public class SettingDataStore extends AbstractDataStore<DOSetting> {
     return new DOSetting(obj);
   }
 
+  public DOSetting findByKey(String key) {
+    return findOne("key", key);
+  }
+
 }

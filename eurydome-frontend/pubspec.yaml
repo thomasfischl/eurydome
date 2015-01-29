@@ -20,6 +20,4 @@ transformers:
     - lib/component/app/applications_view.html
     - lib/component/app/settings_view.html
     - lib/component/app/services_view.html
-    - lib/component/app/organisations_view.html
-    - lib/component/app/users_view.html
     csp: true

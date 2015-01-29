@@ -21,18 +21,18 @@ class ApplicationTemplate {
 class Setting {
 
   String id;
-  String name;
+  String key;
   String value;
 
-  Setting(this.id, this.name, this.value);
+  Setting(this.id, this.key, this.value);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
-    "name": name,
+    "key": key,
     "value": value
   };
 
-  Setting.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['value']);
+  Setting.fromJson(Map<String, dynamic> json) : this(json['id'], json['key'], json['value']);
 }
 
 class Service {
@@ -87,34 +87,3 @@ class DatabaseConfiguration {
   DatabaseConfiguration.fromJson(Map<String, dynamic> json) : this(json['host'], json['port']);
 }
 
-class Organisation {
-  String id;
-  String name;
-  List<String> services;
-
-  Organisation(this.id, this.name, this.services);
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-    "id": id,
-    "name": name,
-    "services": services,
-  };
-
-  Organisation.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['services']);
-}
-
-class User {
-  String id;
-  String name;
-  String organisation;
-
-  User(this.id, this.name, this.organisation);
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-    "id": id,
-    "name": name,
-    "organisationRef": organisation,
-  };
-
-  User.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['organisationRef']);
-}

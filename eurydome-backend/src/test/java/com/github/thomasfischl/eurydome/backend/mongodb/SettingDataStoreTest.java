@@ -19,19 +19,19 @@ public class SettingDataStoreTest {
 
     // Create Setting
     DOSetting setting = store.createObject();
-    setting.setName("Test.Docker.Hostname");
+    setting.setKey("Test.Docker.Hostname");
     setting.setValue("https://localhost:1234");
 
     store.save(setting);
 
     // Find Setting
-    DOSetting setting2 = store.findByName("Test.Docker.Hostname");
+    DOSetting setting2 = store.findByKey("Test.Docker.Hostname");
     Assert.assertNotNull(setting2);
     Assert.assertEquals("https://localhost:1234", setting2.getValue());
 
     // Delete Setting
     store.remove(setting2);
-    setting2 = store.findByName("Test.Docker.Hostname");
+    setting2 = store.findByKey("Test.Docker.Hostname");
     Assert.assertNull(setting2);
   }
 
@@ -41,7 +41,7 @@ public class SettingDataStoreTest {
 
     List<DOSetting> settings = store.findAll();
     for (DOSetting obj : settings) {
-      System.out.println(obj.getName() + " => " + obj.getValue());
+      System.out.println(obj.getKey() + " => " + obj.getValue());
     }
   }
 

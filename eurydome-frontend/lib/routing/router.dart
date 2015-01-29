@@ -23,13 +23,7 @@ void routeInitializer(Router router, RouteViewFactory views) {
             viewHtml: '<settings-view></settings-view>'),
           'services': ngRoute(
             path: '/services',
-            viewHtml: '<services-view></services-view>'),
-          'organisations': ngRoute(
-            path: '/organisations',
-            viewHtml: '<organisations-view></organisations-view>'),
-          'users': ngRoute(
-            path: '/users',
-            viewHtml: '<users-view></users-view>')
+            viewHtml: '<services-view></services-view>')
         })
   });
 }
