@@ -19,6 +19,7 @@ import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
 import com.github.dockerjava.api.model.Volume;
+import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
 
 public class DockerMongoDbStart {
 

@@ -1,5 +1,6 @@
 package com.github.thomasfischl.eurydome.backend.rest;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
+import com.github.thomasfischl.eurydome.backend.service.DockerService;
 
 @RestController
 @RequestMapping(value = "/rest/service")
@@ -19,6 +21,9 @@ public class ServiceController {
 
   @Inject
   ServiceDataStore store;
+
+  @Inject
+  DockerService dockerService;
 
   @RequestMapping(method = RequestMethod.GET, value = "/list")
   public List<DOService> listAll() {
@@ -48,5 +53,15 @@ public class ServiceController {
   @RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "/deleteAll")
   public void test() {
     store.removeAll();
+  }
+
+  @RequestMapping(method = RequestMethod.POST, value = "/start")
+  public void start(@RequestBody DOService obj) throws IOException {
+    dockerService.startService(obj);
+  }
+
+  @RequestMapping(method = RequestMethod.POST, value = "/stop")
+  public void stop(@RequestBody DOService obj) throws IOException {
+    dockerService.stopService(obj);
   }
 }

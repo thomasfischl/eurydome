@@ -17,6 +17,7 @@ import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.api.model.PortBinding;
 import com.github.dockerjava.api.model.Ports;
+import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
 
 public class DockerEurydomeStart {
 

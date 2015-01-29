@@ -67,6 +67,14 @@ class RestService {
     _client.delete(DO_SERVICE, obj);
   }
 
+  void startService(Service obj) {
+    _client.post(DO_SERVICE, "start", data: obj);
+  }
+
+  void stopService(Service obj) {
+    _client.post(DO_SERVICE, "stop", data: obj);
+  }
+
   //------------------------------------------
   // Domain Object: Setting
   //------------------------------------------

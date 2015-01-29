@@ -31,7 +31,7 @@ public class SettingController {
     if(store.findByKey(DOSetting.SETTING_DOCKER_HOST)==null){
       DOSetting object = store.createObject();
       object.setKey(DOSetting.SETTING_DOCKER_HOST);
-      object.setValue(null);
+      object.setValue("https://[docker host]:2376");
       store.save(object);
     }
   }

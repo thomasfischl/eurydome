@@ -26,7 +26,9 @@ public class ServiceDataStore extends AbstractDataStore<DOService> {
 
   @Override
   protected DOService createEmptyDomainObject() {
-    return new DOService();
+    DOService service = new DOService();
+    service.setStatus(DOService.STOPPED);
+    return service;
   }
 
   @Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.model.Container;
+import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
 
 public class DockerCleanup {
 

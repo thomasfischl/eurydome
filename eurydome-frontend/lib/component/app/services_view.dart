@@ -49,4 +49,20 @@ class ServicesView extends AbstractDOView {
     }
     refresh();
   }
+
+  void start(String id) {
+    var obj = restService.getServiceById(id);
+    if (obj != null) {
+      restService.startService(obj);
+    }
+    refresh();
+  }
+
+  void stop(String id) {
+    var obj = restService.getServiceById(id);
+    if (obj != null) {
+      restService.stopService(obj);
+    }
+    refresh();
+  }
 }
