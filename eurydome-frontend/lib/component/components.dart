@@ -8,3 +8,4 @@ export 'package:eurydome_frontend/component/service_login_component.dart';
 export 'package:eurydome_frontend/component/admin_login_component.dart';
 export 'package:eurydome_frontend/component/navigation_component.dart';
 export 'package:eurydome_frontend/component/filepool_component.dart';
+export 'package:eurydome_frontend/component/docker_config_component.dart';

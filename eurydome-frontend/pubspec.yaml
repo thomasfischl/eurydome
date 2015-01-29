@@ -16,6 +16,7 @@ transformers:
     - lib/component/service_login_component.html
     - lib/component/login_component.html
     - lib/component/filepool_component.html
+    - lib/component/docker_config_component.html
     - lib/component/app/applications_view.html
     - lib/component/app/settings_view.html
     - lib/component/app/services_view.html
