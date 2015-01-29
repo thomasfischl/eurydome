@@ -224,8 +224,8 @@ public class DockerService {
   }
 
   private DockerHostConfiguration getDockerConfiguration() {
-    String host = settingStore.findByKey(DOSetting.SETTING_DOCKER_HOST).getValue();
-    String certificatesRef = settingStore.findByKey(DOSetting.SETTING_DOCKER_CERTS).getValue();
+    String host = settingStore.findByName(DOSetting.SETTING_DOCKER_HOST).getValue();
+    String certificatesRef = settingStore.findByName(DOSetting.SETTING_DOCKER_CERTS).getValue();
 
     if (host == null) {
       throw new IllegalArgumentException("Invalid docker configuration. Host: null");

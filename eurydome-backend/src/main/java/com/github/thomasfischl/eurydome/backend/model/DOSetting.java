@@ -15,14 +15,6 @@ public class DOSetting extends AbstractDomainObject {
     super(object);
   }
 
-  public void setKey(String key) {
-    object.put("key", key);
-  }
-
-  public String getKey() {
-    return object.getString("key");
-  }
-
   public void setValue(String value) {
     object.put("value", value);
   }

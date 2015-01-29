@@ -24,6 +24,8 @@ class PlatformManager extends Module {
     bind(ApplicationsView);
     bind(SettingsView);
     bind(ServicesView);
+    bind(OrganisationView);
+    bind(UserView);
     
     //Angular Services
     bind(LoginService);

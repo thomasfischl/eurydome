@@ -28,6 +28,14 @@ public class AbstractDomainObject {
     object.put("id", id);
   }
 
+  public void setName(String name) {
+    object.put("name", name);
+  }
+
+  public String getName() {
+    return object.getString("name");
+  }
+
   public void validate() {
   }
 
