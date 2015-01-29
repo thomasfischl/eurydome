@@ -72,3 +72,18 @@ class FileObject {
 
   FileObject.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['size']);
 }
+
+class DatabaseConfiguration {
+  String host;
+  String port;
+
+  DatabaseConfiguration(this.host, this.port);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    "host": host,
+    "port": port,
+  };
+
+  DatabaseConfiguration.fromJson(Map<String, dynamic> json) : this(json['host'], json['port']);
+}
+

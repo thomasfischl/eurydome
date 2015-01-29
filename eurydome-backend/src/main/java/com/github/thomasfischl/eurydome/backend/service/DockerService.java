@@ -195,7 +195,7 @@ public class DockerService {
     //
     // update proxy
     //
-    proxyService.updateConfiguration(serviceStore.findAll());
+    proxyService.updateConfiguration(getDockerConfiguration(), serviceStore.findAll());
     proxyService.reloadProxy();
   }
 

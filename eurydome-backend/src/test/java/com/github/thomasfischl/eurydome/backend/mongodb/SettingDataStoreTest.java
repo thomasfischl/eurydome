@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.github.thomasfischl.eurydome.backend.dal.MongoDbDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
+import com.github.thomasfischl.eurydome.backend.model.DODatabaseConfiguration;
 import com.github.thomasfischl.eurydome.backend.model.DOSetting;
 
 public class SettingDataStoreTest {
@@ -46,10 +47,10 @@ public class SettingDataStoreTest {
 
   private SettingDataStore createStore() throws IOException {
     MongoDbDataStore client = new MongoDbDataStore();
-    client.init("192.168.59.103");
+    client.confgiure(new DODatabaseConfiguration("192.168.59.103", "27017"));
 
     SettingDataStore store = new SettingDataStore();
-    store.init(client);
+    store.store = client;
     return store;
   }
 

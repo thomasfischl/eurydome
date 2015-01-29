@@ -1,5 +1,7 @@
 library SettingsViewLibrary;
 
+import 'dart:html';
+import 'dart:async';
 import 'viewbase.dart';
 
 import 'package:angular/angular.dart';
@@ -10,6 +12,42 @@ class SettingsView extends AbstractView {
 
   final RestService restService;
 
+  bool databaseConnected;
+
+  bool proxyConfigurationVisible;
+
+  DatabaseConfiguration databaseConfig;
+
   SettingsView(this.restService) {
+    refresh();
+  }
+
+  void refresh() {
+    proxyConfigurationVisible = false;
+    databaseConfig = restService.getDatabaseConfiguration();
+    databaseConnected = restService.isDatabaseConnected();
+  }
+
+  void saveDatabaseConfig() {
+    try {
+      restService.saveDatabaseConfiguration(databaseConfig);
+      showMessage("Database Configuration saved! Database Connected!");
+    } catch (exception) {
+      showMessage("Database Configuration saved! Database Disconnected!");
+    }
+    refresh();
+  }
+
+  void showProxyConfiguraiton() {
+    proxyConfigurationVisible = true;
+
+    new Timer(new Duration(milliseconds: 500), () {
+      String text = restService.getProxyConfiguration();
+      int rows = text.split("\n").length;
+
+      TextAreaElement element = querySelector('#proxyConfiguration');
+      element.value = text;
+      element.rows = rows;
+    });
   }
 }

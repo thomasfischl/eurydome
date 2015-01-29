@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.inject.Inject;
+
 import com.github.thomasfischl.eurydome.backend.model.AbstractDomainObject;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -12,12 +14,11 @@ import com.mongodb.DBObject;
 
 public abstract class AbstractDataStore<T extends AbstractDomainObject> {
 
+  @Inject
   public MongoDbDataStore store;
 
-  protected DBCollection collection;
-
-  public void init(MongoDbDataStore store) {
-    collection = store.getCollection(getCollectionName());
+  protected DBCollection getCollection() {
+    return store.getCollection(getCollectionName());
   }
 
   protected abstract String getCollectionName();
@@ -29,22 +30,22 @@ public abstract class AbstractDataStore<T extends AbstractDomainObject> {
   public T createObject() {
     T obj = createEmptyDomainObject();
     obj.setId(UUID.randomUUID().toString());
-    collection.insert(obj.getDataObject());
+    getCollection().insert(obj.getDataObject());
     obj.validate();
     return obj;
   }
 
   public void save(T obj) {
-    collection.update(new BasicDBObject("id", obj.getId()), obj.getDataObject());
+    getCollection().update(new BasicDBObject("id", obj.getId()), obj.getDataObject());
   }
 
   public void remove(T obj) {
-    collection.remove(obj.getDataObject());
+    getCollection().remove(obj.getDataObject());
   }
 
   public List<T> findAll() {
     List<T> result = new ArrayList<T>();
-    DBCursor it = collection.find();
+    DBCursor it = getCollection().find();
     while (it.hasNext()) {
       result.add(convert(it.next()));
     }
@@ -52,16 +53,15 @@ public abstract class AbstractDataStore<T extends AbstractDomainObject> {
   }
 
   public T findOne(String key, String value) {
-    return convert(collection.findOne(new BasicDBObject(key, value)));
+    return convert(getCollection().findOne(new BasicDBObject(key, value)));
   }
 
   public T findById(String id) {
-    return convert(collection.findOne(new BasicDBObject("id", id)));
+    return convert(getCollection().findOne(new BasicDBObject("id", id)));
   }
 
   public void removeAll() {
-    collection.drop();
-    collection = store.getCollection(getCollectionName());
+    getCollection().drop();
   }
 
   private T convert(DBObject object) {

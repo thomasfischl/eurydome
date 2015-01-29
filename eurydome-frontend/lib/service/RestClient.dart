@@ -35,9 +35,9 @@ class RestClient {
   String get(String domainObject, String method, {String id}) {
     HttpRequest request = new HttpRequest();
     if (id != null) {
-      request.open("GET", "/rest/${domainObject}/${method}/${id}", async: false);
+      request.open("GET", "./rest/${domainObject}/${method}/${id}", async: false);
     } else {
-      request.open("GET", "/rest/${domainObject}/${method}", async: false);
+      request.open("GET", "./rest/${domainObject}/${method}", async: false);
     }
     request.send();
 
@@ -50,9 +50,9 @@ class RestClient {
   String post(String domainObject, String method, {Object data, String id}) {
     HttpRequest request = new HttpRequest();
     if (id != null) {
-      request.open("POST", "/rest/${domainObject}/${method}/${id}", async: false);
+      request.open("POST", "./rest/${domainObject}/${method}/${id}", async: false);
     } else {
-      request.open("POST", "/rest/${domainObject}/${method}", async: false);
+      request.open("POST", "./rest/${domainObject}/${method}", async: false);
     }
     request.setRequestHeader("Content-Type", "application/json");
 

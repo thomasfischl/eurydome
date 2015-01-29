@@ -1,6 +1,6 @@
 library ApplicationServiceLibrary;
 
-import 'dart:html';
+import 'dart:convert';
 
 import 'package:angular/angular.dart';
 
@@ -16,6 +16,7 @@ class RestService {
   static final String DO_SETTING = "setting";
   static final String DO_SERVICE = "service";
   static final String DO_FILE = "file";
+  static final String DO_DATABASE = "database";
 
   RestClient _client = new RestClient();
 
@@ -87,6 +88,10 @@ class RestService {
     _client.save(DO_SETTING, obj);
   }
 
+  String getProxyConfiguration() {
+    return _client.get(DO_SETTING, "proxyConfiguration");
+  }
+
   //------------------------------------------
   // Domain Object: File
   //------------------------------------------
@@ -97,5 +102,26 @@ class RestService {
 
   void deleteFile(String id) {
     _client.post(DO_FILE, "remove", id: id);
+  }
+
+  //------------------------------------------
+  // Domain Object: Database
+  //------------------------------------------
+
+  DatabaseConfiguration getDatabaseConfiguration() {
+    return new DatabaseConfiguration.fromJson(new JsonDecoder().convert(_client.get(DO_DATABASE, "get")));
+  }
+
+  void saveDatabaseConfiguration(DatabaseConfiguration obj) {
+    _client.save(DO_DATABASE, obj);
+  }
+
+  bool isDatabaseConnected() {
+    try {
+      getSettings();
+      return true;
+    } catch (exception, stackTrace) {
+      return false;
+    }
   }
 }

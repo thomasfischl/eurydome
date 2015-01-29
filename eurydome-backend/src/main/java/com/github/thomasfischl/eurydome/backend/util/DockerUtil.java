@@ -11,9 +11,9 @@ import com.google.common.base.Preconditions;
 
 public class DockerUtil {
 
-  public static final String CERTIFICATION_PATH = "../buildutils/certificates/zeus";
+  // public static final String CERTIFICATION_PATH = "../buildutils/certificates/zeus";
 
-  // public static final String CERTIFICATION_PATH = "../buildutils/certificates/work";
+  public static final String CERTIFICATION_PATH = "../buildutils/certificates/work";
 
   public static DockerClient createClient(String host) {
     return createClient("https://" + host + ":2376", CERTIFICATION_PATH);

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import com.github.thomasfischl.eurydome.backend.model.DOService;
@@ -16,6 +17,8 @@ public class ProxyService {
 
   private File folder;
 
+  private File configurationFile;
+  
   public ProxyService() {
     if (SystemUtil.isWindows()) {
       folder = new File("./config");
@@ -24,14 +27,16 @@ public class ProxyService {
     }
 
     folder.mkdirs();
+    
+    configurationFile = new File(folder, "000-admin.conf");
   }
 
   public void reloadProxy() {
     SystemUtil.executeCommand("/usr/sbin/service apache2 reload");
   }
 
-  public void updateConfiguration(List<DOService> services) throws IOException {
-    try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(folder, "000-admin.conf"), false))) {
+  public void updateConfiguration(DockerHostConfiguration config, List<DOService> services) throws IOException {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(configurationFile, false))) {
 
       bw.write("<VirtualHost *:80>                                                                                                                    \n");
 
@@ -48,8 +53,7 @@ public class ProxyService {
 
       for (DOService service : services) {
         String subdomain = service.getUrl();
-        // TODO Use correct docker host from DB
-        String url = "http://docker-host:" + service.getExposedPort();
+        String url = "http://" + config.getHost() + ":" + service.getExposedPort();
 
         bw.write("  <Location /" + subdomain + "/>                                                                                                      \n");
         bw.write("    ProxyPass         " + url + "                                                                                                     \n");
@@ -65,5 +69,9 @@ public class ProxyService {
       }
       bw.write("</VirtualHost>                                                                                                                        \n");
     }
+  }
+  
+  public String getConfiguration() throws IOException{
+    return FileUtils.readFileToString(configurationFile);
   }
 }
