@@ -5,10 +5,7 @@ import 'package:angular/application_factory.dart';
 import 'package:logging/logging.dart';
 
 import 'package:eurydome_frontend/component/components.dart';
-
-import 'package:eurydome_frontend/service/LoginService.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
-
 import 'package:eurydome_frontend/routing/router.dart';
 
 class PlatformManager extends Module {
@@ -28,7 +25,6 @@ class PlatformManager extends Module {
     bind(UserView);
     
     //Angular Services
-    bind(LoginService);
     bind(RestService);
     
     //Routing

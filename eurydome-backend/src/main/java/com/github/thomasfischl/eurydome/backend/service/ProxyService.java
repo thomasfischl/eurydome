@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.github.thomasfischl.eurydome.backend.model.DOService;
@@ -52,6 +53,10 @@ public class ProxyService {
       bw.write(" </Location> \n");
 
       for (DOService service : services) {
+        if (StringUtils.isEmpty(service.getUrl())) {
+          continue;
+        }
+        
         String subdomain = service.getUrl();
         String url = "http://" + config.getHost() + ":" + service.getExposedPort();
 

@@ -28,14 +28,20 @@ class RestClient {
     return new JsonDecoder().convert(get(domainObject, "find", id: id));
   }
 
+  Map<String, dynamic> getByName(String domainObject, String name) {
+    return new JsonDecoder().convert(get(domainObject, "find", name: name));
+  }
+
   Map<String, dynamic> create(String domainObject) {
     return new JsonDecoder().convert(post(domainObject, "create"));
   }
 
-  String get(String domainObject, String method, {String id}) {
+  String get(String domainObject, String method, {String id, String name}) {
     HttpRequest request = new HttpRequest();
     if (id != null) {
-      request.open("GET", "./rest/${domainObject}/${method}/${id}", async: false);
+      request.open("GET", "./rest/${domainObject}/${method}?id=${id}", async: false);
+    } else if (name != null) {
+      request.open("GET", "./rest/${domainObject}/${method}?name=${name}", async: false);
     } else {
       request.open("GET", "./rest/${domainObject}/${method}", async: false);
     }

@@ -139,6 +139,10 @@ class RestService {
     return new Organisation.fromJson(_client.getById(DO_ORGANISATION, id));
   }
 
+  Organisation getOrganisationByName(String name) {
+    return new Organisation.fromJson(_client.getByName(DO_ORGANISATION, name));
+  }
+
   List<Organisation> getOrganisations() {
     return _client.getAll(DO_ORGANISATION, (obj) => new Organisation.fromJson(obj));
   }
@@ -161,6 +165,10 @@ class RestService {
 
   User getUserById(String id) {
     return new User.fromJson(_client.getById(DO_USER, id));
+  }
+
+  User getUserByName(String name) {
+    return new User.fromJson(_client.getByName(DO_USER, name));
   }
 
   List<User> getUsers() {

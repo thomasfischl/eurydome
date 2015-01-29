@@ -14,6 +14,7 @@ transformers:
 - angular:
     html_files:
     - lib/component/service_login_component.html
+    - lib/component/admin_login_component.html
     - lib/component/login_component.html
     - lib/component/filepool_component.html
     - lib/component/docker_config_component.html

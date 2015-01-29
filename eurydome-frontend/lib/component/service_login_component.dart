@@ -1,37 +1,49 @@
 library ServiceLoginComponentLibrary;
 
 import 'package:angular/angular.dart';
-import 'package:logging/logging.dart';
+import '../service/RestService.dart';
 
-import 'package:eurydome_frontend/service/LoginService.dart';
+import 'dart:html';
 
-@Component(
-    selector: 'service-login',
-    templateUrl: 'service_login_component.html',
-    useShadowDom: false)
+@Component(selector: 'service-login', templateUrl: 'service_login_component.html', useShadowDom: false)
 class ServiceLoginComponent {
-  
-  List<String> services;
+
+  final RestService restService;
+
+  List<Service> services = new List();
 
   String service;
-  
+
   String company;
-  
+
   String user;
-  
-  final LoginService loginService;
-  
-  ServiceLoginComponent(this.loginService) {
+
+  ServiceLoginComponent(this.restService) {
+    refresh();
   }
 
-  void setServices(){
-    services = loginService.getAvailableServices(company, user);
-    if(services == null){
-      service = null;
+  void refresh() {
+    try {
+      services.clear();
+      if (company != null && user != null) {
+        var organisationObj = restService.getOrganisationByName(company);
+        var userObj = restService.getUserByName(user);
+
+        if (organisationObj != null && userObj != null && organisationObj.id == userObj.organisation) {
+          restService.getServices().forEach((obj) => organisationObj.services.contains(obj.id) ? services.add(obj) : null);
+        }
+      }
+    } catch (e) {
+      //nothing to do
     }
   }
-  
-  void login(){
-    Logger.root.fine("The user tries to login ${service}");
+
+  void navigate() {
+    if (service != null) {
+      var serviceObj = restService.getServiceById(service);
+      if (serviceObj != null) {
+        window.location.href = "/${serviceObj.url}/";
+      }
+    }
   }
 }

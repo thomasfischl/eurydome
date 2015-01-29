@@ -4,6 +4,8 @@ import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
 import 'viewbase.dart';
 
+import 'dart:html';
+
 @Component(selector: 'services-view', templateUrl: 'services_view.html', useShadowDom: false)
 class ServicesView extends AbstractDOView {
 
@@ -49,6 +51,14 @@ class ServicesView extends AbstractDOView {
     var obj = restService.getServiceById(id);
     if (obj != null) {
       restService.deleteService(obj);
+    }
+    refresh();
+  }
+
+  void open(String id) {
+    var obj = restService.getServiceById(id);
+    if (obj != null) {
+      window.open("/${obj.url}/", obj.name);
     }
     refresh();
   }
