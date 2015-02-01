@@ -47,4 +47,8 @@ public class MongoDbDataStore {
     return configuration;
   }
 
+  public boolean isConnected() {
+    return mongoClient != null;
+  }
+
 }

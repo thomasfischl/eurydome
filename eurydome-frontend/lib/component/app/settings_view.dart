@@ -31,9 +31,9 @@ class SettingsView extends AbstractView {
   void saveDatabaseConfig() {
     try {
       restService.saveDatabaseConfiguration(databaseConfig);
-      showMessage("Database Configuration saved! Database Connected!");
+      showSuccessMessage("Database Configuration saved! Database Connected!");
     } catch (exception) {
-      showMessage("Database Configuration saved! Database Disconnected!");
+      showErrorMessage("Failed connecting to Database!");
     }
     refresh();
   }

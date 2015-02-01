@@ -78,4 +78,8 @@ public abstract class AbstractDataStore<T extends AbstractDomainObject> {
     return doObject;
   }
 
+  public boolean isConnected() {
+    return store.isConnected();
+  }
+
 }

@@ -6,12 +6,29 @@ class AbstractView {
 
   bool showNotification = false;
   String toastMessage = "Saved";
+  String type = "alert-success";
 
   void showMessage(String msg) {
     toastMessage = msg;
     showNotification = true;
-    new Timer(new Duration(milliseconds: 2000), () => showNotification = false);
+    new Timer(new Duration(milliseconds: 5000), () => showNotification = false);
   }
+  
+  void showSuccessMessage(String msg){
+    type = "alert-success";
+    showMessage(msg);
+  }
+  
+  void showWarningMessage(String msg){
+    type = "alert-warning";
+    showMessage(msg);
+  }
+
+  void showErrorMessage(String msg){
+    type = "alert-danger";
+    showMessage(msg);
+  }
+  
 }
 
 abstract class AbstractDOView {

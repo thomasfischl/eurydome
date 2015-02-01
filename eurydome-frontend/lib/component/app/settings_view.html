@@ -6,7 +6,7 @@
   <filepool ng-if="databaseConnected"></filepool>
 
   <h2 class="sub-header">Database Settings <a ng-click="refresh()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a></h2>
-  <div class="alert alert-success" role="alert" ng-show="showNotification">{{toastMessage}}</div>
+  <div class="alert {{type}}" ng-if="showNotification">{{toastMessage}}</div>
   <form class="form-horizontal default-form">
     <div class="form-group">
       <label class="col-sm-2 control-label">Database Host</label>

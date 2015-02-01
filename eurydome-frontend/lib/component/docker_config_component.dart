@@ -40,7 +40,7 @@ class DockerConfigComponent extends AbstractView{
     restService.saveSetting(settings[SETTING_DOCKER_HOST]);
     settings[SETTING_DOCKER_CERTS].value = selFile;
     restService.saveSetting(settings[SETTING_DOCKER_CERTS]);
-    showMessage("Docker Configuration saved!");
+    showSuccessMessage("Docker Configuration saved!");
   }
   
 }

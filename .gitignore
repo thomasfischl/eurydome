@@ -25,3 +25,5 @@ hs_err_pid*
 /.metadata/**/*
 RemoteSystemsTempFiles/.project
 eurydome-backend/config/000-admin.conf
+documentation/doc.out
+documentation/doc.pdf
