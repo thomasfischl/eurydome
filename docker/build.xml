@@ -32,6 +32,10 @@
     <tar destfile="${release.docker}/eurydome.tar">
       <fileset dir="${tmpdir}" includes="**/*" />
     </tar>
+    <zip destfile="${release.docker}/eurydome.zip">
+      <fileset dir="${tmpdir}" includes="**/*" />
+    </zip>
+
     <delete dir="${tmpdir}" />
   </target>
 

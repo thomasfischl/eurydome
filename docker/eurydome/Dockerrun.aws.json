@@ -1,0 +1,12 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+        "Name": "dockerfile/java:oracle-java8",
+		"Update": "true"
+    },
+    "Ports": [
+        { 
+            "ContainerPort": "80"
+        }
+    ]
+}
