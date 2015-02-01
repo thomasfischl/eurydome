@@ -54,7 +54,7 @@ public class FileController {
     } else {
       // return "You failed to upload " + name + " because the file was empty.";
     }
-    resp.sendRedirect("/#/app/settings");
+    resp.sendRedirect("./#/app/settings");
   }
 
 }
