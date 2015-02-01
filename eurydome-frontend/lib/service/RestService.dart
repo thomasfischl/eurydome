@@ -19,6 +19,7 @@ class RestService {
   static final String DO_DATABASE = "database";
   static final String DO_ORGANISATION = "organisation";
   static final String DO_USER = "user";
+  static final String DO_SERVICELOG = "servicelog";
 
   RestClient _client = new RestClient();
 
@@ -182,5 +183,14 @@ class RestService {
   void deleteUser(User obj) {
     _client.delete(DO_USER, obj);
   }
+  
+  //------------------------------------------
+  // Domain Object: ServiceLog
+  //------------------------------------------
+  
+  ServiceLog getServiceLogByName(String name) {
+    return new ServiceLog.fromJson(_client.getByName(DO_SERVICELOG, name));
+  }
+  
 
 }

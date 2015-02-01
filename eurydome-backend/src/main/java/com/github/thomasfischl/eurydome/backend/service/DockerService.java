@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -29,10 +31,12 @@ import com.github.dockerjava.api.model.Ports.Binding;
 import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.FileDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
+import com.github.thomasfischl.eurydome.backend.dal.ServiceLogDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
+import com.github.thomasfischl.eurydome.backend.model.DOServiceLog;
 import com.github.thomasfischl.eurydome.backend.model.DOSetting;
 import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
 import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
@@ -48,6 +52,9 @@ public class DockerService {
 
   @Inject
   private ServiceDataStore serviceStore;
+
+  @Inject
+  private ServiceLogDataStore serviceLogStore;
 
   @Inject
   private FileDataStore fileStore;
@@ -68,7 +75,9 @@ public class DockerService {
       throw new IllegalArgumentException("No file with id '" + application.getDockerArchive() + "' found.");
     }
 
-    DockerTask task = new DockerTask(service, application, file);
+    DOServiceLog serviceLog = createServiceLog(service);
+
+    DockerTask task = new DockerTask(service, application, file, serviceLog);
     backlog.add(task);
 
     //
@@ -84,9 +93,11 @@ public class DockerService {
     //
     // stop container
     //
-    Container oldContainer = DockerUtil.getContainerByName(client, getContainerName(service));
-    if (oldContainer != null) {
-      DockerUtil.deleteContainer(client, oldContainer);
+    if (service.getName() != null) {
+      Container oldContainer = DockerUtil.getContainerByName(client, getContainerName(service));
+      if (oldContainer != null) {
+        DockerUtil.deleteContainer(client, oldContainer);
+      }
     }
 
     //
@@ -107,22 +118,39 @@ public class DockerService {
     try {
       execute(task);
     } catch (Exception e) {
+      e.printStackTrace();
+
       task.getService().setStatus(DOService.FAILED + "(" + e.getMessage() + ")");
       task.getService().setExposedPort(null);
       serviceStore.save(task.getService());
-      e.printStackTrace();
+      // --
+      List<String> logs = new ArrayList<String>();
+      logs.add(e.getClass() + ": " + e.getMessage());
+      for (StackTraceElement elem : e.getStackTrace()) {
+        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":" + elem.getLineNumber() + ")");
+      }
+
+      logMessage(task, logs.toArray(new String[0]));
     }
   }
 
   public void execute(DockerTask task) throws IOException {
+    if (task.getService().getName() == null) {
+      logMessage(task, "No service name defined.");
+      return;
+    }
+
     String containerName = getContainerName(task.getService());
     DockerClient client = getClient();
+
+    logMessage(task, "Start container '" + containerName + "'");
 
     //
     // remove old container
     //
     Container oldContainer = DockerUtil.getContainerByName(client, containerName);
     if (oldContainer != null) {
+      logMessage(task, "Remove old container");
       DockerUtil.deleteContainer(client, oldContainer);
       oldContainer = DockerUtil.getContainerByName(client, containerName);
       if (oldContainer != null) {
@@ -133,8 +161,8 @@ public class DockerService {
     //
     // upload docker archive and build image
     //
-    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId()))
-        .withTag(containerName).withNoCache(false).exec();
+    logMessage(task, "Upload docker archive '" + task.getFile().getName() + "'");
+    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId())).withTag(containerName).withNoCache(false).exec();
     StringWriter logwriter = new StringWriter();
 
     try {
@@ -143,6 +171,7 @@ public class DockerService {
         String line = itr.next();
         logwriter.write(line);
         System.out.println("Line: " + line);
+        logMessage(task, line);
       }
     } finally {
       IOUtils.closeQuietly(response);
@@ -163,7 +192,7 @@ public class DockerService {
     String[] warnings = containerResp.getWarnings();
     if (warnings != null) {
       for (String warning : warnings) {
-        System.out.println("Warning: " + warning);
+        logMessage(task, "Warning: " + warning);
       }
     }
 
@@ -188,6 +217,7 @@ public class DockerService {
     //
     // update service
     //
+    logMessage(task, "Services starting");
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
     serviceStore.save(task.getService());
@@ -195,6 +225,7 @@ public class DockerService {
     //
     // update proxy
     //
+    logMessage(task, "Update Proxy");
     proxyService.updateConfiguration(getDockerConfiguration(), serviceStore.findAll());
     proxyService.reloadProxy();
   }
@@ -238,17 +269,55 @@ public class DockerService {
     return config;
   }
 
+  private DOServiceLog createServiceLog(DOService service) {
+    DOServiceLog serviceLog = serviceLogStore.findByName(service.getId());
+    if (serviceLog != null) {
+      serviceLogStore.remove(serviceLog);
+    }
+    serviceLog = serviceLogStore.createObject();
+    serviceLog.setName(service.getId());
+    serviceLogStore.save(serviceLog);
+
+    System.out.println("Service Log: " + service.getId());
+
+    return serviceLog;
+  }
+
+  private void logMessage(DockerTask task, String... lines) {
+    DOServiceLog serviceLog = serviceLogStore.findByName(task.getServiceLog().getName());
+    List<String> logs = serviceLog.getLogs();
+    for (String line : lines) {
+      if (line.startsWith("{\"stream\":\" ---\\u003e")) {
+        line = "--- " + line.substring(22);
+      }
+      if (line.startsWith("{\"stream\":\"")) {
+        line = line.substring(11);
+      }
+
+      if (line.endsWith("\\n\"}")) {
+        line = line.substring(0, line.length() - 4);
+      }
+
+      System.out.println(line);
+      logs.add(line);
+    }
+    serviceLog.setLogs(logs);
+    serviceLogStore.save(serviceLog);
+  }
+
 }
 
 class DockerTask {
   private final DOService service;
   private final DOApplication application;
   private final DOFile file;
+  private final DOServiceLog serviceLog;
 
-  public DockerTask(DOService service, DOApplication application, DOFile file) {
+  public DockerTask(DOService service, DOApplication application, DOFile file, DOServiceLog serviceLog) {
     this.service = service;
     this.application = application;
     this.file = file;
+    this.serviceLog = serviceLog;
   }
 
   public DOApplication getApplication() {
@@ -261,6 +330,10 @@ class DockerTask {
 
   public DOFile getFile() {
     return file;
+  }
+
+  public DOServiceLog getServiceLog() {
+    return serviceLog;
   }
 }
 

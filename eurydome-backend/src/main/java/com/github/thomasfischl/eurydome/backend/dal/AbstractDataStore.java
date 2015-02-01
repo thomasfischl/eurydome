@@ -30,8 +30,8 @@ public abstract class AbstractDataStore<T extends AbstractDomainObject> {
   public T createObject() {
     T obj = createEmptyDomainObject();
     obj.setId(UUID.randomUUID().toString());
-    getCollection().insert(obj.getDataObject());
     obj.validate();
+    getCollection().insert(obj.getDataObject());
     return obj;
   }
 

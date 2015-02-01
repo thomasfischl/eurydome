@@ -118,3 +118,19 @@ class User {
 
   User.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['organisationRef']);
 }
+
+class ServiceLog {
+  String id;
+  String name;
+  List<String> logs;
+
+  ServiceLog(this.id, this.name, this.logs);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    "id": id,
+    "name": name,
+    "logs": logs,
+  };
+
+  ServiceLog.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['logs']);
+}
