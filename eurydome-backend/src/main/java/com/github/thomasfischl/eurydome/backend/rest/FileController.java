@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,8 @@ public class FileController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/upload")
-  public void handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletResponse resp) throws IOException {
+  public void handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest req,
+      HttpServletResponse resp) throws IOException {
     if (!file.isEmpty()) {
       try {
         byte[] bytes = file.getBytes();
@@ -54,7 +56,7 @@ public class FileController {
     } else {
       // return "You failed to upload " + name + " because the file was empty.";
     }
-    resp.sendRedirect("./#/app/settings");
+    resp.sendRedirect(req.getServletContext().getContextPath() + "/#/app/settings");
   }
 
 }
