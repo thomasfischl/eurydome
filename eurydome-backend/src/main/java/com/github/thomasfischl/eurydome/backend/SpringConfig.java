@@ -15,7 +15,12 @@ public class SpringConfig {
   public MongoDbDataStore getStoreBean() throws IOException {
     MongoDbDataStore store = new MongoDbDataStore();
     try {
-      store.confgiure(new DODatabaseConfiguration("localhost", "27017"));
+      DODatabaseConfiguration config = store.loadDatabaseSettings();
+      if(config!=null){
+        store.confgiure(config);
+      }else{
+        store.confgiure(new DODatabaseConfiguration("localhost", "27017"));
+      }
     } catch (Exception e) {
       System.err.println("Database not connected.");
       e.printStackTrace();
