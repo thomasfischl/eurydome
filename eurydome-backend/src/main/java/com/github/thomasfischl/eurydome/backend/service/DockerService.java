@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -15,6 +17,7 @@ import javax.inject.Inject;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -117,11 +120,11 @@ public class DockerService {
 
     try {
       execute(task);
-      logMessage(task, 8, DOServiceLog.STATUS_FINISHED, "Process finished.");
+      logMessage(task, 9, DOServiceLog.STATUS_FINISHED, "Process finished.");
     } catch (Exception e) {
       e.printStackTrace();
 
-      task.getService().setStatus(DOService.FAILED );
+      task.getService().setStatus(DOService.FAILED);
       task.getService().setErrorMessage(e.getMessage());
       task.getService().setExposedPort(null);
       serviceStore.save(task.getService());
@@ -129,8 +132,7 @@ public class DockerService {
       List<String> logs = new ArrayList<String>();
       logs.add(e.getClass() + ": " + e.getMessage());
       for (StackTraceElement elem : e.getStackTrace()) {
-        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":"
-            + elem.getLineNumber() + ")");
+        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":" + elem.getLineNumber() + ")");
       }
 
       logMessage(task, -1, DOServiceLog.STATUS_FAILED, logs.toArray(new String[0]));
@@ -165,8 +167,7 @@ public class DockerService {
     // upload docker archive and build image
     //
     logMessage(task, 3, DOServiceLog.STATUS_RUNNING, "Upload docker archive '" + task.getFile().getName() + "'");
-    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId()))
-        .withTag(containerName).withNoCache(false).exec();
+    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId())).withTag(containerName).withNoCache(false).exec();
     StringWriter logwriter = new StringWriter();
 
     try {
@@ -223,15 +224,21 @@ public class DockerService {
     //
     // update service
     //
-    logMessage(task, 6, DOServiceLog.STATUS_RUNNING, "Update service state");
+    logMessage(task, 8, DOServiceLog.STATUS_RUNNING, "Update service state");
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
     serviceStore.save(task.getService());
 
     //
+    // service health check
+    //
+    logMessage(task, 7, DOServiceLog.STATUS_RUNNING, "Test health check url");
+    testServiceHealthPage(getDockerConfiguration().getHost(), task);
+
+    //
     // update proxy
     //
-    logMessage(task, 7, DOServiceLog.STATUS_RUNNING, "Update Proxy configuration");
+    logMessage(task, 8, DOServiceLog.STATUS_RUNNING, "Update Proxy configuration");
     proxyService.updateConfiguration();
     proxyService.reloadProxy();
   }
@@ -271,8 +278,7 @@ public class DockerService {
       throw new IllegalArgumentException("Invalid docker configuration. Certificates: null");
     }
 
-    DockerHostConfiguration config = new DockerHostConfiguration(host, certificatesRef);
-    return config;
+    return new DockerHostConfiguration(host, certificatesRef);
   }
 
   private DOServiceLog createServiceLog(DOService service) {
@@ -284,7 +290,7 @@ public class DockerService {
     serviceLog.setName(service.getId());
     serviceLog.setStatus(DOServiceLog.STATUS_RUNNING);
     serviceLog.setStep("0");
-    serviceLog.setTotalSteps("8");
+    serviceLog.setTotalSteps("9");
     serviceLogStore.save(serviceLog);
 
     System.out.println("Service Log: " + service.getId());
@@ -314,6 +320,47 @@ public class DockerService {
       serviceLog.setStep(String.valueOf(step));
     }
     serviceLogStore.save(serviceLog);
+  }
+
+  private void testServiceHealthPage(String host, DockerTask task) {
+    String url = "http://" + host + ":" + task.getService().getExposedPort();
+    if (StringUtils.isNotEmpty(task.getApplication().getHealthCheckUrl())) {
+      url += task.getApplication().getHealthCheckUrl();
+    }
+
+    int successCount = 0;
+
+    for (int idx = 1; idx <= 60; idx++) {
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        // Nothing to do
+      }
+
+      try {
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setConnectTimeout(1000);
+        connection.connect();
+
+        if (connection.getResponseCode() < 400) {
+          logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. OK");
+          successCount++;
+        } else {
+          logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. Failed: " + connection.getResponseCode());
+          successCount = 0;
+        }
+
+        if (successCount == 5) {
+          return;
+        }
+      } catch (IOException e) {
+        System.out.println("Unkown resource. " + e.getMessage());
+        logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. Failed: " + e.getMessage());
+        successCount = 0;
+      }
+    }
+
+    throw new IllegalStateException("Service '" + task.getService().getName() + "' is not available.");
   }
 
 }

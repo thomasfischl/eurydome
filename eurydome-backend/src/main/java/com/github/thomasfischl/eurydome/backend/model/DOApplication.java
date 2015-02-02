@@ -28,4 +28,12 @@ public class DOApplication extends AbstractDomainObject {
     object.put("proxyConfig", proxyConfig);
   }
 
+  public String getHealthCheckUrl() {
+    return object.getString("healthCheckUrl");
+  }
+  
+  public void setHealthCheckUrl(String healthCheckUrl) {
+    object.put("healthCheckUrl", healthCheckUrl);
+  }
+
 }

@@ -5,17 +5,19 @@ class ApplicationTemplate {
   String name;
   String dockerArchive;
   String proxyConfig;
+  String healthCheckUrl;
 
-  ApplicationTemplate(this.id, this.name, this.dockerArchive, this.proxyConfig);
+  ApplicationTemplate(this.id, this.name, this.dockerArchive, this.proxyConfig, this.healthCheckUrl);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
     "dockerArchive": dockerArchive,
-    "proxyConfig": proxyConfig
+    "proxyConfig": proxyConfig,
+    "healthCheckUrl": healthCheckUrl
   };
 
-  ApplicationTemplate.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['dockerArchive'], json['proxyConfig']);
+  ApplicationTemplate.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['dockerArchive'], json['proxyConfig'], json['healthCheckUrl']);
 }
 
 class Setting {
@@ -46,14 +48,14 @@ class Service {
 
   Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage);
 
-  String getFullStatus(){
-    if(errorMessage==null){
+  String getFullStatus() {
+    if (errorMessage == null) {
       return status;
-    }else{
+    } else {
       return "${status} (${errorMessage})";
     }
   }
-  
+
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
@@ -139,21 +141,21 @@ class ServiceLog {
 
   ServiceLog(this.id, this.name, this.logs, this.status, this.step, this.totalSteps);
 
-  int calculateProgress(){
-    if(totalSteps=="0"){
+  int calculateProgress() {
+    if (totalSteps == "0") {
       return 0;
     }
-    return (int.parse(step)*100) ~/ int.parse(totalSteps);
+    return (int.parse(step) * 100) ~/ int.parse(totalSteps);
   }
-  
-  bool isFinished(){
+
+  bool isFinished() {
     return status != "running";
   }
-  
-  bool isFailed(){
+
+  bool isFailed() {
     return status == "failed";
   }
-  
+
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
