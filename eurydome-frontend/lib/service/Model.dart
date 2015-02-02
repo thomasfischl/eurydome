@@ -42,19 +42,29 @@ class Service {
   String applicationRef;
   String exposedPort;
   String status;
+  String errorMessage;
 
-  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status);
+  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage);
 
+  String getFullStatus(){
+    if(errorMessage==null){
+      return status;
+    }else{
+      return "${status} (${errorMessage})";
+    }
+  }
+  
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
     "url": url,
     "applicationRef": applicationRef,
     "exposedPort": exposedPort,
-    "status": status
+    "status": status,
+    "errorMessage": errorMessage
   };
 
-  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status']);
+  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage']);
 }
 
 class FileObject {
@@ -122,15 +132,36 @@ class User {
 class ServiceLog {
   String id;
   String name;
+  String status;
+  String step;
+  String totalSteps;
   List<String> logs;
 
-  ServiceLog(this.id, this.name, this.logs);
+  ServiceLog(this.id, this.name, this.logs, this.status, this.step, this.totalSteps);
 
+  int calculateProgress(){
+    if(totalSteps=="0"){
+      return 0;
+    }
+    return (int.parse(step)*100) ~/ int.parse(totalSteps);
+  }
+  
+  bool isFinished(){
+    return status != "running";
+  }
+  
+  bool isFailed(){
+    return status == "failed";
+  }
+  
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
     "logs": logs,
+    "status": status,
+    "step": step,
+    "totalSteps": totalSteps
   };
 
-  ServiceLog.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['logs']);
+  ServiceLog.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['logs'], json['status'], json['step'], json['totalSteps']);
 }

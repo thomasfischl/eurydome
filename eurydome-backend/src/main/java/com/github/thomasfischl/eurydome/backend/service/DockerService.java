@@ -117,40 +117,43 @@ public class DockerService {
 
     try {
       execute(task);
+      logMessage(task, 8, DOServiceLog.STATUS_FINISHED, "Process finished.");
     } catch (Exception e) {
       e.printStackTrace();
 
-      task.getService().setStatus(DOService.FAILED + "(" + e.getMessage() + ")");
+      task.getService().setStatus(DOService.FAILED );
+      task.getService().setErrorMessage(e.getMessage());
       task.getService().setExposedPort(null);
       serviceStore.save(task.getService());
       // --
       List<String> logs = new ArrayList<String>();
       logs.add(e.getClass() + ": " + e.getMessage());
       for (StackTraceElement elem : e.getStackTrace()) {
-        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":" + elem.getLineNumber() + ")");
+        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":"
+            + elem.getLineNumber() + ")");
       }
 
-      logMessage(task, logs.toArray(new String[0]));
+      logMessage(task, -1, DOServiceLog.STATUS_FAILED, logs.toArray(new String[0]));
     }
   }
 
   public void execute(DockerTask task) throws IOException {
     if (task.getService().getName() == null) {
-      logMessage(task, "No service name defined.");
+      logMessage(task, -1, DOServiceLog.STATUS_FINISHED, "No service name defined.");
       return;
     }
 
     String containerName = getContainerName(task.getService());
     DockerClient client = getClient();
 
-    logMessage(task, "Start container '" + containerName + "'");
+    logMessage(task, 1, DOServiceLog.STATUS_RUNNING, "Start container '" + containerName + "'");
 
     //
     // remove old container
     //
+    logMessage(task, 2, DOServiceLog.STATUS_RUNNING, "Remove old container");
     Container oldContainer = DockerUtil.getContainerByName(client, containerName);
     if (oldContainer != null) {
-      logMessage(task, "Remove old container");
       DockerUtil.deleteContainer(client, oldContainer);
       oldContainer = DockerUtil.getContainerByName(client, containerName);
       if (oldContainer != null) {
@@ -161,8 +164,9 @@ public class DockerService {
     //
     // upload docker archive and build image
     //
-    logMessage(task, "Upload docker archive '" + task.getFile().getName() + "'");
-    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId())).withTag(containerName).withNoCache(false).exec();
+    logMessage(task, 3, DOServiceLog.STATUS_RUNNING, "Upload docker archive '" + task.getFile().getName() + "'");
+    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId()))
+        .withTag(containerName).withNoCache(false).exec();
     StringWriter logwriter = new StringWriter();
 
     try {
@@ -171,7 +175,7 @@ public class DockerService {
         String line = itr.next();
         logwriter.write(line);
         System.out.println("Line: " + line);
-        logMessage(task, line);
+        logMessage(task, 3, DOServiceLog.STATUS_RUNNING, line);
       }
     } finally {
       IOUtils.closeQuietly(response);
@@ -185,6 +189,7 @@ public class DockerService {
     //
     // create container from image
     //
+    logMessage(task, 4, DOServiceLog.STATUS_RUNNING, "Create container from image '" + image.getId() + "'");
     CreateContainerCmd container = client.createContainerCmd(image.getId());
     container.withName(containerName);
     CreateContainerResponse containerResp = container.exec();
@@ -192,13 +197,14 @@ public class DockerService {
     String[] warnings = containerResp.getWarnings();
     if (warnings != null) {
       for (String warning : warnings) {
-        logMessage(task, "Warning: " + warning);
+        logMessage(task, 4, DOServiceLog.STATUS_RUNNING, "Warning: " + warning);
       }
     }
 
     //
     // start container
     //
+    logMessage(task, 5, DOServiceLog.STATUS_RUNNING, "Start container '" + containerResp.getId() + "'");
     StartContainerCmd startContainer = client.startContainerCmd(containerResp.getId());
     startContainer.withPublishAllPorts(true);
     startContainer.exec();
@@ -217,7 +223,7 @@ public class DockerService {
     //
     // update service
     //
-    logMessage(task, "Services starting");
+    logMessage(task, 6, DOServiceLog.STATUS_RUNNING, "Update service state");
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
     serviceStore.save(task.getService());
@@ -225,7 +231,7 @@ public class DockerService {
     //
     // update proxy
     //
-    logMessage(task, "Update Proxy");
+    logMessage(task, 7, DOServiceLog.STATUS_RUNNING, "Update Proxy configuration");
     proxyService.updateConfiguration(getDockerConfiguration(), serviceStore.findAll());
     proxyService.reloadProxy();
   }
@@ -276,6 +282,9 @@ public class DockerService {
     }
     serviceLog = serviceLogStore.createObject();
     serviceLog.setName(service.getId());
+    serviceLog.setStatus(DOServiceLog.STATUS_RUNNING);
+    serviceLog.setStep("0");
+    serviceLog.setTotalSteps("8");
     serviceLogStore.save(serviceLog);
 
     System.out.println("Service Log: " + service.getId());
@@ -283,7 +292,7 @@ public class DockerService {
     return serviceLog;
   }
 
-  private void logMessage(DockerTask task, String... lines) {
+  private void logMessage(DockerTask task, int step, String status, String... lines) {
     DOServiceLog serviceLog = serviceLogStore.findByName(task.getServiceLog().getName());
     List<String> logs = serviceLog.getLogs();
     for (String line : lines) {
@@ -297,11 +306,13 @@ public class DockerService {
       if (line.endsWith("\\n\"}")) {
         line = line.substring(0, line.length() - 4);
       }
-
-      System.out.println(line);
       logs.add(line);
     }
     serviceLog.setLogs(logs);
+    serviceLog.setStatus(status);
+    if (step > 0) {
+      serviceLog.setStep(String.valueOf(step));
+    }
     serviceLogStore.save(serviceLog);
   }
 

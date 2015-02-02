@@ -16,6 +16,7 @@ class PlatformManager extends Module {
     bind(AdminLoginComponent);
     bind(FilePoolComponent);
     bind(DockerConfigComponent);
+    bind(ServiceConsoleComponent);
     
     //Views
     bind(ApplicationsView);

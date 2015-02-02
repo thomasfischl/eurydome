@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ResourceController {
 
-  @RequestMapping(value = { "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.dart", "/**/*.woff", "/**/*.ttf" })
+  @RequestMapping(value = { "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.dart", "/**/*.woff", "/**/*.ttf", "/**/*.gif" })
   public void reverse(HttpServletRequest req, HttpServletResponse resp) {
     try {
       System.out.println("Load from pub serve: " + req.getServletPath());

@@ -3,26 +3,17 @@ library ServicesViewLibrary;
 import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
 import 'viewbase.dart';
-import 'package:logging/logging.dart';
-import 'dart:async';
-
 import 'dart:html';
 
 @Component(selector: 'services-view', templateUrl: 'services_view.html', useShadowDom: false)
-class ServicesView extends AbstractDOView {
+class ServicesView extends AbstractDOView implements ScopeAware{
 
   final RestService restService;
 
-  bool showConsole = false;
-
-  Service selService;
-
-  List<String> consoleText;
-
   List<ApplicationTemplate> applications;
 
-  Timer updateConsoleTimer;
-
+  Scope _scope;
+  
   ServicesView(this.restService) {
     refresh();
   }
@@ -77,7 +68,7 @@ class ServicesView extends AbstractDOView {
     var obj = restService.getServiceById(id);
     if (obj != null) {
       restService.startService(obj);
-      select(obj.id);
+      _scope.broadcast('startConsole', obj.id);
     }
     refresh();
   }
@@ -90,36 +81,15 @@ class ServicesView extends AbstractDOView {
     refresh();
   }
 
-  void select(String id) {
-    var obj = restService.getServiceById(id);
-    if (obj != null) {
-      Logger.root.fine("Select service ${id}");
-      showConsole = true;
-      selService = obj;
-      updateConsole();
-
-      if (updateConsoleTimer != null) {
-        updateConsoleTimer.cancel();
-      }
-      updateConsoleTimer = new Timer.periodic(new Duration(milliseconds: 1000), (t) => updateConsole());
+  void showConsole(String id) {
+    if (id != null) {
+      _scope.broadcast('openConsole', id);
     }
   }
 
-  void updateConsole() {
-    if (selService != null) {
-      Logger.root.fine(selService.id);
-      var serviceLog = restService.getServiceLogByName(selService.id);
-      //Logger.root.fine(serviceLog.logs);
-      consoleText = serviceLog.logs;
-    }
-  }
-
-  void closeConsole() {
-    selService = null;
-    showConsole = false;
-
-    if (updateConsoleTimer != null) {
-      updateConsoleTimer.cancel();
-    }
+  @override
+  void set scope(Scope scope) {
+    _scope = scope;
+    scope.on('ServiceStartupComplete').listen((e) => refresh());
   }
 }

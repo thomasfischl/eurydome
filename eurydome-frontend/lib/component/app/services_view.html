@@ -8,21 +8,32 @@
       <table class="table table-striped">
         <thead>
           <tr>
-              <th>Name</th>
-              <th>URL</th>
-              <th>Application</th>
-              <th>Exposed Port</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th class="col-sm-1"></th>
+              <th class="col-sm-2">Name</th>
+              <th class="col-sm-1">URL</th>
+              <th class="col-sm-3">Application</th>
+              <th class="col-sm-2">Exposed Port</th>
+              <th class="col-sm-1">Status</th>
+              <th class="col-sm-4">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="item in objects">
-            <td ng-click="select(item.id)">{{ item.name }}</td>
+            <td>
+              <div ng-switch="item.status">
+                <i ng-switch-when="Started" class="glyphicon glyphicon-tag text-success"></i>
+                <i ng-switch-when="Starting" class="glyphicon glyphicon-tag text-success"></i>
+                <i ng-switch-when="Failed" class="glyphicon glyphicon-tag text-danger"></i>
+                <i ng-switch-when="Stopped" class="glyphicon glyphicon-tag text-warning"></i>
+                <i ng-switch-default class="glyphicon glyphicon-tag"></i>
+              </div>
+            </td>
+            <td ng-click="showConsole(item.id)">{{ item.name }}</td>
             <td>{{ item.url }}</td>
             <td>{{ item.applicationRef }}</td>
             <td>{{ item.exposedPort }}</td>
-            <td>{{ item.status }}</td>
+            <td><span title="{{item.getFullStatus()}}" >{{ item.status }}</span></td>
+            
             <td>
               <a ng-click="edit(item.id)"><i class="glyphicon glyphicon-pencil"></i></a>
               <a ng-click="delete(item.id)"><i class="glyphicon glyphicon-remove"></i></a>
@@ -31,62 +42,47 @@
               <a ng-click="open(item.id)"><i class="glyphicon glyphicon-share"></i></a>
             </td>
           </tr>
+          <tr>
+          <td colspan="7">
+            <a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a>
+          <tr>
         </tbody>
       </table>
     </div>
     
-    <div>
-      <div>
-        <h2><a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a></h2>
-      </div>
   
-  
-      <div ng-if="showDetailPage">
-        <h2 class="sub-header">Service Details: ({{selObject.id}}) </h2>
-  
-        <form class="form-horizontal default-form">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.name"></div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">URL</label>
-            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.url"></div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Application</label>
-            <div class="col-sm-10">
-              <select ng-model="selObject.applicationRef" class="form-control">
-                <option ng-repeat="obj in applications" ng-value="obj.id">{{ obj.name }}</option>
-                <option ng-value="null"></option>
-              </select>
-            </div>
-            
-          </div>
-          <div>
-            <div class="col-sm-offset-2 col-sm-10">
-              <a type="submit" class="btn btn-default" ng-click="save()">Save</a>
-              <a type="submit" class="btn btn-default" ng-click="discard()">Discard</a>
-            </div>
-          </div>
-        </form>
-      </div>
-  
-    </div>
-  </div>
-  
-  <div ng-if="showConsole">
-    <h2 class="sub-header">Service Console()</h2>
-    <div class="well">
-      <div class="pull-right">
-        <a ng-click="updateConsole()"><i class="glyphicon glyphicon-refresh"></i></a>
-        <a ng-click="closeConsole()"><i class="glyphicon glyphicon-remove"></i></a>
-      </div>
-      <div>
-        <div ng-repeat="item in consoleText">
-          {{item}}
+    <div ng-if="showDetailPage">
+      <h3 class="sub-header">Service Details: ({{selObject.id}}) </h3>
+
+      <form class="form-horizontal default-form">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.name"></div>
         </div>
-      </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">URL</label>
+          <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.url"></div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Application</label>
+          <div class="col-sm-10">
+            <select ng-model="selObject.applicationRef" class="form-control">
+              <option ng-repeat="obj in applications" ng-value="obj.id">{{ obj.name }}</option>
+              <option ng-value="null"></option>
+            </select>
+          </div>
+          
+        </div>
+        <div>
+          <div class="col-sm-offset-2 col-sm-10">
+            <a type="submit" class="btn btn-default" ng-click="save()">Save</a>
+            <a type="submit" class="btn btn-default" ng-click="discard()">Discard</a>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
+  
+
+  <service-console-component></service-console-component>
 </div>

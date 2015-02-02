@@ -28,7 +28,7 @@ public class SystemUtil {
     try {
       Runtime.getRuntime().exec(command);
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 

@@ -43,9 +43,20 @@ public class DOService extends AbstractDomainObject {
 
   public void setStatus(String status) {
     object.put("status", status);
+    if(!FAILED.equals(status)){
+      setErrorMessage(null);
+    }
   }
 
   public String getStatus() {
     return object.getString("status");
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    object.put("errorMessage", errorMessage);
+  }
+  
+  public String getErrorMessage() {
+    return object.getString("errorMessage");
   }
 }

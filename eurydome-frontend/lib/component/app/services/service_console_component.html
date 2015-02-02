@@ -1,0 +1,26 @@
+<div ng-if="showConsole">
+  <h3 class="sub-header">Service Console({{selService.id}})
+    <div class="pull-right">
+      <a ng-click="refresh()"><i class="glyphicon glyphicon-refresh"></i></a>
+      <a ng-click="close()"><i class="glyphicon glyphicon-remove"></i></a>
+    </div>
+  </h3>
+
+  <div class="progress">
+    <div class="progress-bar {{statusCssClass}}" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+      {{progressText}}
+    </div>
+  </div>
+  
+  <div class="well">
+    <div>
+      <div ng-repeat="item in consoleText">
+        {{item}}
+      </div>
+    </div>
+    
+    <div id="loadingIndicator">
+      <img alt="loading indicator" src="images/ajax-loader.gif" ng-if="showLoadingIndicator">
+    </div>
+  </div>
+</div>
