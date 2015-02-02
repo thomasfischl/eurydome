@@ -232,7 +232,7 @@ public class DockerService {
     // update proxy
     //
     logMessage(task, 7, DOServiceLog.STATUS_RUNNING, "Update Proxy configuration");
-    proxyService.updateConfiguration(getDockerConfiguration(), serviceStore.findAll());
+    proxyService.updateConfiguration();
     proxyService.reloadProxy();
   }
 

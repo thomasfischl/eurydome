@@ -1,0 +1,14 @@
+<h2 class="sub-header">Proxy Configuration
+  <div class="pull-right">
+    <a ng-click="saveProxyConfiguraiton()" title="Save Proxy Configuration"><i class="glyphicon glyphicon-save"></i></a>
+    <a ng-click="showProxyConfiguraiton()" title="Refresh Proxy Configuration"><i class="glyphicon glyphicon-refresh"></i></a>
+  </div>
+</h2>
+<div class="alert {{type}}" ng-if="showNotification">{{toastMessage}}</div>
+<div ng-if="proxyConfigurationVisible">
+  <form class="form-horizontal default-form">
+    <div class="form-group">
+      <textarea rows="10" id="proxyConfiguration" disabled class="form-control"></textarea>
+    </div>
+  </form>
+</div>

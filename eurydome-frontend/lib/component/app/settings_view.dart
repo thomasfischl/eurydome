@@ -1,7 +1,5 @@
 library SettingsViewLibrary;
 
-import 'dart:html';
-import 'dart:async';
 import 'viewbase.dart';
 
 import 'package:angular/angular.dart';
@@ -14,8 +12,6 @@ class SettingsView extends AbstractView {
 
   bool databaseConnected;
 
-  bool proxyConfigurationVisible;
-
   DatabaseConfiguration databaseConfig;
 
   SettingsView(this.restService) {
@@ -23,7 +19,6 @@ class SettingsView extends AbstractView {
   }
 
   void refresh() {
-    proxyConfigurationVisible = false;
     databaseConfig = restService.getDatabaseConfiguration();
     databaseConnected = restService.isDatabaseConnected();
   }
@@ -36,18 +31,5 @@ class SettingsView extends AbstractView {
       showErrorMessage("Failed connecting to Database!");
     }
     refresh();
-  }
-
-  void showProxyConfiguraiton() {
-    proxyConfigurationVisible = true;
-
-    new Timer(new Duration(milliseconds: 500), () {
-      String text = restService.getProxyConfiguration();
-      int rows = text.split("\n").length;
-
-      TextAreaElement element = querySelector('#proxyConfiguration');
-      element.value = text;
-      element.rows = rows;
-    });
   }
 }

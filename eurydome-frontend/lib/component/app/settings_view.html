@@ -27,13 +27,5 @@
     </div>
   </form>
 
-  <h2 class="sub-header">Proxy Configuration<a ng-click="showProxyConfiguraiton()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a></h2>
-  <div ng-if="proxyConfigurationVisible">
-    <form class="form-horizontal default-form">
-      <div class="form-group">
-        <textarea rows="10" id="proxyConfiguration" disabled class="form-control"></textarea>
-      </div>
-    </form>
-  </div>
-
+  <proxy-configuration ng-if="databaseConnected"></proxy-configuration>
 </div>

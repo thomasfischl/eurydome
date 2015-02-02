@@ -92,7 +92,11 @@ class RestService {
   }
 
   String getProxyConfiguration() {
-    return _client.get(DO_SETTING, "proxyConfiguration");
+    return _client.get(DO_SETTING, "getProxyConfiguration");
+  }
+
+  String saveProxyConfiguration() {
+    return _client.get(DO_SETTING, "saveProxyConfiguration");
   }
 
   //------------------------------------------

@@ -12,3 +12,4 @@ export 'package:eurydome_frontend/component/navigation_component.dart';
 export 'package:eurydome_frontend/component/filepool_component.dart';
 export 'package:eurydome_frontend/component/docker_config_component.dart';
 export 'package:eurydome_frontend/component/app/services/service_console_component.dart';
+export 'package:eurydome_frontend/component/app/settings/proxy_configuration_component.dart';

@@ -18,26 +18,27 @@
           <tr ng-repeat="item in objects">
             <td>{{ item.name }}</td>
             <td>{{ item.dockerArchive }}</td>
-            <td>{{ item.proxyConfig }}</td>
+            <td>
+              <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 250px;">{{ item.proxyConfig }}</div>
+            </td>
             <td>
               <a ng-click="edit(item.id)"><i class="glyphicon glyphicon-pencil"></i></a>
               <a ng-click="delete(item.id)"><i class="glyphicon glyphicon-remove"></i></a>
             </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a>
+            <td>
           </tr>
         </tbody>
       </table>
     </div>
     
     <div>
-      <div>
-        <h2><a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a></h2>
-      </div>
-  
-  
       <div ng-if="showDetailPage">
   
         <h2 class="sub-header">Application Details: ({{selObject.id}}) </h2>
-  
         <form class="form-horizontal default-form">
           <div class="form-group">
             <label class="col-sm-2 control-label">Name</label>
@@ -53,8 +54,28 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <section>
+                Variables: <br>
+                <code>${HOST_URL}</code>: contains the url to the docker container<br>
+                <code>${SUBDOMAIN}</code>: contains the reltive path for the proxy configuration<br>
+                Example:<br>
+                <code>
+                  &lt;Location /${SUBDOMAIN}/&gt;          <br>                                                                                                    
+                  &nbsp;&nbsp;ProxyPass         ${HOST_URL}   <br>                                                                                                 
+                  &nbsp;&nbsp;ProxyPassReverse  ${HOST_URL}   <br>                                                                                                  
+                  &lt;/Location&gt;                           <br>
+                </code>
+                
+              </section>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-sm-2 control-label">Proxy Config</label>
-            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.proxyConfig"></div>
+            <div class="col-sm-10">
+              <textarea class="form-control" ng-model="selObject.proxyConfig" rows="10"></textarea>
+            </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">

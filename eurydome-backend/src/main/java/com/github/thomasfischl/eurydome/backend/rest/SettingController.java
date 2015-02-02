@@ -53,9 +53,15 @@ public class SettingController extends AbstractController<DOSetting> {
     return super.find(id, name);
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/proxyConfiguration")
+  @RequestMapping(method = RequestMethod.GET, value = "/getProxyConfiguration")
   public String getProxyConfiguration() throws IOException {
     return proxyService.getConfiguration();
+  }
+
+  @RequestMapping(method = RequestMethod.GET, value = "/saveProxyConfiguration")
+  public void saveProxyConfiguration() throws IOException {
+    proxyService.updateConfiguration();
+    proxyService.reloadProxy();
   }
 
   @Override
