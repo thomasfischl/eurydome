@@ -7,8 +7,13 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class ZipUtil {
 
+  private final static Log LOG = LogFactory.getLog(ZipUtil.class);
+  
   public static void extract(File folder, InputStream zipStream) {
     byte[] buffer = new byte[1024];
 
@@ -21,7 +26,7 @@ public class ZipUtil {
 
       while (ze != null) {
         File newFile = new File(folder, ze.getName());
-        System.out.println("file unzip : " + newFile.getAbsoluteFile());
+        LOG.debug("file unzip : " + newFile.getAbsoluteFile());
 
         new File(newFile.getParent()).mkdirs();
 

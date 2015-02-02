@@ -18,6 +18,7 @@ class PlatformManager extends Module {
     bind(DockerConfigComponent);
     bind(ServiceConsoleComponent);
     bind(ProxyConfigurationComponent);
+    bind(ServerLogComponent);
     
     //Views
     bind(ApplicationsView);

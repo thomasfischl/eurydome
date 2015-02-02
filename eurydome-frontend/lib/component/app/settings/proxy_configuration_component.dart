@@ -1,7 +1,5 @@
 library ProxyConfigurationComponentLibrary;
 
-import 'dart:html';
-import 'dart:async';
 import '../viewbase.dart';
 
 import 'package:angular/angular.dart';
@@ -12,35 +10,28 @@ class ProxyConfigurationComponent extends AbstractView {
 
   final RestService restService;
 
-  bool proxyConfigurationVisible;
+  bool showText;
+
+  String text;
+
+  int textRows = 10;
 
   ProxyConfigurationComponent(this.restService) {
-    refresh();
+    showText = false;
   }
 
   void refresh() {
-    proxyConfigurationVisible = false;
+    showText = true;
+    text = restService.getProxyConfiguration();
+    textRows = text.split("\n").length;
   }
 
-  void showProxyConfiguraiton() {
-    proxyConfigurationVisible = true;
-
-    new Timer(new Duration(milliseconds: 500), () {
-      String text = restService.getProxyConfiguration();
-      int rows = text.split("\n").length;
-
-      TextAreaElement element = querySelector('#proxyConfiguration');
-      element.value = text;
-      element.rows = rows;
-    });
-  }
-  
-  void saveProxyConfiguraiton(){
-    try{
+  void saveProxyConfiguraiton() {
+    try {
       restService.saveProxyConfiguration();
-    }catch(e){
+    } catch (e) {
       showErrorMessage(e.toString());
     }
-    showProxyConfiguraiton();
+    refresh();
   }
 }

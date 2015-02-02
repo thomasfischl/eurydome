@@ -99,6 +99,10 @@ class RestService {
     return _client.get(DO_SETTING, "saveProxyConfiguration");
   }
 
+  String getServerLog() {
+    return _client.get(DO_SETTING, "getServerLog");
+  }
+
   //------------------------------------------
   // Domain Object: File
   //------------------------------------------

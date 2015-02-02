@@ -1,10 +1,12 @@
 package com.github.thomasfischl.eurydome.backend.rest;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +64,11 @@ public class SettingController extends AbstractController<DOSetting> {
   public void saveProxyConfiguration() throws IOException {
     proxyService.updateConfiguration();
     proxyService.reloadProxy();
+  }
+
+  @RequestMapping(method = RequestMethod.GET, value = "/getServerLog")
+  public String getServerLog() throws IOException {
+    return FileUtils.readFileToString(new File("spring.log"));
   }
 
   @Override

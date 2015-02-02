@@ -3,6 +3,8 @@ package com.github.thomasfischl.eurydome.backend.dal;
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.github.thomasfischl.eurydome.backend.model.DODatabaseConfiguration;
 import com.google.gson.Gson;
@@ -14,6 +16,8 @@ import com.mongodb.ServerAddress;
 import com.mongodb.gridfs.GridFS;
 
 public class MongoDbDataStore {
+
+  private final static Log LOG = LogFactory.getLog(MongoDbDataStore.class);
 
   private MongoClient mongoClient;
   private DB db;
@@ -65,8 +69,7 @@ public class MongoDbDataStore {
       }
       FileUtils.writeStringToFile(dbConfigFile, new Gson().toJson(configuration));
     } catch (Exception e) {
-      System.out.println("An error occurs during saving the database configuration.");
-      e.printStackTrace();
+      LOG.error("An error occurs during saving the database configuration.", e);
     }
   }
 
@@ -76,8 +79,7 @@ public class MongoDbDataStore {
         return new Gson().fromJson(FileUtils.readFileToString(dbConfigFile), DODatabaseConfiguration.class);
       }
     } catch (Exception e) {
-      System.out.println("An error occurs during reading the database configuration.");
-      e.printStackTrace();
+      LOG.error("An error occurs during reading the database configuration.", e);
     }
     return null;
   }

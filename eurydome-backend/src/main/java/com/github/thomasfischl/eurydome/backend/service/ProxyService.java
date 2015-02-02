@@ -10,6 +10,8 @@ import javax.inject.Inject;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
@@ -23,6 +25,8 @@ import com.github.thomasfischl.eurydome.backend.util.SystemUtil;
 @Service
 public class ProxyService {
 
+  private final static Log LOG = LogFactory.getLog(ProxyService.class);
+  
   private File folder;
 
   private File configurationFile;
@@ -52,7 +56,7 @@ public class ProxyService {
     if (SystemUtil.isUnix()) {
       SystemUtil.executeCommand("/usr/sbin/service apache2 reload");
     }else{
-      System.out.println("No proxy to reload.");
+      LOG.warn("No proxy to reload.");
     }
   }
 

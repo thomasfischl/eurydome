@@ -1,0 +1,13 @@
+<h2 class="sub-header">Server Log
+  <div class="pull-right">
+    <a ng-click="refresh()" title="Refresh Server Log"><i class="glyphicon glyphicon-refresh"></i></a>
+  </div>
+</h2>
+<div class="alert {{type}}" ng-if="showNotification">{{toastMessage}}</div>
+<div ng-if="showText">
+  <form class="form-horizontal default-form">
+    <div class="form-group">
+      <textarea rows="{{textRows}}" disabled class="form-control" ng-model="text"></textarea>
+    </div>
+  </form>
+</div>

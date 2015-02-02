@@ -18,6 +18,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,8 @@ import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
 @Service
 public class DockerService {
 
+  private final static Log LOG = LogFactory.getLog(DockerService.class);
+  
   @Inject
   private SettingDataStore settingStore;
 
@@ -175,7 +179,7 @@ public class DockerService {
       while (itr.hasNext()) {
         String line = itr.next();
         logwriter.write(line);
-        System.out.println("Line: " + line);
+        LOG.debug("Line: " + line);
         logMessage(task, 3, DOServiceLog.STATUS_RUNNING, line);
       }
     } finally {
@@ -293,8 +297,6 @@ public class DockerService {
     serviceLog.setTotalSteps("9");
     serviceLogStore.save(serviceLog);
 
-    System.out.println("Service Log: " + service.getId());
-
     return serviceLog;
   }
 
@@ -354,7 +356,7 @@ public class DockerService {
           return;
         }
       } catch (IOException e) {
-        System.out.println("Unkown resource. " + e.getMessage());
+        LOG.info("Unkown resource. " + e.getMessage());
         logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. Failed: " + e.getMessage());
         successCount = 0;
       }
