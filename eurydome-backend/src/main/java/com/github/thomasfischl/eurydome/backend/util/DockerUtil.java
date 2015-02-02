@@ -61,8 +61,12 @@ public class DockerUtil {
     List<Image> images = client.listImagesCmd().exec();
     for (Image image : images) {
       String[] repoTags = image.getRepoTags();
-      if (repoTags != null && repoTags.length > 0 && tag.equals(repoTags[0])) {
-        return image;
+      if(repoTags!=null){
+        for (String repoTag : repoTags) {
+          if(tag.equals(repoTag)){
+            return image;
+          }
+        }
       }
     }
     return null;
