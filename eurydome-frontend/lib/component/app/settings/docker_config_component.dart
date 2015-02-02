@@ -1,6 +1,6 @@
 library DockerConfigComponentLibrary;
 
-import 'app/viewbase.dart';
+import '../viewbase.dart';
 
 import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';

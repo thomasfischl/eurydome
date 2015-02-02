@@ -16,12 +16,12 @@ transformers:
     - lib/component/service_login_component.html
     - lib/component/admin_login_component.html
     - lib/component/login_component.html
-    - lib/component/filepool_component.html
-    - lib/component/docker_config_component.html
     - lib/component/app/applications_view.html
-    - lib/component/app/settings_view.html
+    - lib/component/app/settings/settings_view.html
+    - lib/component/app/settings/filepool_component.html
+    - lib/component/app/settings/docker_config_component.html
     - lib/component/app/settings/proxy_configuration_component.html
-    - lib/component/app/services_view.html
+    - lib/component/app/services/services_view.html
     - lib/component/app/services/service_console_component.html
     - lib/component/app/organisations_view.html
     - lib/component/app/users_view.html

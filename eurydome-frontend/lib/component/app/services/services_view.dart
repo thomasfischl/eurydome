@@ -2,7 +2,7 @@ library ServicesViewLibrary;
 
 import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
-import 'viewbase.dart';
+import '../viewbase.dart';
 import 'dart:html';
 
 @Component(selector: 'services-view', templateUrl: 'services_view.html', useShadowDom: false)
