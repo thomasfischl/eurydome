@@ -23,14 +23,15 @@
               <a ng-click="delete(item.id)"><i class="glyphicon glyphicon-remove"></i></a>
             </td>
           </tr>
+          <tr>
+            <td colspan="4">
+              <a ng-click="show()"><i class="glyphicon glyphicon-plus"></i></a>  
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
     
-    <div>
-      <h2><a ng-click="show()"><i class="glyphicon glyphicon-plus"></i></a></h2>
-    </div>
-
     <div ng-if="showDetailPage">
       <form method="POST" enctype="multipart/form-data" action="./rest/file/upload" class="form-horizontal default-form">
         <div class="form-group">

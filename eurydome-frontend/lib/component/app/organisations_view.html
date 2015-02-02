@@ -22,16 +22,16 @@
               <a ng-click="delete(item.id)"><i class="glyphicon glyphicon-remove"></i></a>
             </td>
           </tr>
+          <tr>
+            <td colspan="3">
+              <a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
     
     <div>
-      <div>
-        <h2><a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a></h2>
-      </div>
-  
-  
       <div ng-if="showDetailPage">
   
         <h2 class="sub-header">Organisation Details: ({{selObject.id}}) </h2>

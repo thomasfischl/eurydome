@@ -21,6 +21,7 @@ class FilePoolComponent {
 
   void refresh() {
     objects = restService.getFiles(); 
+    showDetailPage = false;
   }
 
   void delete(String id) {
