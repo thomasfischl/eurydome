@@ -77,11 +77,12 @@
   </target>
 
   <target name="upload.backend">
-    <docker.createandstart archive="${release.docker}/eurydome.tar" containername="Eurydome-Server" port="80:80" />
+    <property name="docker.args" value="-e EURYDOME_DB_HOST=192.168.59.103 -e EURYDOME_DB_PORT=27017" />
+    <docker.createandstart archive="${release.docker}/eurydome.tar" containername="Eurydome-Server" port="80:80" args="${docker.args}"/>
   </target>
 
   <target name="upload.database">
-    <docker.createandstart archive="${release.docker}/mongodb.tar" containername="MongoDB-Server" port="27017:27017" volume="/tmp/mongodb:/data/db" />
+    <docker.createandstart archive="${release.docker}/mongodb.tar" containername="MongoDB-Server" port="27017:27017" args="-p /tmp/mongodb:/data/db" />
   </target>
 
   <target name="upload.all">

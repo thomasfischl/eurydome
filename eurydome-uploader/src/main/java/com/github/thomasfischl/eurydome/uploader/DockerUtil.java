@@ -50,7 +50,11 @@ public class DockerUtil {
     Preconditions.checkArgument(container != null);
     Preconditions.checkArgument(client != null);
 
-    client.stopContainerCmd(container.getId()).exec();
+    try {
+      client.stopContainerCmd(container.getId()).exec();
+    } catch (Exception e) {
+      System.err.println("Error during stopping container. Error: " + e.getMessage());
+    }
     client.removeContainerCmd(container.getId()).withForce().exec();
   }
 

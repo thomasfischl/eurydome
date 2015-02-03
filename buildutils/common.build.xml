@@ -58,10 +58,10 @@
     <attribute name="archive" />
     <attribute name="containername" />
     <attribute name="port" />
-    <attribute name="volume" default="" />
+    <attribute name="args" default="" />
     <sequential>
       <java classname="com.github.thomasfischl.eurydome.uploader.DockerCreateAndStart" fork="true">
-        <arg line="${docker.url} ${docker.cert.path} @{archive} @{containername} @{port} @{volume}" />
+        <arg line="${docker.url} ${docker.cert.path} @{archive} @{containername} @{port} @{args}" />
         <classpath>
           <fileset dir="${release.uploader}" includes="*.jar" />
         </classpath>

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class DODatabaseConfiguration {
 
+  public final static String EURYDOME_DB_HOST = "EURYDOME_DB_HOST";
+  public final static String EURYDOME_DB_PORT = "EURYDOME_DB_PORT";
+  
   private String host;
 
   private String port;

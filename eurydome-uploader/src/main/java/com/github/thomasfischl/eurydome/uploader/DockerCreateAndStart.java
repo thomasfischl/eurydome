@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
@@ -28,12 +30,13 @@ public class DockerCreateAndStart {
   private String dockerArchive;
   private String portBinding;
   private String volumeBinding;
+  private List<String> environment = new ArrayList<String>();
 
   public static void main(String[] args) throws IOException {
 
     if (args.length < 5) {
       System.out
-          .println("Usage:program <dockerUrl> <dockerCertPath> <dockerArchive> <containerName> <port> [volumeBinding]");
+          .println("Usage:program <dockerUrl> <dockerCertPath> <dockerArchive> <containerName> <port> [-p volumeBinding] [-e environment]");
       return;
     }
 
@@ -44,7 +47,18 @@ public class DockerCreateAndStart {
     obj.containerName = args[3];
     obj.portBinding = args[4];
     if (args.length >= 6) {
-      obj.volumeBinding = args[5];
+      int idx = 5;
+      while (idx < args.length) {
+        if ("-p".equals(args[idx])) {
+          obj.volumeBinding = args[idx + 1];
+          idx++;
+        }
+        if ("-e".equals(args[idx])) {
+          obj.environment.add(args[idx + 1]);
+          idx++;
+        }
+        idx++;
+      }
     }
 
     System.out.println("Docker URL:       " + obj.dockerUrl);
@@ -53,6 +67,9 @@ public class DockerCreateAndStart {
     System.out.println("Container Name:   " + obj.containerName);
     System.out.println("Container Port:   " + obj.portBinding);
     System.out.println("VolumeBinding:    " + obj.volumeBinding);
+    for (String environment : obj.environment) {
+      System.out.println("Environment:      " + environment);
+    }
 
     obj.execute();
   }
@@ -107,6 +124,7 @@ public class DockerCreateAndStart {
     System.out.println("Create container '" + containerName + "'");
     CreateContainerCmd container = client.createContainerCmd(image.getId());
     container.withName(containerName);
+    container.withEnv(environment.toArray(new String[0]));
     CreateContainerResponse containerResp = container.exec();
 
     String[] warnings = containerResp.getWarnings();
@@ -131,9 +149,11 @@ public class DockerCreateAndStart {
       String[] volumnes = volumeBinding.split(":");
       startContainer.withBinds(new Bind(volumnes[0], new Volume(volumnes[1])));
     }
-
     startContainer.exec();
-
+    
+    //
+    // close client
+    //
     client.close();
   }
 
