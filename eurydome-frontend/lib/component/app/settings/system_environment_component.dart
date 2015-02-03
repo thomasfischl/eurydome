@@ -1,12 +1,12 @@
-library ServerLogComponentLibrary;
+library SystemEnvironmentComponentLibrary;
 
 import '../viewbase.dart';
 
 import 'package:angular/angular.dart';
 import 'package:eurydome_frontend/service/RestService.dart';
 
-@Component(selector: 'server-log', templateUrl: 'server_log_component.html', useShadowDom: false)
-class ServerLogComponent extends AbstractView {
+@Component(selector: 'system-environment', templateUrl: 'system_environment_component.html', useShadowDom: false)
+class SystemEnvironmentComponent extends AbstractView {
 
   final RestService restService;
 
@@ -16,13 +16,13 @@ class ServerLogComponent extends AbstractView {
 
   int textRows = 10;
 
-  ServerLogComponent(this.restService) {
+  SystemEnvironmentComponent(this.restService) {
     showText = false;
   }
 
   void refresh() {
     showText = true;
-    text = restService.getServerLog();
+    text = restService.getSystemEnvironment();
     textRows = text.split("\n").length;
     if (textRows > 20) {
       textRows = 20;

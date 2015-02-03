@@ -103,6 +103,10 @@ class RestService {
     return _client.get(DO_SETTING, "getServerLog");
   }
 
+  String getSystemEnvironment() {
+    return _client.get(DO_SETTING, "getSystemEnvironment");
+  }
+
   //------------------------------------------
   // Domain Object: File
   //------------------------------------------

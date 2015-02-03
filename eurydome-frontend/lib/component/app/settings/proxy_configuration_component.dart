@@ -26,6 +26,10 @@ class ProxyConfigurationComponent extends AbstractView {
     textRows = text.split("\n").length;
   }
 
+  void close() {
+    showText = false;
+  }
+
   void saveProxyConfiguraiton() {
     try {
       restService.saveProxyConfiguration();

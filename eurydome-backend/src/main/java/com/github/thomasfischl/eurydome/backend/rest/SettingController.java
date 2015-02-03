@@ -3,6 +3,7 @@ package com.github.thomasfischl.eurydome.backend.rest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.inject.Inject;
 
@@ -69,6 +70,25 @@ public class SettingController extends AbstractController<DOSetting> {
   @RequestMapping(method = RequestMethod.GET, value = "/getServerLog")
   public String getServerLog() throws IOException {
     return FileUtils.readFileToString(new File("spring.log"));
+  }
+
+  @RequestMapping(method = RequestMethod.GET, value = "/getSystemEnvironment")
+  public String getSystemEnvironment() throws IOException {
+    StringBuffer sb = new StringBuffer();
+    sb.append("Environment Variables:\n");
+    sb.append("--------------------------------------\n\n");
+    for(Entry<String, String> entry : System.getenv().entrySet()){
+      sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+    }
+    
+    sb.append("\n\n");
+    sb.append("System Properties:\n");
+    sb.append("--------------------------------------\n\n");
+    for(Entry<Object, Object> entry : System.getProperties().entrySet()){
+      sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+    }
+    
+    return sb.toString();
   }
 
   @Override

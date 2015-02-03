@@ -19,6 +19,7 @@ class PlatformManager extends Module {
     bind(ServiceConsoleComponent);
     bind(ProxyConfigurationComponent);
     bind(ServerLogComponent);
+    bind(SystemEnvironmentComponent);
     
     //Views
     bind(ApplicationsView);
