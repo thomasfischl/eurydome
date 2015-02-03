@@ -125,7 +125,7 @@ class ServiceConsoleComponent implements ScopeAware {
   void scrollToEnd() {
     var element = querySelector("#loadingIndicator");
     if (element != null) {
-      element.scrollIntoView(ScrollAlignment.CENTER);
+      element.scrollIntoView(ScrollAlignment.TOP);
     }
   }
 }

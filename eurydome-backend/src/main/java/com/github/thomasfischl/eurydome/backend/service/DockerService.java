@@ -231,6 +231,7 @@ public class DockerService {
     logMessage(task, 8, DOServiceLog.STATUS_RUNNING, "Update service state");
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
+    task.getService().setContainerId(containerResp.getId());
     serviceStore.save(task.getService());
 
     //

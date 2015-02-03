@@ -12,9 +12,8 @@
               <th class="col-sm-2">Name</th>
               <th class="col-sm-1">URL</th>
               <th class="col-sm-3">Application</th>
-              <th class="col-sm-2">Exposed Port</th>
               <th class="col-sm-1">Status</th>
-              <th class="col-sm-4">Actions</th>
+              <th class="col-sm-2">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +30,6 @@
             <td ng-click="showConsole(item.id)">{{ item.name }}</td>
             <td>{{ item.url }}</td>
             <td>{{ item.applicationRef }}</td>
-            <td>{{ item.exposedPort }}</td>
             <td><span title="{{item.getFullStatus()}}" >{{ item.status }}</span></td>
             
             <td>
@@ -71,8 +69,25 @@
               <option ng-value="null"></option>
             </select>
           </div>
-          
         </div>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Container ID</label>
+          <div class="col-sm-10"><input type="text" class="form-control" value="{{selObject.containerId}}" disabled></div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Exposed Port</label>
+          <div class="col-sm-10"><input type="text" class="form-control" value="{{selObject.exposedPort}}" disabled></div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Status</label>
+          <div class="col-sm-10"><input type="text" class="form-control" value="{{selObject.status}}" disabled></div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Error Message</label>
+          <div class="col-sm-10"><input type="text" class="form-control" value="{{selObject.errorMessage}}" disabled></div>
+        </div>
+        
         <div>
           <div class="col-sm-offset-2 col-sm-10">
             <a type="submit" class="btn btn-default" ng-click="save()">Save</a>

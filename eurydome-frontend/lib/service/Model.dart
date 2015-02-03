@@ -45,8 +45,9 @@ class Service {
   String exposedPort;
   String status;
   String errorMessage;
+  String containerId;
 
-  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage);
+  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId);
 
   String getFullStatus() {
     if (errorMessage == null) {
@@ -63,10 +64,11 @@ class Service {
     "applicationRef": applicationRef,
     "exposedPort": exposedPort,
     "status": status,
-    "errorMessage": errorMessage
+    "errorMessage": errorMessage,
+    "containerId": containerId
   };
 
-  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage']);
+  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId']);
 }
 
 class FileObject {

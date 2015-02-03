@@ -59,4 +59,12 @@ public class DOService extends AbstractDomainObject {
   public String getErrorMessage() {
     return object.getString("errorMessage");
   }
+
+  public void setContainerId(String containerId) {
+    object.put("containerId", containerId);
+  }
+  
+  public String getContainerId() {
+    return object.getString("containerId");
+  }
 }
