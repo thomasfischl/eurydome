@@ -27,32 +27,13 @@ public class SettingController extends AbstractController<DOSetting> {
   @Inject
   ProxyService proxyService;
 
-  private void init() {
-    if (store.isConnected()) {
-      if (store.findByName(DOSetting.SETTING_DOCKER_CERTS) == null) {
-        DOSetting object = store.createObject();
-        object.setName(DOSetting.SETTING_DOCKER_CERTS);
-        object.setValue(null);
-        store.save(object);
-      }
-      if (store.findByName(DOSetting.SETTING_DOCKER_HOST) == null) {
-        DOSetting object = store.createObject();
-        object.setName(DOSetting.SETTING_DOCKER_HOST);
-        object.setValue(null);
-        store.save(object);
-      }
-    }
-  }
-
   @Override
   public List<DOSetting> listAll() {
-    init();
     return super.listAll();
   }
   
   @Override
   public DOSetting find(String id, String name) {
-    init();
     return super.find(id, name);
   }
 

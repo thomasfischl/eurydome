@@ -34,16 +34,15 @@ import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.api.model.Ports.Binding;
 import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
+import com.github.thomasfischl.eurydome.backend.dal.DockerHostDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.FileDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceLogDataStore;
-import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
 import com.github.thomasfischl.eurydome.backend.model.DODockerHost;
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
 import com.github.thomasfischl.eurydome.backend.model.DOServiceLog;
-import com.github.thomasfischl.eurydome.backend.model.DOSetting;
 import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
 import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
 
@@ -51,9 +50,6 @@ import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
 public class DockerService {
 
   private final static Log LOG = LogFactory.getLog(DockerService.class);
-
-  @Inject
-  private SettingDataStore settingStore;
 
   @Inject
   private ApplicationDataStore applicationStore;
@@ -66,6 +62,9 @@ public class DockerService {
 
   @Inject
   private FileDataStore fileStore;
+
+  @Inject
+  private DockerHostDataStore dockerhostStore;
 
   @Inject
   private ProxyService proxyService;
@@ -83,9 +82,24 @@ public class DockerService {
       throw new IllegalArgumentException("No file with id '" + application.getDockerArchive() + "' found.");
     }
 
+    DODockerHost dockerHost = null;
+    List<DODockerHost> dockerHosts = dockerhostStore.findAll();
+    for (DODockerHost host : dockerHosts) {
+      try {
+        testConnection(host);
+        dockerHost = host;
+      } catch (Exception e) {
+        LOG.debug("Find active docker host.", e);
+      }
+    }
+
+    if (dockerHost == null) {
+      throw new IllegalStateException("No active docker host found.");
+    }
+
     DOServiceLog serviceLog = createServiceLog(service);
 
-    DockerTask task = new DockerTask(service, application, file, serviceLog);
+    DockerTask task = new DockerTask(service, application, file, dockerHost, serviceLog);
     backlog.add(task);
 
     //
@@ -96,7 +110,12 @@ public class DockerService {
   }
 
   public void stopService(DOService service) {
-    DockerClient client = getClient();
+    DODockerHost dockerHost = dockerhostStore.findById(service.getDockerHost());
+    if (dockerHost == null) {
+      throw new IllegalStateException("No docker host with id '" + service.getDockerHost() + "' found.");
+    }
+
+    DockerClient client = getClient(dockerHost);
 
     //
     // stop container
@@ -152,7 +171,7 @@ public class DockerService {
     }
 
     String containerName = getContainerName(task.getService());
-    DockerClient client = getClient();
+    DockerClient client = getClient(task.getDockerHost());
 
     logMessage(task, 1, DOServiceLog.STATUS_RUNNING, "Start container '" + containerName + "'");
 
@@ -235,13 +254,14 @@ public class DockerService {
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
     task.getService().setContainerId(containerResp.getId());
+    task.getService().setDockerHost(task.getDockerHost().getId());
     serviceStore.save(task.getService());
 
     //
     // service health check
     //
     logMessage(task, 7, DOServiceLog.STATUS_RUNNING, "Test health check url");
-    testServiceHealthPage(getDockerConfiguration().getHost(), task);
+    testServiceHealthPage(task.getDockerHost(), task);
 
     //
     // update proxy
@@ -249,26 +269,6 @@ public class DockerService {
     logMessage(task, 8, DOServiceLog.STATUS_RUNNING, "Update Proxy configuration");
     proxyService.updateConfiguration();
     proxyService.reloadProxy();
-  }
-
-  private DockerClient getClient() {
-    DockerHostConfiguration config = getDockerConfiguration();
-
-    //
-    // prepare docker host certificates
-    //
-    DOFile file = fileStore.findById(config.getCertificateRef());
-    if (file == null) {
-      throw new IllegalStateException("No docker certificates available.");
-    }
-    File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
-    ZipUtil.extract(tempDir, fileStore.getInputStream(config.getCertificateRef()));
-
-    //
-    // create docker client
-    //
-    String url = "https://" + config.getHost() + ":2376";
-    return DockerUtil.createClient(url, tempDir.getAbsolutePath());
   }
 
   private DockerClient getClient(DODockerHost dockerHost) {
@@ -279,7 +279,7 @@ public class DockerService {
     if (file == null) {
       throw new IllegalStateException("No docker certificates available.");
     }
-    
+
     File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
     try {
       FileUtils.deleteDirectory(tempDir);
@@ -297,20 +297,6 @@ public class DockerService {
 
   private String getContainerName(DOService service) {
     return service.getName().replaceAll(" ", "_").toLowerCase();
-  }
-
-  private DockerHostConfiguration getDockerConfiguration() {
-    String host = settingStore.findByName(DOSetting.SETTING_DOCKER_HOST).getValue();
-    String certificatesRef = settingStore.findByName(DOSetting.SETTING_DOCKER_CERTS).getValue();
-
-    if (host == null) {
-      throw new IllegalArgumentException("Invalid docker configuration. Host: null");
-    }
-    if (certificatesRef == null) {
-      throw new IllegalArgumentException("Invalid docker configuration. Certificates: null");
-    }
-
-    return new DockerHostConfiguration(host, certificatesRef);
   }
 
   private DOServiceLog createServiceLog(DOService service) {
@@ -352,8 +338,8 @@ public class DockerService {
     serviceLogStore.save(serviceLog);
   }
 
-  private void testServiceHealthPage(String host, DockerTask task) {
-    String url = "http://" + host + ":" + task.getService().getExposedPort();
+  private void testServiceHealthPage(DODockerHost dockerHost, DockerTask task) {
+    String url = dockerHost.getContainerUrl() + ":" + task.getService().getExposedPort();
     if (StringUtils.isNotEmpty(task.getApplication().getHealthCheckUrl())) {
       url += task.getApplication().getHealthCheckUrl();
     }
@@ -407,11 +393,14 @@ class DockerTask {
   private final DOApplication application;
   private final DOFile file;
   private final DOServiceLog serviceLog;
+  private final DODockerHost dockerHost;
 
-  public DockerTask(DOService service, DOApplication application, DOFile file, DOServiceLog serviceLog) {
+  public DockerTask(DOService service, DOApplication application, DOFile file, DODockerHost dockerHost,
+      DOServiceLog serviceLog) {
     this.service = service;
     this.application = application;
     this.file = file;
+    this.dockerHost = dockerHost;
     this.serviceLog = serviceLog;
   }
 
@@ -430,22 +419,8 @@ class DockerTask {
   public DOServiceLog getServiceLog() {
     return serviceLog;
   }
-}
 
-class DockerHostConfiguration {
-  private final String host;
-  private final String certificationRef;
-
-  public DockerHostConfiguration(String host, String certificationRef) {
-    this.host = host;
-    this.certificationRef = certificationRef;
-  }
-
-  public String getHost() {
-    return host;
-  }
-
-  public String getCertificateRef() {
-    return certificationRef;
+  public DODockerHost getDockerHost() {
+    return dockerHost;
   }
 }

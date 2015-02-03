@@ -43,7 +43,7 @@ public class DOService extends AbstractDomainObject {
 
   public void setStatus(String status) {
     object.put("status", status);
-    if(!FAILED.equals(status)){
+    if (!FAILED.equals(status)) {
       setErrorMessage(null);
     }
   }
@@ -55,7 +55,7 @@ public class DOService extends AbstractDomainObject {
   public void setErrorMessage(String errorMessage) {
     object.put("errorMessage", errorMessage);
   }
-  
+
   public String getErrorMessage() {
     return object.getString("errorMessage");
   }
@@ -63,8 +63,16 @@ public class DOService extends AbstractDomainObject {
   public void setContainerId(String containerId) {
     object.put("containerId", containerId);
   }
-  
+
   public String getContainerId() {
     return object.getString("containerId");
+  }
+
+  public void setDockerHost(String dockerHost) {
+    object.put("dockerHost", dockerHost);
+  }
+
+  public String getDockerHost() {
+    return object.getString("dockerHost");
   }
 }

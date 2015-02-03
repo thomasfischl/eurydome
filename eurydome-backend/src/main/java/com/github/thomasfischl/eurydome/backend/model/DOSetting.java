@@ -4,9 +4,6 @@ import com.mongodb.BasicDBObject;
 
 public class DOSetting extends AbstractDomainObject {
 
-  public final static String SETTING_DOCKER_HOST = "DOCKER.HOST";
-  public final static String SETTING_DOCKER_CERTS = "DOCKER.CERTS";
-
   public DOSetting() {
     super();
   }

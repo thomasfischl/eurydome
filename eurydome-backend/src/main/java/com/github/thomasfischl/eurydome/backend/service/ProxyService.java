@@ -15,30 +15,30 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
+import com.github.thomasfischl.eurydome.backend.dal.DockerHostDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
-import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
+import com.github.thomasfischl.eurydome.backend.model.DODockerHost;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
-import com.github.thomasfischl.eurydome.backend.model.DOSetting;
 import com.github.thomasfischl.eurydome.backend.util.SystemUtil;
 
 @Service
 public class ProxyService {
 
   private final static Log LOG = LogFactory.getLog(ProxyService.class);
-  
+
   private File folder;
 
   private File configurationFile;
-
-  @Inject
-  private SettingDataStore settingStore;
 
   @Inject
   private ServiceDataStore serviceStore;
 
   @Inject
   private ApplicationDataStore applicationStore;
+
+  @Inject
+  private DockerHostDataStore dockerhostStore;
 
   public ProxyService() {
     if (SystemUtil.isWindows()) {
@@ -55,17 +55,12 @@ public class ProxyService {
   public void reloadProxy() {
     if (SystemUtil.isUnix()) {
       SystemUtil.executeCommand("/usr/sbin/service apache2 reload");
-    }else{
+    } else {
       LOG.warn("No proxy to reload.");
     }
   }
 
   public void updateConfiguration() throws IOException {
-    String dockerHost = settingStore.findByName(DOSetting.SETTING_DOCKER_HOST).getValue();
-    if (dockerHost == null) {
-      throw new IllegalArgumentException("Invalid docker configuration. Host: null");
-    }
-
     List<DOService> services = serviceStore.findAll();
 
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(configurationFile, false))) {
@@ -88,8 +83,13 @@ public class ProxyService {
           continue;
         }
 
+        DODockerHost dockerHost = dockerhostStore.findById(service.getDockerHost());
+        if (dockerHost == null) {
+          throw new IllegalStateException("No docker host with id '" + service.getDockerHost() + "' found.");
+        }
+
         String subdomain = service.getUrl();
-        String dockerUrl = "http://" + dockerHost + ":" + service.getExposedPort();
+        String dockerUrl = dockerHost.getContainerUrl() + ":" + service.getExposedPort();
 
         DOApplication application = applicationStore.findById(service.getApplicationRef());
         if (application != null && StringUtils.isNotEmpty(application.getProxyConfig())) {
@@ -111,16 +111,22 @@ public class ProxyService {
   }
 
   private void defaultProxyConfiguration(BufferedWriter bw, String subdomain, String url) throws IOException {
-    bw.write("  <Location /" + subdomain + "/>                                                                                                      \n");
-    bw.write("    ProxyPass         " + url + "                                                                                                     \n");
-    bw.write("    ProxyPassReverse  " + url + "                                                                                                     \n");
+    bw.write("  <Location /" + subdomain
+        + "/>                                                                                                      \n");
+    bw.write("    ProxyPass         " + url
+        + "                                                                                                     \n");
+    bw.write("    ProxyPassReverse  " + url
+        + "                                                                                                     \n");
     bw.write("                                                                                                                                      \n");
     bw.write("    AddOutputFilterByType SUBSTITUTE text/html                                                                                        \n");
     bw.write("    AddOutputFilterByType SUBSTITUTE application/javascript                                                                           \n");
     bw.write("    SetOutputFilter INFLATE;SUBSTITUTE                                                                                                \n");
-    bw.write("    Substitute \"s|/silk/|/" + subdomain + "/silk/|ni\"                                                                               \n");
-    bw.write("    Substitute \"s|/silkroot/|/" + subdomain + "/silkroot/|ni\"                                                                       \n");
-    bw.write("    Substitute \"s|/" + subdomain + "/silkroot/script/extjs-4.1.3/ext-all.js|" + url + "silkroot/script/extjs-4.1.3/ext-all.js|ni\"   \n");
+    bw.write("    Substitute \"s|/silk/|/" + subdomain
+        + "/silk/|ni\"                                                                               \n");
+    bw.write("    Substitute \"s|/silkroot/|/" + subdomain
+        + "/silkroot/|ni\"                                                                       \n");
+    bw.write("    Substitute \"s|/" + subdomain + "/silkroot/script/extjs-4.1.3/ext-all.js|" + url
+        + "silkroot/script/extjs-4.1.3/ext-all.js|ni\"   \n");
     bw.write("  </Location>                                                                                                                         \n");
   }
 
