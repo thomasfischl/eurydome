@@ -30,9 +30,10 @@ class PlatformManager extends Module {
     
     //Angular Services
     bind(RestService);
+    bind(Routes);
     
     //Routing
-    bind(RouteInitializerFn, toValue: routeInitializer);
+    bind(RouteInitializerFn, toImplementation: Routes);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
   }
 }
