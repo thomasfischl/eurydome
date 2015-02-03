@@ -9,16 +9,23 @@
   <property name="tool.maven" value="${env.MAVEN_HOME}/bin/mvn.bat" />
   <property name="tool.dart.pub" value="${env.DART_HOME}/bin/pub.bat" />
 
+  <property name="project.buildutils" value="../buildutils" />
+  <property name="project.buildutils.certificates" value="${project.buildutils}/certificates" />
   <property name="project.docker" value="../docker" />
   <property name="project.backend" value="../eurydome-backend" />
   <property name="project.frontend" value="../eurydome-frontend" />
   <property name="project.demoapp" value="../eurydome-demoapp" />
+  <property name="project.uploader" value="../eurydome-uploader" />
 
   <property name="release" value="../release" />
   <property name="release.docker" value="${release}/docker" />
   <property name="release.backend" value="${release}/backend" />
   <property name="release.frontend" value="${release}/frontend" />
   <property name="release.demoapp" value="${release}/demoapp" />
+  <property name="release.uploader" value="${release}/uploader" />
+
+  <property name="docker.url" value="https://192.168.59.103:2376" />
+  <property name="docker.cert.path" value="${project.buildutils.certificates}/work" />
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                 Macrodefs                       -->
@@ -30,7 +37,7 @@
       <echo message="Install maven project @{project}" />
       <delete dir="@{project}/target" />
       <exec dir="@{project}" executable="${tool.maven}" logerror="true" append="true">
-        <arg line="clean install" />
+        <arg line="-fn clean install" />
       </exec>
     </sequential>
   </macrodef>
@@ -46,4 +53,31 @@
       </exec>
     </sequential>
   </macrodef>
+
+  <macrodef name="docker.createandstart">
+    <attribute name="archive" />
+    <attribute name="containername" />
+    <attribute name="port" />
+    <attribute name="volume" default="" />
+    <sequential>
+      <java classname="com.github.thomasfischl.eurydome.uploader.DockerCreateAndStart" fork="true">
+        <arg line="${docker.url} ${docker.cert.path} @{archive} @{containername} @{port} @{volume}" />
+        <classpath>
+          <fileset dir="${release.uploader}" includes="*.jar" />
+        </classpath>
+      </java>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="docker.cleanup">
+    <sequential>
+      <java classname="com.github.thomasfischl.eurydome.uploader.DockerCleanup" fork="true">
+        <arg line="${docker.url} ${docker.cert.path}" />
+        <classpath>
+          <fileset dir="${release.uploader}" includes="*.jar" />
+        </classpath>
+      </java>
+    </sequential>
+  </macrodef>
+
 </project>
