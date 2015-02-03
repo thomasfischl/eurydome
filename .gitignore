@@ -28,3 +28,6 @@ eurydome-backend/config/000-admin.conf
 documentation/doc.out
 documentation/doc.pdf
 eurydome-backend/spring.log
+eurydome-backend/spring.log.1
+eurydome-backend/spring.log.2
+eurydome-backend/spring.log.3
