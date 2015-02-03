@@ -45,6 +45,10 @@ class Routes
               path: '/organisations',
               preEnter: checkDatabase(),
               viewHtml: '<organisations-view></organisations-view>'),
+            'dockerhosts': ngRoute(
+              path: '/dockerhosts',
+              preEnter: checkDatabase(),
+              viewHtml: '<dockerhosts-view></dockerhosts-view>'),
             'users': ngRoute(
               path: '/users',
               preEnter: checkDatabase(),

@@ -4,6 +4,7 @@ export 'package:eurydome_frontend/component/app/settings/settings_view.dart';
 export 'package:eurydome_frontend/component/app/services/services_view.dart';
 export 'package:eurydome_frontend/component/app/organisations_view.dart';
 export 'package:eurydome_frontend/component/app/users_view.dart';
+export 'package:eurydome_frontend/component/app/dockerhosts_view.dart';
 
 //components
 export 'package:eurydome_frontend/component/service_login_component.dart';

@@ -39,6 +39,7 @@ import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceLogDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
+import com.github.thomasfischl.eurydome.backend.model.DODockerHost;
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
 import com.github.thomasfischl.eurydome.backend.model.DOServiceLog;
@@ -50,7 +51,7 @@ import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
 public class DockerService {
 
   private final static Log LOG = LogFactory.getLog(DockerService.class);
-  
+
   @Inject
   private SettingDataStore settingStore;
 
@@ -136,7 +137,8 @@ public class DockerService {
       List<String> logs = new ArrayList<String>();
       logs.add(e.getClass() + ": " + e.getMessage());
       for (StackTraceElement elem : e.getStackTrace()) {
-        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":" + elem.getLineNumber() + ")");
+        logs.add("--- at " + elem.getClassName() + "." + elem.getMethodName() + "(" + elem.getFileName() + ":"
+            + elem.getLineNumber() + ")");
       }
 
       logMessage(task, -1, DOServiceLog.STATUS_FAILED, logs.toArray(new String[0]));
@@ -171,7 +173,8 @@ public class DockerService {
     // upload docker archive and build image
     //
     logMessage(task, 3, DOServiceLog.STATUS_RUNNING, "Upload docker archive '" + task.getFile().getName() + "'");
-    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId())).withTag(containerName).withNoCache(false).exec();
+    InputStream response = client.buildImageCmd(fileStore.getInputStream(task.getFile().getId()))
+        .withTag(containerName).withNoCache(false).exec();
     StringWriter logwriter = new StringWriter();
 
     try {
@@ -268,6 +271,30 @@ public class DockerService {
     return DockerUtil.createClient(url, tempDir.getAbsolutePath());
   }
 
+  private DockerClient getClient(DODockerHost dockerHost) {
+    //
+    // prepare docker host certificates
+    //
+    DOFile file = fileStore.findById(dockerHost.getCertificateArchive());
+    if (file == null) {
+      throw new IllegalStateException("No docker certificates available.");
+    }
+    
+    File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
+    try {
+      FileUtils.deleteDirectory(tempDir);
+    } catch (IOException e) {
+      LOG.warn("An error occurs during deleting temp directory.", e);
+    }
+    tempDir.mkdirs();
+    ZipUtil.extract(tempDir, fileStore.getInputStream(dockerHost.getCertificateArchive()));
+
+    //
+    // create docker client
+    //
+    return DockerUtil.createClient(dockerHost.getRemoteApiUrl(), tempDir.getAbsolutePath());
+  }
+
   private String getContainerName(DOService service) {
     return service.getName().replaceAll(" ", "_").toLowerCase();
   }
@@ -349,7 +376,8 @@ public class DockerService {
           logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. OK");
           successCount++;
         } else {
-          logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. Failed: " + connection.getResponseCode());
+          logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url
+              + "'. Failed: " + connection.getResponseCode());
           successCount = 0;
         }
 
@@ -358,12 +386,18 @@ public class DockerService {
         }
       } catch (IOException e) {
         LOG.info("Unkown resource. " + e.getMessage());
-        logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url + "'. Failed: " + e.getMessage());
+        logMessage(task, -1, DOServiceLog.STATUS_RUNNING, "Try " + idx + ": Test health check url '" + url
+            + "'. Failed: " + e.getMessage());
         successCount = 0;
       }
     }
 
     throw new IllegalStateException("Service '" + task.getService().getName() + "' is not available.");
+  }
+
+  public void testConnection(DODockerHost dockerhost) {
+    DockerClient client = getClient(dockerhost);
+    DockerUtil.testConnection(client);
   }
 
 }

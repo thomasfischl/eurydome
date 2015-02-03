@@ -1,0 +1,80 @@
+<div>
+  <h1 class="page-header">
+    Docker Hosts
+    <a ng-click="refresh()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a>
+  </h1>
+  <div>
+    <div class="alert {{type}}" ng-if="showNotification">{{toastMessage}}</div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Certificate Archive</th>
+              <th>Remote API Url</th>
+              <th>Container Url</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in objects">
+            <td>{{ item.name }}</td>
+            <td>{{ item.certificateArchive }}</td>
+            <td>{{ item.remoteApiUrl }}</td>
+            <td>{{ item.containerUrl }}</td>
+            <td>
+              <a ng-click="edit(item.id)"><i class="glyphicon glyphicon-pencil"></i></a>
+              <a ng-click="delete(item.id)"><i class="glyphicon glyphicon-remove"></i></a>
+              <a ng-click="test(item.id)"><i class="glyphicon glyphicon-heart-empty"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <a ng-click="create()"><i class="glyphicon glyphicon-plus"></i></a>
+            <td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div>
+      <div ng-if="showDetailPage">
+  
+        <h2 class="sub-header">Docker Host Details: ({{selObject.id}}) </h2>
+        <form class="form-horizontal default-form">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.name"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Certificate Archive</label>
+            <div class="col-sm-10">
+              <select ng-model="selObject.certificateArchive" class="form-control">
+                <option ng-repeat="file in files" ng-value="file.id">{{ file.name }}</option>
+                <option ng-value="null"></option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Remote API Url</label>
+            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.remoteApiUrl"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Container Url</label>
+            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.containerUrl"></div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <a type="submit" class="btn btn-default" ng-click="save()">Save</a>
+              <a type="submit" class="btn btn-default" ng-click="discard()">Discard</a>
+            </div>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+  </div>
+</div>

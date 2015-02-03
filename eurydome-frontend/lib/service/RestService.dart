@@ -20,6 +20,7 @@ class RestService {
   static final String DO_ORGANISATION = "organisation";
   static final String DO_USER = "user";
   static final String DO_SERVICELOG = "servicelog";
+  static final String DO_DOCKERHOST = "dockerhost";
 
   RestClient _client = new RestClient();
 
@@ -195,14 +196,44 @@ class RestService {
   void deleteUser(User obj) {
     _client.delete(DO_USER, obj);
   }
-  
+
   //------------------------------------------
   // Domain Object: ServiceLog
   //------------------------------------------
-  
+
   ServiceLog getServiceLogByName(String name) {
     return new ServiceLog.fromJson(_client.getByName(DO_SERVICELOG, name));
   }
-  
 
+  //------------------------------------------
+  // Domain Object: DockerHost
+  //------------------------------------------
+
+  DockerHost createDockerHost() {
+    return new DockerHost.fromJson(_client.create(DO_DOCKERHOST));
+  }
+
+  DockerHost getDockerHostById(String id) {
+    return new DockerHost.fromJson(_client.getById(DO_DOCKERHOST, id));
+  }
+
+  DockerHost getDockerHostByName(String name) {
+    return new DockerHost.fromJson(_client.getByName(DO_DOCKERHOST, name));
+  }
+
+  List<DockerHost> getDockerHosts() {
+    return _client.getAll(DO_DOCKERHOST, (obj) => new DockerHost.fromJson(obj));
+  }
+
+  void saveDockerHost(DockerHost obj) {
+    _client.save(DO_DOCKERHOST, obj);
+  }
+
+  void deleteDockerHost(DockerHost obj) {
+    _client.delete(DO_DOCKERHOST, obj);
+  }
+
+  String testDockerHostConnection(String id) {
+    return _client.get(DO_DOCKERHOST, "test", id: id );
+  }
 }

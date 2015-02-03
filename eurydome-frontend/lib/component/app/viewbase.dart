@@ -13,25 +13,25 @@ class AbstractView {
     showNotification = true;
     new Timer(new Duration(milliseconds: 5000), () => showNotification = false);
   }
-  
-  void showSuccessMessage(String msg){
+
+  void showSuccessMessage(String msg) {
     type = "alert-success";
     showMessage(msg);
   }
-  
-  void showWarningMessage(String msg){
+
+  void showWarningMessage(String msg) {
     type = "alert-warning";
     showMessage(msg);
   }
 
-  void showErrorMessage(String msg){
+  void showErrorMessage(String msg) {
     type = "alert-danger";
     showMessage(msg);
   }
-  
+
 }
 
-abstract class AbstractDOView {
+abstract class AbstractDOView extends AbstractView {
   List objects;
   dynamic selObject;
   bool showDetailPage;

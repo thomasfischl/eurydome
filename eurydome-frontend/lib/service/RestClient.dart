@@ -50,6 +50,9 @@ class RestClient {
     if (request.status != 200) {
       throw new StateError('Get Request "/${domainObject}/${method}" failed. Response: ${request.responseText}');
     }
+    if(request.responseText == ''){
+      throw new StateError('No response');
+    }
     return request.responseText;
   }
 

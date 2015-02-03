@@ -169,3 +169,24 @@ class ServiceLog {
 
   ServiceLog.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['logs'], json['status'], json['step'], json['totalSteps']);
 }
+
+class DockerHost {
+  String id;
+  String name;
+  String remoteApiUrl;
+  String certificateArchive;
+  String containerUrl;
+
+  DockerHost(this.id, this.name, this.remoteApiUrl, this.certificateArchive, this.containerUrl);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    "id": id,
+    "name": name,
+    "remoteApiUrl": remoteApiUrl,
+    "certificateArchive": certificateArchive,
+    "containerUrl": containerUrl
+  };
+
+  DockerHost.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['remoteApiUrl'], json['certificateArchive'], json['containerUrl']);
+}
+
