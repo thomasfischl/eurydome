@@ -46,8 +46,10 @@ class Service {
   String status;
   String errorMessage;
   String containerId;
+  String preferDockerHost;
+  String actualDockerHost;
 
-  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId);
+  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId, this.preferDockerHost, this.actualDockerHost);
 
   String getFullStatus() {
     if (errorMessage == null) {
@@ -55,6 +57,10 @@ class Service {
     } else {
       return "${status} (${errorMessage})";
     }
+  }
+
+  bool isActive() {
+    return status != 'Stopped';
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -65,10 +71,12 @@ class Service {
     "exposedPort": exposedPort,
     "status": status,
     "errorMessage": errorMessage,
-    "containerId": containerId
+    "containerId": containerId,
+    "preferDockerHost": preferDockerHost,
+    "actualDockerHost": actualDockerHost
   };
 
-  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId']);
+  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId'], json['preferDockerHost'], json['actualDockerHost']);
 }
 
 class FileObject {
@@ -189,4 +197,3 @@ class DockerHost {
 
   DockerHost.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['remoteApiUrl'], json['certificateArchive'], json['containerUrl']);
 }
-

@@ -20,7 +20,6 @@ transformers:
     - lib/component/app/applications_view.html
     - lib/component/app/settings/settings_view.html
     - lib/component/app/settings/filepool_component.html
-    - lib/component/app/settings/docker_config_component.html
     - lib/component/app/settings/proxy_configuration_component.html
     - lib/component/app/settings/server_log_component.html
     - lib/component/app/settings/system_environment_component.html

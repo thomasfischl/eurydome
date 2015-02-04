@@ -68,11 +68,19 @@ public class DOService extends AbstractDomainObject {
     return object.getString("containerId");
   }
 
-  public void setDockerHost(String dockerHost) {
-    object.put("dockerHost", dockerHost);
+  public void setPreferDockerHost(String preferDockerHost) {
+    object.put("preferDockerHost", preferDockerHost);
   }
 
-  public String getDockerHost() {
-    return object.getString("dockerHost");
+  public String getPreferDockerHost() {
+    return object.getString("preferDockerHost");
+  }
+
+  public void setActualDockerHost(String actualDockerHost) {
+    object.put("actualDockerHost", actualDockerHost);
+  }
+
+  public String getActualDockerHost() {
+    return object.getString("actualDockerHost");
   }
 }

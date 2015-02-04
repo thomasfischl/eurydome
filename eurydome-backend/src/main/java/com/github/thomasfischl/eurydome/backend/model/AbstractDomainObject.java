@@ -39,4 +39,13 @@ public class AbstractDomainObject {
   public void validate() {
   }
 
+  @Override
+  public String toString() {
+    if (getName() != null) {
+      return getName() + "(" + getId() + ")";
+    } else {
+      return getId();
+    }
+  }
+
 }

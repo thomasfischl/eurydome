@@ -12,6 +12,8 @@ class ServicesView extends AbstractDOView implements ScopeAware{
 
   List<ApplicationTemplate> applications;
 
+  List<DockerHost> dockerHosts;
+
   Scope _scope;
   
   ServicesView(this.restService) {
@@ -22,6 +24,7 @@ class ServicesView extends AbstractDOView implements ScopeAware{
   void refresh() {
     objects = restService.getServices();
     applications = restService.getApplications();
+    dockerHosts = restService.getDockerHosts();
   }
 
   @override

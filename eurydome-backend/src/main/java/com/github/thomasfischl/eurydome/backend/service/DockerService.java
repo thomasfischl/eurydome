@@ -83,36 +83,48 @@ public class DockerService {
     }
 
     DODockerHost dockerHost = null;
-    List<DODockerHost> dockerHosts = dockerhostStore.findAll();
-    for (DODockerHost host : dockerHosts) {
-      try {
-        testConnection(host);
-        dockerHost = host;
-      } catch (Exception e) {
-        LOG.debug("Find active docker host.", e);
+    if (service.getPreferDockerHost() != null) {
+      dockerHost = dockerhostStore.findById(service.getPreferDockerHost());
+      if (dockerHost == null) {
+        throw new IllegalStateException("The prefered docker host '" + service.getPreferDockerHost()
+            + "' can't be found.");
+      }
+    } else {
+      List<DODockerHost> dockerHosts = dockerhostStore.findAll();
+      for (DODockerHost host : dockerHosts) {
+        try {
+          testConnection(host);
+          dockerHost = host;
+        } catch (Exception e) {
+          LOG.debug("Find active docker host.", e);
+        }
+      }
+      if (dockerHost == null) {
+        throw new IllegalStateException("No active docker host found.");
       }
     }
-
-    if (dockerHost == null) {
-      throw new IllegalStateException("No active docker host found.");
-    }
-
     DOServiceLog serviceLog = createServiceLog(service);
-
-    DockerTask task = new DockerTask(service, application, file, dockerHost, serviceLog);
-    backlog.add(task);
 
     //
     // update service
     //
     service.setStatus(DOService.STARTING);
+    service.setActualDockerHost(dockerHost.getId());
     serviceStore.save(service);
+
+    backlog.add(new DockerTask(service, application, file, dockerHost, serviceLog));
   }
 
   public void stopService(DOService service) {
-    DODockerHost dockerHost = dockerhostStore.findById(service.getDockerHost());
+    DODockerHost dockerHost = dockerhostStore.findById(service.getActualDockerHost());
     if (dockerHost == null) {
-      throw new IllegalStateException("No docker host with id '" + service.getDockerHost() + "' found.");
+      service.setStatus(DOService.STOPPED);
+      service.setExposedPort(null);
+      service.setActualDockerHost(null);
+      service.setErrorMessage("No docker host with id '" + service.getActualDockerHost() + "' found.");
+      serviceStore.save(service);
+
+      throw new IllegalStateException("No docker host with id '" + service.getActualDockerHost() + "' found.");
     }
 
     DockerClient client = getClient(dockerHost);
@@ -132,6 +144,7 @@ public class DockerService {
     //
     service.setStatus(DOService.STOPPED);
     service.setExposedPort(null);
+    service.setActualDockerHost(null);
     serviceStore.save(service);
   }
 
@@ -254,7 +267,7 @@ public class DockerService {
     task.getService().setStatus(DOService.STARTED);
     task.getService().setExposedPort(port);
     task.getService().setContainerId(containerResp.getId());
-    task.getService().setDockerHost(task.getDockerHost().getId());
+    task.getService().setActualDockerHost(task.getDockerHost().getId());
     serviceStore.save(task.getService());
 
     //

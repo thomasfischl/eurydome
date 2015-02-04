@@ -1,10 +1,6 @@
 <div>
   <h1 class="page-header">Global Settings</h1>
 
-  <docker-config ng-if="databaseConnected"></docker-config>
-
-  <filepool ng-if="databaseConnected"></filepool>
-
   <h2 class="sub-header">Database Settings <a ng-click="refresh()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a></h2>
   <div class="alert {{type}}" ng-if="showNotification">{{toastMessage}}</div>
   <form class="form-horizontal default-form">
@@ -26,6 +22,8 @@
       </div>
     </div>
   </form>
+
+  <filepool ng-if="databaseConnected"></filepool>
 
   <proxy-configuration ng-if="databaseConnected"></proxy-configuration>
   

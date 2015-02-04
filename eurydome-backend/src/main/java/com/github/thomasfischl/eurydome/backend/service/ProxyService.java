@@ -83,9 +83,11 @@ public class ProxyService {
           continue;
         }
 
-        DODockerHost dockerHost = dockerhostStore.findById(service.getDockerHost());
+        DODockerHost dockerHost = dockerhostStore.findById(service.getActualDockerHost());
         if (dockerHost == null) {
-          throw new IllegalStateException("No docker host with id '" + service.getDockerHost() + "' found.");
+          LOG.warn("Skip proxy configuration for service '" + service + "' because no docker host with id '"
+              + service.getActualDockerHost() + "' found.");
+          continue;
         }
 
         String subdomain = service.getUrl();
