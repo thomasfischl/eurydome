@@ -28,4 +28,5 @@ transformers:
     - lib/component/app/organisations_view.html
     - lib/component/app/dockerhosts_view.html
     - lib/component/app/users_view.html
+    - lib/component/controls/message_component.html
     csp: true

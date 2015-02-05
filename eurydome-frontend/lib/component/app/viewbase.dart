@@ -1,34 +1,14 @@
 library ViewBaseLibrary;
 
-import 'dart:async';
+import '../controls/message_component.dart';
 
-class AbstractView {
+abstract class AbstractView {
 
-  bool showNotification = false;
-  String toastMessage = "Saved";
-  String type = "alert-success";
+  MessageComponent message;
 
-  void showMessage(String msg) {
-    toastMessage = msg;
-    showNotification = true;
-    new Timer(new Duration(milliseconds: 5000), () => showNotification = false);
+  void setMessage(MessageComponent message) {
+    this.message = message;
   }
-
-  void showSuccessMessage(String msg) {
-    type = "alert-success";
-    showMessage(msg);
-  }
-
-  void showWarningMessage(String msg) {
-    type = "alert-warning";
-    showMessage(msg);
-  }
-
-  void showErrorMessage(String msg) {
-    type = "alert-danger";
-    showMessage(msg);
-  }
-
 }
 
 abstract class AbstractDOView extends AbstractView {
@@ -51,5 +31,4 @@ abstract class AbstractDOView extends AbstractView {
   void edit(String id);
 
   void delete(String id);
-
 }

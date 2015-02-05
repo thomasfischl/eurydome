@@ -19,7 +19,10 @@ class PlatformManager extends Module {
     bind(ProxyConfigurationComponent);
     bind(ServerLogComponent);
     bind(SystemEnvironmentComponent);
-    
+
+    //Control
+    bind(MessageComponent);
+
     //Views
     bind(ApplicationsView);
     bind(SettingsView);
@@ -27,11 +30,11 @@ class PlatformManager extends Module {
     bind(OrganisationView);
     bind(UserView);
     bind(DockerHostView);
-    
+
     //Angular Services
     bind(RestService);
     bind(Routes);
-    
+
     //Routing
     bind(RouteInitializerFn, toImplementation: Routes);
     bind(NgRoutingUsePushState, toValue: new NgRoutingUsePushState.value(false));
@@ -39,10 +42,9 @@ class PlatformManager extends Module {
 }
 
 void main() {
-  Logger.root..level = Level.FINEST
-             ..onRecord.listen((r) => print(r.message));
+  Logger.root
+      ..level = Level.FINEST
+      ..onRecord.listen((r) => print(r.message));
 
-  applicationFactory()
-      .addModule(new PlatformManager())
-      .run();
+  applicationFactory().addModule(new PlatformManager()).run();
 }

@@ -61,9 +61,9 @@ class DockerHostView extends AbstractDOView {
     if (obj != null) {
       String resp = restService.testDockerHostConnection(obj.id);
       if (resp == 'OK') {
-        showSuccessMessage("Connection to docker host works!");
+        message.showSuccessMessage("Connection to docker host works!");
       } else {
-        showErrorMessage("Connection to docker host fails! ${resp}" );
+        message.showErrorMessage("Connection to docker host fails! ${resp}");
       }
     }
   }

@@ -6,7 +6,7 @@ import '../viewbase.dart';
 import 'dart:html';
 
 @Component(selector: 'services-view', templateUrl: 'services_view.html', useShadowDom: false)
-class ServicesView extends AbstractDOView implements ScopeAware{
+class ServicesView extends AbstractDOView implements ScopeAware {
 
   final RestService restService;
 

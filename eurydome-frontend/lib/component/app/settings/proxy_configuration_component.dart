@@ -34,7 +34,7 @@ class ProxyConfigurationComponent extends AbstractView {
     try {
       restService.saveProxyConfiguration();
     } catch (e) {
-      showErrorMessage(e.toString());
+      message.showErrorMessage(e.toString());
     }
     refresh();
   }
