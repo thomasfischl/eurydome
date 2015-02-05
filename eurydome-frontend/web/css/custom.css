@@ -122,3 +122,29 @@ body {
 .ng-show {
    display: none !important;
 }
+
+.docker-host {
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.docker-continer {
+  float: left;
+  width: 150px; 
+  height: 150px; 
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.docker-container-running {
+  background-color: #5cb85c;
+}
+
+.docker-container-title {
+  margin-top: 10px;
+}

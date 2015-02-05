@@ -30,6 +30,7 @@ class PlatformManager extends Module {
     bind(OrganisationView);
     bind(UserView);
     bind(DockerHostView);
+    bind(DashboardView);
 
     //Angular Services
     bind(RestService);

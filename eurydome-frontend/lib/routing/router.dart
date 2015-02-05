@@ -52,7 +52,11 @@ class Routes
             'users': ngRoute(
               path: '/users',
               preEnter: checkDatabase(),
-              viewHtml: '<users-view></users-view>')
+              viewHtml: '<users-view></users-view>'),
+            'dashboard': ngRoute(
+              path: '/dashboard',
+              preEnter: checkDatabase(),
+              viewHtml: '<dashboard-view></dashboard-view>')
           })
     });
   }
