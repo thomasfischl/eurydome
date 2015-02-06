@@ -123,28 +123,61 @@ body {
    display: none !important;
 }
 
+/*
+ * Dashboard
+ */
+
 .docker-host {
   padding: 10px;
   background-color: #eee;
+  
   border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
   
   margin-right: -15px;
   margin-left: -15px;
+  margin-top: 15px;
 }
 
 .docker-continer {
-  float: left;
+  display: inline-block;
   width: 150px; 
   height: 150px; 
   margin: 5px;
   padding: 5px;
+  
   border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .docker-container-running {
   background-color: #5cb85c;
 }
 
+.docker-container-failed {
+  background-color: #d9534f;
+}
+
+.docker-container-stopped {
+  background-color: #5bc0de;
+}
+
 .docker-container-title {
-  margin-top: 10px;
+  margin: 10px 5px 0px 5px;
+  height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.docker-container-body{
+  height: 85px;
+}
+
+.docker-container-controls {
+  margin-left: 5px;
 }

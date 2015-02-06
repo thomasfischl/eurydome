@@ -9,11 +9,16 @@ class DashboardView {
 
   final RestService restService;
 
+  List<DockerHost> dockerHosts;
+
   DashboardView(this.restService) {
     refresh();
   }
-  
+
   void refresh() {
+    dockerHosts = restService.getDockerHosts();
+    dockerHosts.forEach((obj) => obj.services = restService.getServices().where((s) => s.actualDockerHost == obj.id || s.preferDockerHost == obj.id).toList());
   }
+
 
 }

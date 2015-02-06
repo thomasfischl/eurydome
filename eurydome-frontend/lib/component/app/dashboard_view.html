@@ -4,16 +4,9 @@
     <a ng-click="refresh()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a>
   </h1>
   <div>
-    
-    <div class="row docker-host">
-    
-      <h3 style="margin: 5px 0px 5px 0px">Docker Host: Local</h3>
-    
-      <div class="docker-continer docker-container-running">
-        <div class="docker-container-title"><strong>Silk Central Demo 1</strong></div>
-        <div style="height: 10px; position: relative;">xxxxxxxxx</div>
-      </div>
+    <div class="row docker-host" ng-repeat="dockerHost in dockerHosts">
+      <h3 style="margin: 5px 0px 5px 0px">Docker Host: {{dockerHost.name}}</h3>
+	  <service-component id="{{service.id}}" ng-repeat="service in dockerHost.services" ></service-component>
     </div>
-    
   </div>
 </div>

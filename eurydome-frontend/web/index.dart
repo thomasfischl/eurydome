@@ -22,6 +22,7 @@ class PlatformManager extends Module {
 
     //Control
     bind(MessageComponent);
+    bind(ServiceComponent);
 
     //Views
     bind(ApplicationsView);

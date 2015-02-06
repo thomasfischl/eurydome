@@ -184,7 +184,8 @@ class DockerHost {
   String remoteApiUrl;
   String certificateArchive;
   String containerUrl;
-
+  List<Service> services;
+  
   DockerHost(this.id, this.name, this.remoteApiUrl, this.certificateArchive, this.containerUrl);
 
   Map<String, dynamic> toJson() => <String, dynamic>{

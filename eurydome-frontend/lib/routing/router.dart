@@ -56,7 +56,8 @@ class Routes
             'dashboard': ngRoute(
               path: '/dashboard',
               preEnter: checkDatabase(),
-              viewHtml: '<dashboard-view></dashboard-view>')
+              viewHtml: '<dashboard-view></dashboard-view>',
+              defaultRoute: true)
           })
     });
   }

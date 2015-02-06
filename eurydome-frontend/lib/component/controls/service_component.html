@@ -1,0 +1,9 @@
+<div class="docker-continer {{statusCssClass}}">
+	<div class="docker-container-title" title="{{service.name}}"><strong>{{service.name}}</strong></div>
+  <div class="docker-container-body"></div>
+  <div class="docker-container-controls">
+    <a ng-click="start(service.id)"><i class="glyphicon glyphicon-play"></i></a>
+  <a ng-click="stop(service.id)"><i class="glyphicon glyphicon-stop"></i></a>
+    <a ng-click="open(service.id)"><i class="glyphicon glyphicon-share"></i></a>
+  </div>
+</div>
