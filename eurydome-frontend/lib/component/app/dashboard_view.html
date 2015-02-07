@@ -4,8 +4,15 @@
     <a ng-click="refresh()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a>
   </h1>
   <div>
+    <message></message>
     <div class="row docker-host" ng-repeat="dockerHost in dockerHosts">
-      <h3 style="margin: 5px 0px 5px 0px">Docker Host: {{dockerHost.name}}</h3>
+      <h3 style="margin: 5px 0px 5px 0px">Docker Host: {{dockerHost.name}}
+      
+      <div class="pull-right" ng-if="dockerHost.id != -1">
+        <a ng-click="testDockerHost(dockerHost.id)"><i class="glyphicon glyphicon-heart-empty"></i></a>
+      </div>
+      
+      </h3>
 	  <service-component id="{{service.id}}" ng-repeat="service in dockerHost.services" ></service-component>
     </div>
   </div>

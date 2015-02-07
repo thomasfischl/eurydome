@@ -1,20 +1,19 @@
 library ServiceConsoleComponentLibrary;
 
 import 'package:angular/angular.dart';
-import 'package:eurydome_frontend/service/RestService.dart';
-import 'dart:async';
 import 'dart:html';
 
+import 'package:eurydome_frontend/service/RestService.dart';
+import '../viewbase.dart';
+
 @Component(selector: 'service-console-component', templateUrl: 'service_console_component.html', useShadowDom: false)
-class ServiceConsoleComponent implements ScopeAware {
+class ServiceConsoleComponent extends AbstractView implements ScopeAware {
 
   final RestService restService;
 
   Service selService;
 
   List<String> consoleText;
-
-  Timer updateConsoleTimer;
 
   String progress;
 
@@ -38,9 +37,8 @@ class ServiceConsoleComponent implements ScopeAware {
     selService = restService.getServiceById(serviceId);
     if (selService != null) {
       reset();
-      stopUpdateTimer();
       if (active) {
-        updateConsoleTimer = new Timer.periodic(new Duration(milliseconds: 500), (t) => updateConsole(true));
+        schedulePeriodicTask(new Duration(milliseconds: 500), () => updateConsole(true));
       } else {
         updateConsole(false);
       }
@@ -84,18 +82,16 @@ class ServiceConsoleComponent implements ScopeAware {
 
       if (serviceLog.isFinished()) {
         _scope.emit('ServiceStartupComplete');
-        new Timer(new Duration(milliseconds: 100), () {
+        scheduleTask(new Duration(milliseconds: 100), () {
           scrollToEnd();
           showLoadingIndicator = false;
         });
-        stopUpdateTimer();
       }
     }
   }
 
   @override
   void set scope(Scope scope) {
-    scope.on(ScopeEvent.DESTROY).listen((e) => stopUpdateTimer());
     scope.on('startConsole').listen((e) => init(e.data, true));
     scope.on('openConsole').listen((e) => init(e.data, false));
     _scope = scope;
@@ -103,14 +99,7 @@ class ServiceConsoleComponent implements ScopeAware {
 
   void close() {
     showConsole = false;
-    stopUpdateTimer();
-  }
-
-  void stopUpdateTimer() {
-    if (updateConsoleTimer != null) {
-      updateConsoleTimer.cancel();
-      updateConsoleTimer = null;
-    }
+    stopTimer();
   }
 
   void showError(e) {

@@ -184,7 +184,7 @@ class DockerHost {
   String remoteApiUrl;
   String certificateArchive;
   String containerUrl;
-  List<Service> services;
+  List<Service> services = new List();
   
   DockerHost(this.id, this.name, this.remoteApiUrl, this.certificateArchive, this.containerUrl);
 

@@ -143,8 +143,8 @@ body {
 
 .docker-continer {
   display: inline-block;
-  width: 150px; 
-  height: 150px; 
+  width: 100px; 
+  height: 100px; 
   margin: 5px;
   padding: 5px;
   
@@ -158,12 +158,17 @@ body {
   background-color: #5cb85c;
 }
 
+.docker-container-maintenance {
+  background-color: #f0ad4e;
+}
+
 .docker-container-failed {
   background-color: #d9534f;
 }
 
 .docker-container-stopped {
-  background-color: #5bc0de;
+  /*background-color: #5bc0de;*/
+  background-color: white;
 }
 
 .docker-container-title {
@@ -175,9 +180,14 @@ body {
 }
 
 .docker-container-body{
-  height: 85px;
+  height: 35px;
 }
 
 .docker-container-controls {
   margin-left: 5px;
+}
+
+.docker-container-controls a {
+  color: black;  
+  margin-right: 5px;
 }
