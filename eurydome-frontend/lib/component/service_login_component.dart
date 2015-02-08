@@ -2,12 +2,12 @@ library ServiceLoginComponentLibrary;
 
 import 'package:angular/angular.dart';
 import '../service/RestService.dart';
+import 'app/viewbase.dart';
 
 import 'dart:html';
-import 'dart:async';
 
 @Component(selector: 'service-login', templateUrl: 'service_login_component.html', useShadowDom: false)
-class ServiceLoginComponent implements ScopeAware {
+class ServiceLoginComponent extends AbstractView {
 
   final RestService restService;
 
@@ -20,8 +20,6 @@ class ServiceLoginComponent implements ScopeAware {
   String user;
 
   List<String> consoleText;
-
-  Timer updateConsoleTimer;
 
   String progress;
 
@@ -71,9 +69,9 @@ class ServiceLoginComponent implements ScopeAware {
           showProgressBar = true;
           showConsole = false;
 
-          stopUpdateTimer();
+          stopTimer();
           restService.startService(selService);
-          updateConsoleTimer = new Timer.periodic(new Duration(milliseconds: 500), (t) => updateConsole(selService));
+          schedulePeriodicTask(new Duration(milliseconds: 500), () => updateConsole(selService));
         }
       }
     }
@@ -103,27 +101,14 @@ class ServiceLoginComponent implements ScopeAware {
       }
 
       if (serviceLog.isFinished()) {
-        stopUpdateTimer();
+        stopTimer();
         navigateToService(selService);
       }
     }
   }
 
-  @override
-  void set scope(Scope scope) {
-    scope.on(ScopeEvent.DESTROY).listen((e) => stopUpdateTimer());
-    _scope = scope;
-  }
-
   void activateConsole() {
     showConsole = true;
-  }
-
-  void stopUpdateTimer() {
-    if (updateConsoleTimer != null) {
-      updateConsoleTimer.cancel();
-      updateConsoleTimer = null;
-    }
   }
 
   void showError(e) {

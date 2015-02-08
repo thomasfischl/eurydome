@@ -3,26 +3,20 @@ library MessageComponentLibrary;
 import '../app/viewbase.dart';
 
 import 'package:angular/angular.dart';
-import 'dart:async';
 
 @Component(selector: 'message', templateUrl: 'message_component.html', useShadowDom: false, visibility: Visibility.LOCAL)
-class MessageComponent implements ScopeAware {
+class MessageComponent extends AbstractView implements ScopeAware {
 
   bool showNotification = false;
   String messageText = "";
   String type = "alert-success";
-  Timer _timer;
 
   void _showMessage(String type, String msg) {
     this.type = type;
     messageText = msg;
     showNotification = true;
-
-    if (_timer != null) {
-      _timer.cancel();
-      _timer = null;
-    }
-    _timer = new Timer(new Duration(milliseconds: 5000), () => showNotification = false);
+    stopTimer();
+    scheduleTask(new Duration(seconds: 5), () => showNotification=false);
   }
 
   void showSuccessMessage(String msg) {
@@ -45,10 +39,7 @@ class MessageComponent implements ScopeAware {
   }
 
   void close() {
-    if (_timer != null) {
-      _timer.cancel();
-      _timer = null;
-    }
+    stopTimer();
     showNotification = false;
   }
 }
