@@ -19,7 +19,7 @@ class RestService {
   static final String DO_DATABASE = "database";
   static final String DO_ORGANISATION = "organisation";
   static final String DO_USER = "user";
-  static final String DO_SERVICELOG = "servicelog";
+  static final String DO_TASK = "task";
   static final String DO_DOCKERHOST = "dockerhost";
 
   RestClient _client = new RestClient();
@@ -198,11 +198,27 @@ class RestService {
   }
 
   //------------------------------------------
-  // Domain Object: ServiceLog
+  // Domain Object: Task
   //------------------------------------------
 
-  ServiceLog getServiceLogByName(String name) {
-    return new ServiceLog.fromJson(_client.getByName(DO_SERVICELOG, name));
+  Task createTask() {
+    return new Task.fromJson(_client.create(DO_TASK));
+  }
+
+  Task getTaskById(String id) {
+    return new Task.fromJson(_client.getById(DO_TASK, id));
+  }
+
+  Task getTaskByName(String name) {
+    return new Task.fromJson(_client.getByName(DO_TASK, name));
+  }
+
+  List<Task> getTasks() {
+    return _client.getAll(DO_TASK, (obj) => new Task.fromJson(obj));
+  }
+
+  void saveTask(Task obj) {
+    _client.save(DO_TASK, obj);
   }
 
   //------------------------------------------
@@ -234,6 +250,6 @@ class RestService {
   }
 
   String testDockerHostConnection(String id) {
-    return _client.get(DO_DOCKERHOST, "test", id: id );
+    return _client.get(DO_DOCKERHOST, "test", id: id);
   }
 }

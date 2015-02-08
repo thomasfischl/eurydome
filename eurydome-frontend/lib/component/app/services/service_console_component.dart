@@ -59,16 +59,16 @@ class ServiceConsoleComponent extends AbstractView implements ScopeAware {
 
   void updateConsole(bool active) {
     if (selService != null) {
-      var serviceLog;
+      Task task;
       try {
-        serviceLog = restService.getServiceLogByName(selService.id);
+        task = restService.getTaskById(selService.currentTask);
       } catch (e) {
         showError(e);
         return;
       }
-      consoleText = serviceLog.logs;
-      progress = "${serviceLog.calculateProgress()}";
-      progressText = "${serviceLog.step} of ${serviceLog.totalSteps}";
+      consoleText = task.logOutput;
+      progress = "${task.calculateProgress()}";
+      progressText = "${task.step} of ${task.totalSteps}";
 
       if (active) {
         scrollToEnd();
@@ -76,11 +76,13 @@ class ServiceConsoleComponent extends AbstractView implements ScopeAware {
         showLoadingIndicator = false;
       }
 
-      if (serviceLog.isFailed()) {
+      if (task.isFailed()) {
         statusCssClass = "progress-bar-danger";
+      }else{
+        statusCssClass = "progress-bar-success";
       }
 
-      if (serviceLog.isFinished()) {
+      if (task.completed) {
         _scope.emit('ServiceStartupComplete');
         scheduleTask(new Duration(milliseconds: 100), () {
           scrollToEnd();

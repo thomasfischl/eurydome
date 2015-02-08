@@ -1,15 +1,27 @@
 package com.github.thomasfischl.eurydome.backend.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.model.Container;
 import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig.DockerClientConfigBuilder;
+import com.github.thomasfischl.eurydome.backend.dal.FileDataStore;
+import com.github.thomasfischl.eurydome.backend.model.DODockerHost;
+import com.github.thomasfischl.eurydome.backend.model.DOFile;
+import com.github.thomasfischl.eurydome.backend.model.DOService;
 import com.google.common.base.Preconditions;
 
 public class DockerUtil {
+
+  private final static Log LOG = LogFactory.getLog(DockerUtil.class);
 
   // public static final String CERTIFICATION_PATH = "../buildutils/certificates/zeus";
 
@@ -17,6 +29,23 @@ public class DockerUtil {
 
   public static DockerClient createClient(String host) {
     return createClient("https://" + host + ":2376", CERTIFICATION_PATH);
+  }
+
+  public static DockerClient createClient(DODockerHost dockerHost, FileDataStore fileStore) {
+    DOFile file = fileStore.findById(dockerHost.getCertificateArchive());
+    if (file == null) {
+      throw new IllegalStateException("No docker certificates available.");
+    }
+
+    File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
+    try {
+      FileUtils.deleteDirectory(tempDir);
+    } catch (IOException e) {
+      LOG.warn("An error occurs during deleting temp directory.", e);
+    }
+    tempDir.mkdirs();
+    ZipUtil.extract(tempDir, fileStore.getInputStream(dockerHost.getCertificateArchive()));
+    return createClient(dockerHost.getRemoteApiUrl(), tempDir.getAbsolutePath());
   }
 
   public static DockerClient createClient(String uri, String certificationPath) {
@@ -74,5 +103,9 @@ public class DockerUtil {
 
   public static void testConnection(DockerClient client) {
     client.pingCmd().exec();
+  }
+  
+  public static String normalizeContainerName(DOService service) {
+    return service.getName().replaceAll(" ", "_").toLowerCase();
   }
 }

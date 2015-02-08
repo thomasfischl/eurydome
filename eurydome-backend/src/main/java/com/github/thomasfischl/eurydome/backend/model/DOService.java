@@ -5,7 +5,7 @@ import com.mongodb.BasicDBObject;
 public class DOService extends AbstractDomainObject {
 
   public final static String STOPPED = "Stopped";
-  public final static String STARTING = "Starting";
+  public final static String MAINTENANCE = "Maintenance";
   public final static String STARTED = "Started";
   public final static String FAILED = "Failed";
 
@@ -82,5 +82,13 @@ public class DOService extends AbstractDomainObject {
 
   public String getActualDockerHost() {
     return object.getString("actualDockerHost");
+  }
+
+  public void setCurrentTask(String currentTask) {
+    object.put("currentTask", currentTask);
+  }
+
+  public String getCurrentTask() {
+    return object.getString("currentTask");
   }
 }

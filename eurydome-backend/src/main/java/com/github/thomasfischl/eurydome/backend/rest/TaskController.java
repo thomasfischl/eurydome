@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.thomasfischl.eurydome.backend.dal.AbstractDataStore;
-import com.github.thomasfischl.eurydome.backend.dal.ServiceLogDataStore;
-import com.github.thomasfischl.eurydome.backend.model.DOServiceLog;
+import com.github.thomasfischl.eurydome.backend.dal.TaskDataStore;
+import com.github.thomasfischl.eurydome.backend.model.DOTask;
 
 @RestController
-@RequestMapping(value = "/rest/servicelog")
-public class ServiceLogController extends AbstractController<DOServiceLog> {
+@RequestMapping(value = "/rest/task")
+public class TaskController extends AbstractController<DOTask> {
 
   @Inject
-  ServiceLogDataStore store;
+  TaskDataStore store;
 
   @Override
-  protected AbstractDataStore<DOServiceLog> getStore() {
+  protected AbstractDataStore<DOTask> getStore() {
     return store;
   }
 }

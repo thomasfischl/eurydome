@@ -48,8 +48,9 @@ class Service {
   String containerId;
   String preferDockerHost;
   String actualDockerHost;
+  String currentTask;
 
-  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId, this.preferDockerHost, this.actualDockerHost);
+  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId, this.preferDockerHost, this.actualDockerHost, this.currentTask);
 
   String getFullStatus() {
     if (errorMessage == null) {
@@ -73,10 +74,11 @@ class Service {
     "errorMessage": errorMessage,
     "containerId": containerId,
     "preferDockerHost": preferDockerHost,
-    "actualDockerHost": actualDockerHost
+    "actualDockerHost": actualDockerHost,
+    "currentTask": currentTask
   };
 
-  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId'], json['preferDockerHost'], json['actualDockerHost']);
+  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId'], json['preferDockerHost'], json['actualDockerHost'], json['currentTask']);
 }
 
 class FileObject {
@@ -141,25 +143,26 @@ class User {
   User.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['organisationRef']);
 }
 
-class ServiceLog {
+class Task {
   String id;
   String name;
   String status;
-  String step;
-  String totalSteps;
-  List<String> logs;
+  int step;
+  int totalSteps;
+  String stepName;
+  String taskType;
+  bool completed;
 
-  ServiceLog(this.id, this.name, this.logs, this.status, this.step, this.totalSteps);
+  List<String> logOutput;
+  Map<String, String> settings;
+
+  Task();
 
   int calculateProgress() {
     if (totalSteps == "0") {
       return 0;
     }
-    return (int.parse(step) * 100) ~/ int.parse(totalSteps);
-  }
-
-  bool isFinished() {
-    return status != "running";
+    return (step * 100) ~/ totalSteps;
   }
 
   bool isFailed() {
@@ -169,13 +172,28 @@ class ServiceLog {
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
-    "logs": logs,
     "status": status,
     "step": step,
-    "totalSteps": totalSteps
+    "totalSteps": totalSteps,
+    "stepName": stepName,
+    "taskType": taskType,
+    "completed": completed,
+    "logOutput": logOutput,
+    "settings": settings
   };
 
-  ServiceLog.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['logs'], json['status'], json['step'], json['totalSteps']);
+  Task.fromJson(Map<String, dynamic> json) {
+    this.id = json['id'];
+    this.name = json['name'];
+    this.status = json['status'];
+    this.step = json['step'];
+    this.totalSteps = json['totalSteps'];
+    this.stepName = json['stepName'];
+    this.taskType = json['taskType'];
+    this.completed = json['completed'];
+    this.logOutput = json['logOutput'];
+    this.settings = json['settings'];
+  }
 }
 
 class DockerHost {
@@ -185,7 +203,7 @@ class DockerHost {
   String certificateArchive;
   String containerUrl;
   List<Service> services = new List();
-  
+
   DockerHost(this.id, this.name, this.remoteApiUrl, this.certificateArchive, this.containerUrl);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
