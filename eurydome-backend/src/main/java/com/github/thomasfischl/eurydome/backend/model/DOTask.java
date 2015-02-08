@@ -120,4 +120,20 @@ public class DOTask extends AbstractDomainObject {
     setSettings(settings);
   }
 
+  public long getCreatedAt() {
+    return object.getLong("createdAt", -1);
+  }
+
+  public void setCreatedAt(long createdAt) {
+    object.put("createdAt", createdAt);
+  }
+
+  public long getFinishedAt() {
+    return object.getLong("finishedAt", -1);
+  }
+
+  public void setFinishedAt(long finishedAt) {
+    object.put("finishedAt", finishedAt);
+  }
+
 }

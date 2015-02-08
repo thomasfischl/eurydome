@@ -78,12 +78,14 @@ class ServiceConsoleComponent extends AbstractView implements ScopeAware {
 
       if (task.isFailed()) {
         statusCssClass = "progress-bar-danger";
-      }else{
+      } else {
         statusCssClass = "progress-bar-success";
       }
 
       if (task.completed) {
-        _scope.emit('ServiceStartupComplete');
+        if (_scope.isAttached) {
+          _scope.emit('ServiceStartupComplete');
+        }
         scheduleTask(new Duration(milliseconds: 100), () {
           scrollToEnd();
           showLoadingIndicator = false;

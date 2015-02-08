@@ -53,6 +53,10 @@ class Routes
               path: '/users',
               preEnter: checkDatabase(),
               viewHtml: '<users-view></users-view>'),
+            'tasks': ngRoute(
+              path: '/tasks',
+              preEnter: checkDatabase(),
+              viewHtml: '<tasks-view></tasks-view>'),
             'dashboard': ngRoute(
               path: '/dashboard',
               preEnter: checkDatabase(),

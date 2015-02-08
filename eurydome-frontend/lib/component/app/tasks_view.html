@@ -1,0 +1,33 @@
+<div>
+  <h1 class="page-header">
+    Tasks 
+    <a ng-click="refresh()" class="pull-right"><i class="glyphicon glyphicon-refresh"></i></a>
+  </h1>
+  <div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Task</th>
+              <th>Status</th>
+              <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="{{getCssClass(item.id)}}"" ng-repeat="item in objects">
+            <td>{{ item.name }}</td>
+            <td>{{ item.taskType }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.createdAt }}</td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <a ng-click="showAll()">Show All</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

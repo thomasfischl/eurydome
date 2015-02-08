@@ -19,6 +19,8 @@ public class TaskDataStore extends AbstractDataStore<DOTask> {
     task.setCompleted(false);
     task.setStep(0);
     task.setTotalSteps(0);
+    task.setCreatedAt(System.currentTimeMillis());
+    task.setFinishedAt(-1);
     return task;
   }
 

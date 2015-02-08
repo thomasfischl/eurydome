@@ -151,15 +151,15 @@ class Task {
   int totalSteps;
   String stepName;
   String taskType;
+  DateTime createdAt;
+  DateTime finishedAt;
   bool completed;
 
   List<String> logOutput;
   Map<String, String> settings;
 
-  Task();
-
   int calculateProgress() {
-    if (totalSteps == "0") {
+    if (totalSteps == 0) {
       return 0;
     }
     return (step * 100) ~/ totalSteps;
@@ -179,7 +179,9 @@ class Task {
     "taskType": taskType,
     "completed": completed,
     "logOutput": logOutput,
-    "settings": settings
+    "settings": settings,
+    "createdAt": createdAt,
+    "finishedAt": finishedAt,
   };
 
   Task.fromJson(Map<String, dynamic> json) {
@@ -193,6 +195,8 @@ class Task {
     this.completed = json['completed'];
     this.logOutput = json['logOutput'];
     this.settings = json['settings'];
+    this.createdAt = new DateTime.fromMillisecondsSinceEpoch(json['createdAt']);
+    this.finishedAt = new DateTime.fromMillisecondsSinceEpoch(json['finishedAt']);
   }
 }
 

@@ -27,6 +27,7 @@ public abstract class AbstractTask {
     task = taskDataStore.findById(task.getId());
     task.setStatus(DOTask.STATUS_FINISHED);
     task.setCompleted(true);
+    task.setFinishedAt(System.currentTimeMillis());
     taskDataStore.save(task);
   }
 
@@ -35,6 +36,7 @@ public abstract class AbstractTask {
     task.setStatus(DOTask.STATUS_FAILED);
     task.addLogOutput("Error: " + errorMsg);
     task.setCompleted(true);
+    task.setFinishedAt(System.currentTimeMillis());
     taskDataStore.save(task);
   }
 

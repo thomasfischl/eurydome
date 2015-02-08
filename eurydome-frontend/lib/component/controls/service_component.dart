@@ -31,7 +31,7 @@ class ServiceComponent {
     if (service != null) {
       if (service.status == 'Started'){
         statusCssClass = "docker-container-running";
-      }else if(service.status == 'Starting') {
+      }else if(service.status == 'Maintenance') {
         statusCssClass = "docker-container-maintenance";
       } else if (service.status == 'Failed') {
         statusCssClass = "docker-container-failed";
