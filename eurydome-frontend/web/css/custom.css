@@ -167,7 +167,6 @@ body {
 }
 
 .docker-container-stopped {
-  /*background-color: #5bc0de;*/
   background-color: white;
 }
 
@@ -191,3 +190,23 @@ body {
   color: black;  
   margin-right: 5px;
 }
+
+.bg-color-success {
+  background-color: #5cb85c;
+}
+
+.bg-color-failed {
+  background-color: #d9534f;
+}
+
+/*
+ * Misc
+ */
+
+#small-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin-right: 10px; 
+}
+

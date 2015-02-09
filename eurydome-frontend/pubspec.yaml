@@ -32,4 +32,5 @@ transformers:
     - lib/component/app/tasks_view.html
     - lib/component/controls/message_component.html
     - lib/component/controls/service_component.html
+    - lib/component/controls/task_component.html
     csp: true

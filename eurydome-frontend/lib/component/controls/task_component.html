@@ -1,0 +1,46 @@
+<div class="well" ng-click="showDetails()">
+  <div id="small-circle" class="pull-left {{getCssClass()}}"></div>
+  <span class="pull-left"><strong>{{task.taskType}}</strong> - {{task.name}}</span>
+  <span class="pull-right">{{getTimeSinceExecuted()}} ago</span>
+  <div class="clearfix"></div>
+  
+  <div ng-if="visibleDetails">
+    <hr style="border-top-color: black;">
+    
+    <div class="row">
+      <label class="col-sm-2 control-label">Status</label>
+      <div class="col-sm-4">{{task.status}}</div>
+      <label class="col-sm-2 control-label">Steps:</label>
+      <div class="col-sm-4">{{task.step}} of {{task.totalSteps}}</div>
+    </div>
+    <div class="row">
+      <label class="col-sm-2 control-label">Created At</label>
+      <div class="col-sm-4">{{task.createdAt}}</div>
+      <label class="col-sm-2 control-label">Finished At</label>
+      <div class="col-sm-4">{{task.finishedAt}}</div>
+    </div>
+    
+    <div class="row">
+      <label class="col-sm-2 control-label">Settings</label>
+    </div>
+    <div class="row" ng-repeat="key in getSettingKeys()">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-3">{{key}}</div>
+      <div class="col-sm-7">{{task.settings[key]}}</div>
+    </div>
+    
+    <hr style="border-top-color: black;">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well" style="margin-bottom: 0px; background-color: white;">
+          <div>
+            <div ng-repeat="item in task.logOutput">
+              {{item}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

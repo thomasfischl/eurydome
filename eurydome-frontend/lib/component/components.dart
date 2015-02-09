@@ -21,3 +21,4 @@ export 'package:eurydome_frontend/component/app/services/service_console_compone
 //controls
 export 'package:eurydome_frontend/component/controls/message_component.dart';
 export 'package:eurydome_frontend/component/controls/service_component.dart';
+export 'package:eurydome_frontend/component/controls/task_component.dart';
