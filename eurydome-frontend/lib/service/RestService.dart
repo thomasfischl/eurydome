@@ -197,6 +197,19 @@ class RestService {
     _client.delete(DO_USER, obj);
   }
 
+  bool login(String username, String password) {
+    String resp = _client.post(DO_USER, "login", queryParameters: "username=${username}&password=${password}");
+    return resp == 'true';
+  }
+
+  bool isAuthenticated() {
+    return _client.get(DO_USER, "authenticated") == 'true';
+  }
+
+  void logout() {
+    _client.post(DO_USER, "logout");
+  }
+
   //------------------------------------------
   // Domain Object: Task
   //------------------------------------------

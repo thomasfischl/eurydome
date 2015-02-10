@@ -130,6 +130,7 @@ class Organisation {
 class User {
   String id;
   String name;
+  String password;
   String organisation;
 
   User(this.id, this.name, this.organisation);
@@ -138,6 +139,7 @@ class User {
     "id": id,
     "name": name,
     "organisationRef": organisation,
+    "password": password,
   };
 
   User.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['organisationRef']);

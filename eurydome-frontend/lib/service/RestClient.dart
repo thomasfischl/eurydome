@@ -56,10 +56,12 @@ class RestClient {
     return request.responseText;
   }
 
-  String post(String domainObject, String method, {Object data, String id}) {
+  String post(String domainObject, String method, {Object data, String id, String queryParameters}) {
     HttpRequest request = new HttpRequest();
     if (id != null) {
       request.open("POST", "./rest/${domainObject}/${method}/${id}", async: false);
+    }else if(queryParameters!=null){
+      request.open("POST", "./rest/${domainObject}/${method}?${queryParameters}", async: false);
     } else {
       request.open("POST", "./rest/${domainObject}/${method}", async: false);
     }

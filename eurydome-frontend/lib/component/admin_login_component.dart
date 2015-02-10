@@ -2,8 +2,13 @@ library AdminLoginComponentLibrary;
 
 import 'package:angular/angular.dart';
 
+import '../service/RestService.dart';
+import 'app/viewbase.dart';
+
 @Component(selector: 'admin-login', templateUrl: 'admin_login_component.html', useShadowDom: false)
-class AdminLoginComponent {
+class AdminLoginComponent extends AbstractView {
+
+  final RestService restService;
 
   String username = "admin";
 
@@ -13,10 +18,14 @@ class AdminLoginComponent {
 
   Router router;
 
-  AdminLoginComponent(this.router) {
+  AdminLoginComponent(this.router, this.restService) {
   }
 
   void login() {
-    router.go("app", {});
+    if (restService.login(username, password)) {
+      router.go("app", {});
+    } else {
+      message.showErrorMessage("Invalid username or password");
+    }
   }
 }

@@ -19,4 +19,13 @@ public class DOUser extends AbstractDomainObject {
   public String getOrganisationRef() {
     return object.getString("organisation");
   }
+
+  public void setPassword(String password) {
+    object.put("password", password);
+  }
+
+  public String getPassword() {
+    return object.getString("password");
+  }
+
 }
