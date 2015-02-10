@@ -132,17 +132,19 @@ class User {
   String name;
   String password;
   String organisation;
-
-  User(this.id, this.name, this.organisation);
+  bool admin;
+  
+  User(this.id, this.name, this.organisation, this.admin);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
     "organisationRef": organisation,
     "password": password,
+    "admin": admin
   };
 
-  User.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['organisationRef']);
+  User.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['organisationRef'], json['admin']);
 }
 
 class Task {

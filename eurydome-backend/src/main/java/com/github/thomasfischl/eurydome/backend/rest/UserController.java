@@ -46,6 +46,10 @@ public class UserController extends AbstractController<DOUser> {
     if (user == null) {
       return false;
     }
+    if (!user.isAdmin()) {
+      return false;
+    }
+
     boolean success = user.getPassword() == encryptPassword(username, password);
     session.setAttribute(AUTH_TOKEN, success);
     return success;
@@ -60,7 +64,7 @@ public class UserController extends AbstractController<DOUser> {
     }
     return false;
   }
-  
+
   @RequestMapping(method = RequestMethod.POST, value = "/logout")
   public void logout(HttpServletRequest req) {
     HttpSession session = req.getSession(true);

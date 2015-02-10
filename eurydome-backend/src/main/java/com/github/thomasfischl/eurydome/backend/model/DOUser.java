@@ -28,4 +28,12 @@ public class DOUser extends AbstractDomainObject {
     return object.getString("password");
   }
 
+  public void setAdmin(boolean admin) {
+    object.put("admin", admin);
+  }
+
+  public boolean isAdmin() {
+    return object.getBoolean("admin");
+  }
+
 }
