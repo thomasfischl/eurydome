@@ -266,7 +266,7 @@ public class TaskStartContainer extends AbstractTask {
         if (successCount == 5) {
           return;
         }
-      } catch (IOException e) {
+      } catch (Exception e) {
         LOG.info("Unkown resource. " + e.getMessage());
         logMessage("Try " + idx + ": Test health check url '" + url + "'. Failed: " + e.getMessage());
         successCount = 0;

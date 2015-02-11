@@ -36,4 +36,12 @@ public class DOApplication extends AbstractDomainObject {
     object.put("healthCheckUrl", healthCheckUrl);
   }
 
+  public String getBaseServiceUrl() {
+    return object.getString("baseServiceUrl");
+  }
+  
+  public void setBaseServiceUrl(String baseServiceUrl) {
+    object.put("baseServiceUrl", baseServiceUrl);
+  }
+
 }

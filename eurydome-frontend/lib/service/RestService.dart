@@ -202,6 +202,11 @@ class RestService {
     return resp == 'true';
   }
 
+  bool registration(String username, String password, String organisation, String application) {
+    String resp = _client.post(DO_USER, "registration", queryParameters: "username=${username}&password=${password}&organisation=${organisation}&application=${application}");
+    return resp == 'true';
+  }
+
   bool isAuthenticated() {
     return _client.get(DO_USER, "authenticated") == 'true';
   }

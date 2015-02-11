@@ -25,6 +25,10 @@ class Routes
           path: '/adminLogin',
           preEnter: checkDatabaseAndAuthentication(false),
           viewHtml: '<admin-login></admin-login>'),
+      'registration': ngRoute(
+          path: '/registration',
+          preEnter: checkDatabaseAndAuthentication(false),
+          viewHtml: '<registration></registration>'),
       'app': ngRoute(
           path: '/app',
           preEnter: checkDatabaseAndAuthentication(true),

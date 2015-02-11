@@ -47,6 +47,10 @@
             <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.name"></div>
           </div>
           <div class="form-group">
+            <label class="col-sm-2 control-label">Base Service Url</label>
+            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.baseServiceUrl"></div>
+          </div>
+          <div class="form-group">
             <label class="col-sm-2 control-label">Docker Archive</label>
             <div class="col-sm-10">
               <select ng-model="selObject.dockerArchive" class="form-control">
@@ -57,10 +61,19 @@
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Health Check Url</label>
-            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.healthCheckUrl"></div>
+            <div class="col-sm-10">
+              <section>
+                The URL is used to check, if the service is alive.<br>
+                For example: <code>/index.html</code>
+              </section>
+            </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10"><input type="text" class="form-control" ng-model="selObject.healthCheckUrl"></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Proxy Config</label>
             <div class="col-sm-10">
               <section>
                 Variables: <br>
@@ -78,7 +91,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Proxy Config</label>
+            <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
               <textarea class="form-control" ng-model="selObject.proxyConfig" rows="10"></textarea>
             </div>

@@ -1,5 +1,6 @@
 package com.github.thomasfischl.eurydome.backend.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.BasicDBObject;
@@ -20,7 +21,7 @@ public class DOOrganisation extends AbstractDomainObject {
     if (obj instanceof List) {
       return (List<String>) obj;
     }
-    return null;
+    return new ArrayList<String>();
   }
 
   public void setServices(List<String> services) {

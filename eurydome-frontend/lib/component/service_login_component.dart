@@ -31,8 +31,6 @@ class ServiceLoginComponent extends AbstractView {
 
   bool showProgressBar = false;
 
-  Scope _scope;
-
   int eastereggCount = 0;
 
   ServiceLoginComponent(this.restService) {
@@ -71,6 +69,7 @@ class ServiceLoginComponent extends AbstractView {
 
           stopTimer();
           restService.startService(selService);
+          selService = restService.getServiceById(selService.id);
           schedulePeriodicTask(new Duration(milliseconds: 500), () => updateConsole(selService));
         }
       }
@@ -102,7 +101,7 @@ class ServiceLoginComponent extends AbstractView {
 
       if (task.completed) {
         stopTimer();
-        navigateToService(selService);
+        scheduleTask(new Duration(seconds: 2), () => navigateToService(selService));
       }
     }
   }

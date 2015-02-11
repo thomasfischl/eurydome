@@ -72,7 +72,7 @@ public class TaskService implements ApplicationContextAware {
     int step = 1;
     for (StepDefinition stepDefinition : steps) {
       try {
-        task = taskDataStore.findById(task.getId());
+        taskDataStore.reload(task);
         task.setStep(step);
         task.setStepName(stepDefinition.getName());
         task.addLogOutput("Execute Step " + step + ": " + stepDefinition.getName());
@@ -82,6 +82,7 @@ public class TaskService implements ApplicationContextAware {
         step++;
       } catch (Exception e) {
         LOG.error("Error occurs during execution step '" + step + ": " + stepDefinition.getName() + "'.", e);
+        taskDataStore.reload(task);
         task.addLogOutput(e.getMessage());
         task.setStatus(DOTask.STATUS_FAILED);
         taskDataStore.save(task);

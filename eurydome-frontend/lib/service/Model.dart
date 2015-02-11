@@ -6,18 +6,20 @@ class ApplicationTemplate {
   String dockerArchive;
   String proxyConfig;
   String healthCheckUrl;
+  String baseServiceUrl;
 
-  ApplicationTemplate(this.id, this.name, this.dockerArchive, this.proxyConfig, this.healthCheckUrl);
+  ApplicationTemplate(this.id, this.name, this.dockerArchive, this.proxyConfig, this.healthCheckUrl, this.baseServiceUrl);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
     "id": id,
     "name": name,
     "dockerArchive": dockerArchive,
     "proxyConfig": proxyConfig,
-    "healthCheckUrl": healthCheckUrl
+    "healthCheckUrl": healthCheckUrl,
+    "baseServiceUrl": baseServiceUrl
   };
 
-  ApplicationTemplate.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['dockerArchive'], json['proxyConfig'], json['healthCheckUrl']);
+  ApplicationTemplate.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['dockerArchive'], json['proxyConfig'], json['healthCheckUrl'], json['baseServiceUrl']);
 }
 
 class Setting {
@@ -133,7 +135,7 @@ class User {
   String password;
   String organisation;
   bool admin;
-  
+
   User(this.id, this.name, this.organisation, this.admin);
 
   Map<String, dynamic> toJson() => <String, dynamic>{

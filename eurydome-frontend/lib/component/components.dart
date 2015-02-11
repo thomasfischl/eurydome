@@ -11,6 +11,7 @@ export 'package:eurydome_frontend/component/app/tasks_view.dart';
 //components
 export 'package:eurydome_frontend/component/service_login_component.dart';
 export 'package:eurydome_frontend/component/admin_login_component.dart';
+export 'package:eurydome_frontend/component/registration_component.dart';
 export 'package:eurydome_frontend/component/navigation_component.dart';
 export 'package:eurydome_frontend/component/app/settings/filepool_component.dart';
 export 'package:eurydome_frontend/component/app/settings/proxy_configuration_component.dart';

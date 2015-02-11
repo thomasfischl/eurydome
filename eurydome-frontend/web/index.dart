@@ -12,6 +12,7 @@ class PlatformManager extends Module {
   PlatformManager() {
     //Components
     bind(ServiceLoginComponent);
+    bind(RegistrationComponent);
     bind(NavigationComponent);
     bind(AdminLoginComponent);
     bind(FilePoolComponent);
