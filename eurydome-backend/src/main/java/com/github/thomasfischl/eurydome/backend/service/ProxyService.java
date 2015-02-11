@@ -72,6 +72,7 @@ public class ProxyService {
 
       bw.write("ErrorLog ${APACHE_LOG_DIR}/error.log \n");
       bw.write("CustomLog ${APACHE_LOG_DIR}/access.log combined \n");
+      bw.write("ErrorDocument 404 /index.html \n");
 
       bw.write("<Location /mgmt/ > \n");
       bw.write("  ProxyPass         http://localhost:8080/ \n");
