@@ -39,6 +39,11 @@ public abstract class AbstractDataStore<T extends AbstractDomainObject> {
     getCollection().update(new BasicDBObject("id", obj.getId()), obj.getDataObject());
   }
 
+  public void reload(T obj) {
+    T newObj = findById(obj.getId());
+    obj.getDataObject().putAll(newObj.getDataObject().toMap());
+  }
+
   public void remove(T obj) {
     getCollection().remove(obj.getDataObject());
   }
