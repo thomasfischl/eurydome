@@ -24,7 +24,8 @@
   <property name="release.demoapp" value="${release}/demoapp" />
   <property name="release.uploader" value="${release}/uploader" />
 
-  <property name="docker.url" value="https://192.168.59.103:2376" />
+  <property name="docker.url" value="http://10.5.11.103:2375" />
+  <!--property name="docker.url" value="https://192.168.59.103:2376" /-->
   <property name="docker.cert.path" value="${project.buildutils.certificates}/work" />
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->

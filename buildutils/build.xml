@@ -82,7 +82,7 @@
   </target>
 
   <target name="upload.database">
-    <docker.createandstart archive="${release.docker}/mongodb.tar" containername="MongoDB-Server" port="27017:27017" args="-p /tmp/mongodb:/data/db" />
+    <docker.createandstart archive="${release.docker}/mongodb.tar" containername="MongoDB-Server" port="27017:27017" args="-p /var/docker-data/mongodb:/data/db" />
   </target>
 
   <target name="upload.all">

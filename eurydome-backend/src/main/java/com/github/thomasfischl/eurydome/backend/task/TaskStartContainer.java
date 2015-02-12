@@ -1,6 +1,5 @@
 package com.github.thomasfischl.eurydome.backend.task;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -11,7 +10,6 @@ import java.util.Map.Entry;
 
 import javax.inject.Inject;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
@@ -39,7 +37,6 @@ import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
 import com.github.thomasfischl.eurydome.backend.service.ProxyService;
 import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
-import com.github.thomasfischl.eurydome.backend.util.ZipUtil;
 
 @Component("TaskStartContainer")
 public class TaskStartContainer extends AbstractTask {
@@ -135,21 +132,7 @@ public class TaskStartContainer extends AbstractTask {
   }
 
   private void stepCreateDockerClient() {
-    DOFile file = fileStore.findById(dockerHost.getCertificateArchive());
-    if (file == null) {
-      throw new IllegalStateException("No docker certificates available.");
-    }
-
-    File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
-    try {
-      FileUtils.deleteDirectory(tempDir);
-    } catch (IOException e) {
-      LOG.warn("An error occurs during deleting temp directory.", e);
-    }
-    tempDir.mkdirs();
-    ZipUtil.extract(tempDir, fileStore.getInputStream(dockerHost.getCertificateArchive()));
-
-    client = DockerUtil.createClient(dockerHost.getRemoteApiUrl(), tempDir.getAbsolutePath());
+    client = DockerUtil.createClient(dockerHost, fileStore);
   }
 
   private void stepRemoveOldContainer() {

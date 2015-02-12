@@ -1,0 +1,52 @@
+#cloud-config
+#
+#Install: sudo coreos-install -d /dev/sda -C stable -c cloud-config.yaml
+
+#
+# Set Hostname
+hostname: CoreBM1
+
+#Set SSH Key
+ssh_authorized_keys: 
+- ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA0ohvyvtcZEuMKRIrHhPPqb44RrgtDWfUyDgh4/IFUO8FOJjx+AbVviCFt/iiNb2e6ipHCktYSCBt6F8AxFrUzpNScwR2YdJx//mw4aoq/LIReUPUQo76Cl/pS7uR0Mx3kt9+nw77l5maeFAvOcvmYcNSkzlvwWBowycEoh9/BwyyH91yxqnMFrb0Lq8CKL1ewIfRkPDH2FFW7sf8lUyVibGj/pdPNOFZoNKpxYE2AxQSTYBj4Ca74r/mVPTrMfbWIE9b6ewAPNQ9K1e3NdnLFSo56Yic+ALWGoYLgDHIITNIQpi6g6JsQdSllSWBJYcJ21qc7z4q4UewvJd+/peD4w==
+
+coreos:
+  units:
+    - name: docker-tcp.socket
+      command: start
+      enable: true
+      content: |
+        [Unit]
+        Description=Docker Socket for the API
+
+        [Socket]
+        ListenStream=2375
+        BindIPv6Only=both
+        Service=docker.service
+
+        [Install]
+        WantedBy=sockets.target
+#    - name: docker.service
+#      command: start
+#      enable: true
+#      content: |
+#        [Unit]
+#        Description=Docker Application Container Engine
+#        Documentation=http://docs.docker.io
+
+#        [Service]
+#        ExecStartPre=/bin/mount --make-rprivate /
+#        ExecStart=/usr/bin/docker -d -s=btrfs -r=false --tlsverify --tlscacert=/var/ssl/ca.pem --tlscert=/var/ssl/server-cert.pem --tlskey=/var/ssl/server-key.pem -H fd:// -H 0.0.0.0:4243
+ 
+#        [Install]
+#        WantedBy=multi-user.target
+
+#
+# define users
+#
+users:
+  - name: thomas
+    passwd: $1$0FqafEpj$MX0oCnaDyvfMl2wlJz6BG1
+    groups:
+      - sudo
+      - docker

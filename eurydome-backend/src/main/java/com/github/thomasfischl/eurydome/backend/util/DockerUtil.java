@@ -32,26 +32,32 @@ public class DockerUtil {
   }
 
   public static DockerClient createClient(DODockerHost dockerHost, FileDataStore fileStore) {
-    DOFile file = fileStore.findById(dockerHost.getCertificateArchive());
-    if (file == null) {
-      throw new IllegalStateException("No docker certificates available.");
-    }
+    if (dockerHost.getCertificateArchive() != null) {
+      DOFile file = fileStore.findById(dockerHost.getCertificateArchive());
+      if (file == null) {
+        throw new IllegalStateException("No file found with id '" + dockerHost.getCertificateArchive() + "'.");
+      }
 
-    File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
-    try {
-      FileUtils.deleteDirectory(tempDir);
-    } catch (IOException e) {
-      LOG.warn("An error occurs during deleting temp directory.", e);
+      File tempDir = new File(FileUtils.getTempDirectory(), "eurydome");
+      try {
+        FileUtils.deleteDirectory(tempDir);
+      } catch (IOException e) {
+        LOG.warn("An error occurs during deleting temp directory.", e);
+      }
+      tempDir.mkdirs();
+      ZipUtil.extract(tempDir, fileStore.getInputStream(dockerHost.getCertificateArchive()));
+      return createClient(dockerHost.getRemoteApiUrl(), tempDir.getAbsolutePath());
+    } else {
+      return createClient(dockerHost.getRemoteApiUrl(), null);
     }
-    tempDir.mkdirs();
-    ZipUtil.extract(tempDir, fileStore.getInputStream(dockerHost.getCertificateArchive()));
-    return createClient(dockerHost.getRemoteApiUrl(), tempDir.getAbsolutePath());
   }
 
-  public static DockerClient createClient(String uri, String certificationPath) {
+  private static DockerClient createClient(String uri, String certificationPath) {
     DockerClientConfigBuilder cfg = new DockerClientConfigBuilder();
     cfg.withUri(uri);
-    cfg.withDockerCertPath(certificationPath);
+    if (certificationPath != null) {
+      cfg.withDockerCertPath(certificationPath);
+    }
     return DockerClientBuilder.getInstance(cfg).build();
   }
 
@@ -104,7 +110,7 @@ public class DockerUtil {
   public static void testConnection(DockerClient client) {
     client.pingCmd().exec();
   }
-  
+
   public static String normalizeContainerName(DOService service) {
     return service.getName().replaceAll(" ", "_").toLowerCase();
   }

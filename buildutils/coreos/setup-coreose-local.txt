@@ -1,0 +1,13 @@
+Links:
+* https://coreos.com/docs/launching-containers/building/customizing-docker/
+* https://coreos.com/docs/quickstart/
+* http://blog.jameskyle.org/2014/04/coreos-docker-remote-api-tls/
+* https://coreos.com/docs/cluster-management/setup/cloudinit-cloud-config/
+* https://coreos.com/validate/
+* http://sheerun.net/2014/05/17/remote-access-to-docker-with-tls/
+
+Create VM and boot from CoreOs ISO
+Create file cloud-config.yaml
+Execute command: sudo coreos-install -d /dev/sda -C stable -c cloud-config.yaml
+Unmount ISO
+Reboot VM

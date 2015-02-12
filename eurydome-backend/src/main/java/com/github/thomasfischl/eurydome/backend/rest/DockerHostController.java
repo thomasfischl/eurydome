@@ -2,6 +2,8 @@ package com.github.thomasfischl.eurydome.backend.rest;
 
 import javax.inject.Inject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,9 @@ import com.github.thomasfischl.eurydome.backend.service.DockerService;
 @RequestMapping(value = "/rest/dockerhost")
 public class DockerHostController extends AbstractController<DODockerHost> {
 
+  private final static Log LOG = LogFactory.getLog(DockerHostController.class);
+
+  
   @Inject
   DockerHostDataStore store;
 
@@ -36,6 +41,7 @@ public class DockerHostController extends AbstractController<DODockerHost> {
       }
       dockerSerivce.testConnection(dockerhost);
     } catch (Exception e) {
+      LOG.error(e);
       return "Error: " + e.getMessage();
     }
     return "OK";
