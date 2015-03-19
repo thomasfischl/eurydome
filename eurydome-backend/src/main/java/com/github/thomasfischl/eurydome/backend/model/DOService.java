@@ -91,4 +91,12 @@ public class DOService extends AbstractDomainObject {
   public String getCurrentTask() {
     return object.getString("currentTask");
   }
+
+  public void setDockerEnvSettings(String currentTask) {
+    object.put("envSettings", currentTask);
+  }
+  
+  public String getDockerEnvSettings() {
+    return object.getString("envSettings");
+  }
 }

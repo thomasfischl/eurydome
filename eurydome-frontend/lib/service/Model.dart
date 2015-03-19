@@ -51,8 +51,9 @@ class Service {
   String preferDockerHost;
   String actualDockerHost;
   String currentTask;
+  String dockerEnvSettings;
 
-  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId, this.preferDockerHost, this.actualDockerHost, this.currentTask);
+  Service(this.id, this.name, this.url, this.applicationRef, this.exposedPort, this.status, this.errorMessage, this.containerId, this.preferDockerHost, this.actualDockerHost, this.currentTask, this.dockerEnvSettings);
 
   String getFullStatus() {
     if (errorMessage == null) {
@@ -77,10 +78,11 @@ class Service {
     "containerId": containerId,
     "preferDockerHost": preferDockerHost,
     "actualDockerHost": actualDockerHost,
-    "currentTask": currentTask
+    "currentTask": currentTask,
+    "dockerEnvSettings": dockerEnvSettings
   };
 
-  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId'], json['preferDockerHost'], json['actualDockerHost'], json['currentTask']);
+  Service.fromJson(Map<String, dynamic> json) : this(json['id'], json['name'], json['url'], json['applicationRef'], json['exposedPort'], json['status'], json['errorMessage'], json['containerId'], json['preferDockerHost'], json['actualDockerHost'], json['currentTask'], json['dockerEnvSettings']);
 }
 
 class FileObject {

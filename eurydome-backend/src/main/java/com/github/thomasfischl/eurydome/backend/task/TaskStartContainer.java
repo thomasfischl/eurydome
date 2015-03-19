@@ -40,6 +40,7 @@ import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
 import com.github.thomasfischl.eurydome.backend.service.ProxyService;
 import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
+import com.google.common.base.Strings;
 
 @Component("TaskStartContainer")
 public class TaskStartContainer extends AbstractTask {
@@ -78,6 +79,8 @@ public class TaskStartContainer extends AbstractTask {
   private DODockerHost dockerHost;
 
   private String containerName;
+
+  private String dockerEnvSettings;
 
   private DockerClient client;
 
@@ -132,6 +135,7 @@ public class TaskStartContainer extends AbstractTask {
       throw new IllegalStateException("No service name defined.");
     }
     containerName = DockerUtil.normalizeContainerName(service);
+    dockerEnvSettings = service.getDockerEnvSettings();
   }
 
   private void stepCreateDockerClient() {
@@ -189,6 +193,9 @@ public class TaskStartContainer extends AbstractTask {
     logMessage("Create container from image '" + image.getId() + "'");
     CreateContainerCmd container = client.createContainerCmd(image.getId());
     container.withName(containerName);
+    if (!Strings.isNullOrEmpty(dockerEnvSettings)) {
+      container.withEnv(dockerEnvSettings);
+    }
     containerResp = container.exec();
 
     String[] warnings = containerResp.getWarnings();
