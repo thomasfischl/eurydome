@@ -11,6 +11,7 @@
     <antcall target="build.mongodb" />
     <antcall target="build.demoapp" />
     <antcall target="build.eurydome" />
+    <antcall target="build.sc" />
   </target>
 
   <target name="build.mongodb">
@@ -52,5 +53,17 @@
     <delete dir="${tmpdir}" />
   </target>
 
+
+  <target name="build.sc">
+    <delete dir="${tmpdir}" />
+    <mkdir dir="${tmpdir}" />
+
+    <copy todir="${tmpdir}">
+      <fileset dir="${project.docker}/sc" includes="**/*" />
+    </copy>
+
+    <tar destfile="${release.docker}/sc.tar" basedir="${tmpdir}" includes="**/*" />
+    <delete dir="${tmpdir}" />
+  </target>
 
 </project>
