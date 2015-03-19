@@ -1,0 +1,7 @@
+remove jre
+remove core
+
+
+wwwroot/silkroot/script/extjs-4.1.3
+-- Use ext-all-debug-w-comments.js instead of ext-all.js. 
+    "ext-all-debug-w-comments.js" is not minified. This is important for the apache reverse proxy.
