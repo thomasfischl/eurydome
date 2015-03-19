@@ -114,23 +114,18 @@ public class ProxyService {
   }
 
   private void defaultProxyConfiguration(BufferedWriter bw, String subdomain, String url) throws IOException {
-    bw.write("  <Location /" + subdomain
-        + "/>                                                                                                      \n");
-    bw.write("    ProxyPass         " + url
-        + "                                                                                                     \n");
-    bw.write("    ProxyPassReverse  " + url
-        + "                                                                                                     \n");
-    bw.write("                                                                                                                                      \n");
-    bw.write("    AddOutputFilterByType SUBSTITUTE text/html                                                                                        \n");
-    bw.write("    AddOutputFilterByType SUBSTITUTE application/javascript                                                                           \n");
-    bw.write("    SetOutputFilter INFLATE;SUBSTITUTE                                                                                                \n");
-    bw.write("    Substitute \"s|/silk/|/" + subdomain
-        + "/silk/|ni\"                                                                               \n");
-    bw.write("    Substitute \"s|/silkroot/|/" + subdomain
-        + "/silkroot/|ni\"                                                                       \n");
-    bw.write("    Substitute \"s|/" + subdomain + "/silkroot/script/extjs-4.1.3/ext-all.js|" + url
-        + "silkroot/script/extjs-4.1.3/ext-all.js|ni\"   \n");
-    bw.write("  </Location>                                                                                                                         \n");
+    bw.write("  <Location /" + subdomain + ">                                      \n");
+    bw.write("    ProxyPass         " + url + "                                    \n");
+    bw.write("    ProxyPassReverse  " + url + "                                    \n");
+    bw.write("                                                                     \n");
+    bw.write("    AddOutputFilterByType SUBSTITUTE text/html                       \n");
+    bw.write("    AddOutputFilterByType SUBSTITUTE application/javascript          \n");
+    bw.write("    SetOutputFilter INFLATE;SUBSTITUTE                               \n");
+    bw.write("    Substitute \"s|/silk/|/" + subdomain + "/silk/|ni\"              \n");
+    bw.write("    Substitute \"s|/silkroot/|/" + subdomain + "/silkroot/|ni\"      \n");
+    bw.write("    Substitute \"s|url=/login|url=/" + subdomain + "/login|ni\"      \n");
+    bw.write("    Substitute \"s|/logout\\\"|/" + subdomain + "/logout\\\"|ni\"    \n");
+    bw.write("  </Location>                                                        \n");
   }
 
   public String getConfiguration() throws IOException {
