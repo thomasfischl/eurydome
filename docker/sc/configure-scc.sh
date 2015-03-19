@@ -12,7 +12,7 @@ echo "<?xml version='1.0' encoding='UTF-8'?>                     " >> /var/scc/d
 echo "<Database>                                                 " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <IsUserDefined>true</IsUserDefined>                     " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <RdbmsType>MSSQL</RdbmsType>                            " >> /var/scc/data/SccDatabaseConf.xml
-echo "   <ServerName>10.5.11.119</ServerName>                    " >> /var/scc/data/SccDatabaseConf.xml
+echo "   <ServerName>$DB_HOST</ServerName>                       " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <Port>1433</Port>                                       " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <MasterLogicalDbName>sctm</MasterLogicalDbName>         " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <UserName>sa</UserName>                                 " >> /var/scc/data/SccDatabaseConf.xml
