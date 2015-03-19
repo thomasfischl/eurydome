@@ -41,10 +41,8 @@ public class FileController {
       HttpServletResponse resp) throws IOException {
     if (!file.isEmpty()) {
       try {
-        byte[] bytes = file.getBytes();
-
         GridFS fs = store.getGridFs();
-        GridFSInputFile f = fs.createFile(bytes);
+        GridFSInputFile f = fs.createFile(file.getInputStream());
 
         f.setFilename(file.getOriginalFilename());
         f.save();

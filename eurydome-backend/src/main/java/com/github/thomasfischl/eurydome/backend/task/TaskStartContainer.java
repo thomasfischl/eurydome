@@ -1,9 +1,12 @@
 package com.github.thomasfischl.eurydome.backend.task;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -149,10 +152,21 @@ public class TaskStartContainer extends AbstractTask {
 
   private void stepBuildContainerImage() {
     logMessage("Upload docker archive '" + file.getName() + "'");
-    InputStream response = client.buildImageCmd(fileStore.getInputStream(file.getId())).withTag(containerName)
-        .withNoCache(false).exec();
 
+    File tempDockerArchive;
     try {
+      // copy to a temporary file do avoid a heap space exception
+      tempDockerArchive = Files.createTempFile("docker-archive", "tar").toFile();
+      fileStore.writeToFile(file.getId(), tempDockerArchive);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    InputStream response = null;
+
+    try (FileInputStream is = new FileInputStream(tempDockerArchive)) {
+      response = client.buildImageCmd(is).withTag(containerName).withNoCache(false).exec();
+
       LineIterator itr = IOUtils.lineIterator(response, "UTF-8");
       while (itr.hasNext()) {
         String line = transformDockerMessage(itr.next());

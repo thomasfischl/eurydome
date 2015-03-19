@@ -1,5 +1,7 @@
 package com.github.thomasfischl.eurydome.backend.dal;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +46,11 @@ public class FileDataStore {
   public InputStream getInputStream(String id) {
     GridFSDBFile file = store.getGridFs().findOne(new ObjectId(id));
     return file.getInputStream();
+  }
+
+  public void writeToFile(String id, File outFile) throws IOException {
+    GridFSDBFile file = store.getGridFs().findOne(new ObjectId(id));
+    file.writeTo(outFile);
   }
 
   public GridFS getGridFs() {

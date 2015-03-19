@@ -58,4 +58,4 @@ ADD java /var/eurydome
 EXPOSE 80
 
 CMD  service apache2 restart && \
-        java -jar /var/eurydome/eurydome-backend.jar
+        java -Xmx1024m -jar /var/eurydome/eurydome-backend.jar
