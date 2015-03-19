@@ -14,7 +14,7 @@ echo "   <IsUserDefined>true</IsUserDefined>                     " >> /var/scc/d
 echo "   <RdbmsType>MSSQL</RdbmsType>                            " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <ServerName>$DB_HOST</ServerName>                       " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <Port>1433</Port>                                       " >> /var/scc/data/SccDatabaseConf.xml
-echo "   <MasterLogicalDbName>sctm</MasterLogicalDbName>         " >> /var/scc/data/SccDatabaseConf.xml
+echo "   <MasterLogicalDbName>$DB_NAME</MasterLogicalDbName>     " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <UserName>sa</UserName>                                 " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <UserPwd>eCRwoQBWY9g=</UserPwd>                         " >> /var/scc/data/SccDatabaseConf.xml
 echo "   <LastModifiedByBuildNo>6041</LastModifiedByBuildNo>     " >> /var/scc/data/SccDatabaseConf.xml

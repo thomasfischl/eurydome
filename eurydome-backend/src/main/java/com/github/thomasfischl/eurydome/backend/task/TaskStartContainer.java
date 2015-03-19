@@ -194,7 +194,7 @@ public class TaskStartContainer extends AbstractTask {
     CreateContainerCmd container = client.createContainerCmd(image.getId());
     container.withName(containerName);
     if (!Strings.isNullOrEmpty(dockerEnvSettings)) {
-      container.withEnv(dockerEnvSettings);
+      container.withEnv(dockerEnvSettings.split(";"));
     }
     containerResp = container.exec();
 
