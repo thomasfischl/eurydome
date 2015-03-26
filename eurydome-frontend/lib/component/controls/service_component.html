@@ -1,5 +1,5 @@
 <div class="docker-continer {{statusCssClass}}">
-	<div class="docker-container-title" title="{{service.name}}"><strong>{{service.name}}</strong></div>
+	<div class="docker-container-title" title="{{service.name}}" ng-click="navigate(service.id)"><strong>{{service.name}}</strong></div>
   <div class="docker-container-body"></div>
   <div class="docker-container-controls">
     <a ng-click="start(service.id)"><i class="glyphicon glyphicon-play"></i></a>

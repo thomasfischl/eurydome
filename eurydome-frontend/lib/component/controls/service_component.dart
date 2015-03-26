@@ -16,7 +16,9 @@ class ServiceComponent {
 
   String statusCssClass;
 
-  ServiceComponent(this.restService) {
+  Router _router;
+  
+  ServiceComponent(this.restService, this._router) {
   }
 
   @NgAttr('id')
@@ -63,6 +65,10 @@ class ServiceComponent {
       restService.stopService(obj);
     }
     refresh();
+  }
+  
+  void navigate(String id){
+    _router.go("app.services", {});
   }
 
 }
