@@ -12,6 +12,7 @@
     <antcall target="build.demoapp" />
     <antcall target="build.eurydome" />
     <antcall target="build.sc" />
+    <antcall target="build.scmserver" />
   </target>
 
   <target name="build.mongodb">
@@ -65,5 +66,12 @@
     <tar destfile="${release.docker}/sc.tar" basedir="${tmpdir}" includes="**/*" />
     <delete dir="${tmpdir}" />
   </target>
+
+  <target name="build.scmserver">
+    <tar destfile="${release.docker}/scmserver.tar">
+      <fileset dir="${project.docker}/scmserver" includes="**/*" />
+    </tar>
+  </target>
+
 
 </project>

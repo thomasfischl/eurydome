@@ -89,6 +89,10 @@
     <docker.createandstart archive="${release.docker}/scc.tar" containername="SCC01" port="19120:19120" />
   </target>
 
+  <target name="upload.scmserver">
+    <docker.createandstart archive="${release.docker}/scmserver.tar" containername="SCMServer" port="8080:8080" />
+  </target>
+
   <target name="upload.all">
     <docker.cleanup />
     <ant target="upload.database" />
