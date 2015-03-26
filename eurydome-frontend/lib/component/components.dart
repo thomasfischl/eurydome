@@ -17,6 +17,7 @@ export 'package:eurydome_frontend/component/app/settings/filepool_component.dart
 export 'package:eurydome_frontend/component/app/settings/proxy_configuration_component.dart';
 export 'package:eurydome_frontend/component/app/settings/server_log_component.dart';
 export 'package:eurydome_frontend/component/app/settings/system_environment_component.dart';
+export 'package:eurydome_frontend/component/app/settings/generic_settings_component.dart';
 export 'package:eurydome_frontend/component/app/services/service_console_component.dart';
 
 //controls

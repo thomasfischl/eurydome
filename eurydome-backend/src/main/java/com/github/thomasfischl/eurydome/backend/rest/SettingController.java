@@ -2,9 +2,11 @@ package com.github.thomasfischl.eurydome.backend.rest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.commons.io.FileUtils;
@@ -27,11 +29,27 @@ public class SettingController extends AbstractController<DOSetting> {
   @Inject
   ProxyService proxyService;
 
+  public void prepare() {
+
+    List<String> availableSettings = new ArrayList<String>();
+    availableSettings.add(DOSetting.LOAD_BALANCER_URL);
+
+    for (String setting : availableSettings) {
+      if (find(null, setting) == null) {
+        DOSetting settingObj = create();
+        settingObj.setName(setting);
+        save(settingObj);
+      }
+    }
+
+  }
+
   @Override
   public List<DOSetting> listAll() {
+    prepare();
     return super.listAll();
   }
-  
+
   @Override
   public DOSetting find(String id, String name) {
     return super.find(id, name);
@@ -58,17 +76,17 @@ public class SettingController extends AbstractController<DOSetting> {
     StringBuffer sb = new StringBuffer();
     sb.append("Environment Variables:\n");
     sb.append("--------------------------------------\n\n");
-    for(Entry<String, String> entry : System.getenv().entrySet()){
+    for (Entry<String, String> entry : System.getenv().entrySet()) {
       sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
     }
-    
+
     sb.append("\n\n");
     sb.append("System Properties:\n");
     sb.append("--------------------------------------\n\n");
-    for(Entry<Object, Object> entry : System.getProperties().entrySet()){
+    for (Entry<Object, Object> entry : System.getProperties().entrySet()) {
       sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
     }
-    
+
     return sb.toString();
   }
 

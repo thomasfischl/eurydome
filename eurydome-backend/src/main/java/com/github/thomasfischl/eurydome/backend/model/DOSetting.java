@@ -4,6 +4,8 @@ import com.mongodb.BasicDBObject;
 
 public class DOSetting extends AbstractDomainObject {
 
+  public static final String LOAD_BALANCER_URL = "LOADBALANCER.URL";
+  
   public DOSetting() {
     super();
   }

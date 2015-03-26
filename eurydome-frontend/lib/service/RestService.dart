@@ -88,6 +88,10 @@ class RestService {
     return _client.getAll(DO_SETTING, (obj) => new Setting.fromJson(obj));
   }
 
+  Setting getSettingById(String id) {
+    return new Setting.fromJson(_client.getById(DO_SETTING, id));
+  }
+
   void saveSetting(Setting obj) {
     _client.save(DO_SETTING, obj);
   }

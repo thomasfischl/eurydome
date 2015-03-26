@@ -34,12 +34,15 @@ import com.github.thomasfischl.eurydome.backend.dal.ApplicationDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.DockerHostDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.FileDataStore;
 import com.github.thomasfischl.eurydome.backend.dal.ServiceDataStore;
+import com.github.thomasfischl.eurydome.backend.dal.SettingDataStore;
 import com.github.thomasfischl.eurydome.backend.model.DOApplication;
 import com.github.thomasfischl.eurydome.backend.model.DODockerHost;
 import com.github.thomasfischl.eurydome.backend.model.DOFile;
 import com.github.thomasfischl.eurydome.backend.model.DOService;
+import com.github.thomasfischl.eurydome.backend.model.DOSetting;
 import com.github.thomasfischl.eurydome.backend.service.ProxyService;
 import com.github.thomasfischl.eurydome.backend.util.DockerUtil;
+import com.github.thomasfischl.eurydome.backend.util.UrlUtil;
 import com.google.common.base.Strings;
 
 @Component("TaskStartContainer")
@@ -68,6 +71,9 @@ public class TaskStartContainer extends AbstractTask {
   private DockerHostDataStore dockerhostStore;
 
   @Inject
+  private SettingDataStore settingStore;
+
+  @Inject
   private ProxyService proxyService;
 
   private DOService service;
@@ -90,6 +96,8 @@ public class TaskStartContainer extends AbstractTask {
 
   private String exposedPort;
 
+  private String loadbalancerURL;
+
   @Override
   public List<StepDefinition> getSteps() {
     List<StepDefinition> steps = new ArrayList<StepDefinition>();
@@ -102,6 +110,7 @@ public class TaskStartContainer extends AbstractTask {
     steps.add(new StepDefinition("Update Service State", () -> stepUpdateService()));
     steps.add(new StepDefinition("Test Service Health Page", () -> stepTestServiceHealthPage()));
     steps.add(new StepDefinition("Update Proxy Configuration", () -> stepUpdateProxyConfiguration()));
+    steps.add(new StepDefinition("Test Proxy Configuration", () -> stepTestProxyConfiguration()));
     return steps;
   }
 
@@ -136,6 +145,12 @@ public class TaskStartContainer extends AbstractTask {
     }
     containerName = DockerUtil.normalizeContainerName(service);
     dockerEnvSettings = service.getDockerEnvSettings();
+
+    DOSetting setting = settingStore.findByName(DOSetting.LOAD_BALANCER_URL);
+    if (setting != null) {
+      loadbalancerURL = setting.getValue();
+    }
+
   }
 
   private void stepCreateDockerClient() {
@@ -287,6 +302,52 @@ public class TaskStartContainer extends AbstractTask {
       proxyService.reloadProxy();
     } catch (IOException e) {
       throw new RuntimeException(e);
+    }
+  }
+
+  private void stepTestProxyConfiguration() {
+    logMessage("Test Proxy Configuration");
+
+    if (Strings.isNullOrEmpty(loadbalancerURL)) {
+      logMessage("No loadbalancer URL configured. Skip step.");
+      return;
+    }
+
+    String url = UrlUtil.concatUrl(loadbalancerURL, service.getUrl());
+    if (StringUtils.isNotEmpty(application.getHealthCheckUrl())) {
+      url = UrlUtil.concatUrl(url, application.getHealthCheckUrl());
+    }
+
+    int successCount = 0;
+
+    for (int idx = 1; idx <= 10; idx++) {
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        // Nothing to do
+      }
+
+      try {
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setConnectTimeout(1000);
+        connection.connect();
+
+        if (connection.getResponseCode() < 400) {
+          logMessage("Try " + idx + ": Test proxy url '" + url + "'. OK (" + connection.getResponseCode() + ")");
+          successCount++;
+        } else {
+          logMessage("Try " + idx + ": Test proxy url '" + url + "'. Failed: " + connection.getResponseCode());
+          successCount = 0;
+        }
+
+        if (successCount == 5) {
+          return;
+        }
+      } catch (Exception e) {
+        LOG.info("Unkown resource. " + e.getMessage());
+        logMessage("Try " + idx + ": Test health check url '" + url + "'. Failed: " + e.getMessage());
+        successCount = 0;
+      }
     }
   }
 

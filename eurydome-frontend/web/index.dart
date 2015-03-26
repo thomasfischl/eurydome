@@ -20,6 +20,7 @@ class PlatformManager extends Module {
     bind(ProxyConfigurationComponent);
     bind(ServerLogComponent);
     bind(SystemEnvironmentComponent);
+    bind(GenericSettingsComponent);
 
     //Control
     bind(MessageComponent);

@@ -26,6 +26,7 @@ transformers:
     - lib/component/app/settings/system_environment_component.html
     - lib/component/app/services/services_view.html
     - lib/component/app/services/service_console_component.html
+    - lib/component/app/services/generic_settings_component.html
     - lib/component/app/organisations_view.html
     - lib/component/app/dockerhosts_view.html
     - lib/component/app/users_view.html
