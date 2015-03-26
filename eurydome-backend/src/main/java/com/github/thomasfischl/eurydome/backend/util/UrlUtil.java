@@ -4,10 +4,12 @@ public class UrlUtil {
 
   public static String concatUrl(String url, String path) {
     if (url.endsWith("/")) {
-      return url + path;
-    } else {
-      return url + "/" + path;
+      url = url.substring(0, url.length() - 2);
     }
+    if (path.startsWith("/")) {
+      path = path.substring(1);
+    }
+    return url + "/" + path;
   }
 
 }

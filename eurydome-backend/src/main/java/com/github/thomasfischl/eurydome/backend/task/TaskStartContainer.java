@@ -111,6 +111,7 @@ public class TaskStartContainer extends AbstractTask {
     steps.add(new StepDefinition("Test Service Health Page", () -> stepTestServiceHealthPage()));
     steps.add(new StepDefinition("Update Proxy Configuration", () -> stepUpdateProxyConfiguration()));
     steps.add(new StepDefinition("Test Proxy Configuration", () -> stepTestProxyConfiguration()));
+    steps.add(new StepDefinition("Finish", () -> logMessage("Finish")));
     return steps;
   }
 
@@ -345,7 +346,7 @@ public class TaskStartContainer extends AbstractTask {
         }
       } catch (Exception e) {
         LOG.info("Unkown resource. " + e.getMessage());
-        logMessage("Try " + idx + ": Test health check url '" + url + "'. Failed: " + e.getMessage());
+        logMessage("Try " + idx + ": Test proxy url '" + url + "'. Failed: " + e.getMessage());
         successCount = 0;
       }
     }
